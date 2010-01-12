@@ -1,0 +1,18 @@
+- semantic_form_for (@survey) do |f|
+  %p
+    - f.inputs do
+      = f.input :eno
+      = f.input :surveyid
+      = f.input :surveyname
+      = f.input :startdate, :as => :date
+      = f.input :enddate, :as => :date
+      = f.input :surveytype
+      = f.input :operator
+      = f.input :contractor
+      = f.input :processor
+      = f.input :client
+      = f.input :owner
+      = f.input :legislation, :hint => "The legislation which governs the use of the data (e.g. Petroleum Search Subsidy Act (PSSA), Petroleum Submerged Lands Act (PSLA)."
+      = f.input :state
+      = f.input :comments, :as => :text
+      = f.buttons

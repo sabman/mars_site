@@ -1,0 +1,16 @@
+- title "Surveys"
+
+%table
+  %tr
+    %th Id
+    %th Name
+  - for survey in @surveys
+    %tr
+      %td= link_to "#{h survey.surveyid}", survey_path(survey)
+      %td= link_to "#{h survey.surveyname}", survey_path(survey)
+      %td= link_to 'Edit', edit_survey_path(survey)
+      %td= link_to 'Destroy', survey_path(survey), :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Survey", new_survey_path
+%p= will_paginate @surveys
+

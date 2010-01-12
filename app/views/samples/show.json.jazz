@@ -1,0 +1,6 @@
+-@sample
+  :except
+    .geom
+    .geom_original
+  :code => geom
+    geom.as_georuby

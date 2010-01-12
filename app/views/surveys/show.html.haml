@@ -1,0 +1,41 @@
+- title "Survey #{h @survey.surveyid}"
+
+%p
+  %strong ENO:
+  =h @survey.eno
+%p
+  %strong Name:
+  =h @survey.surveyname
+%p
+  %strong Data types:
+  =h @survey.datatypes
+%p
+  %strong UNO:
+  =h @survey.uno
+%p
+  %strong Startdate:
+  =h @survey.startdate
+%p
+  %strong Enddate:
+  =h @survey.enddate
+%p
+  %strong Vessel Type:
+  =h @survey.vessel_type
+%p
+  %strong Vessel:
+  =h @survey.vessel
+%p
+  %strong Entered by:
+  =h @survey.enteredby
+%p
+  %strong Comments:
+  =h @survey.comments
+%p
+  %strong Samples: 
+  = link_to "View Samples", survey_samples_path(@survey)
+%p
+  = link_to "Edit", edit_survey_path(@survey)
+  |
+  = link_to "Destroy", survey_path(@survey), :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", surveys_path

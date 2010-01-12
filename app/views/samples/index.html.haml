@@ -1,0 +1,18 @@
+- title "Samples"
+
+%table
+  %tr
+    %th Sampleno
+    %th Sampleid
+  - for sample in @samples
+    %tr
+      %td= h sample.sampleno
+      %td= link_to "#{h sample.sampleid}", sample_path(sample)
+      %td= link_to 'Edit', edit_sample_path(sample)
+      %td= link_to 'Destroy', sample_path(sample), :confirm => 'Are you sure?', :method => :delete
+
+%p
+  = link_to "New Sample", new_sample_path
+
+%p
+  = will_paginate @samples

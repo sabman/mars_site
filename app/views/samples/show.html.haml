@@ -1,0 +1,33 @@
+- stylesheet('maps', 'openlayers', 'googlemaps'  )
+- api_key = 'ABQIAAAAa7SFeUyLeV9ADXW6EhbOsBTJQa0g3IQ9GZqIMmInSLzwtGDKaBTox7Qzb4PL-EJhVrw0qM75IoR-hg'  #localhost:3000
+- api_key = 'ABQIAAAAa7SFeUyLeV9ADXW6EhbOsBRKqhuLjd_uWzYYXjIXZDc_rYXXphRoDCW3Tc5XnLLZAPDNpsP5X4D44g'  #pc-30999:3000
+- javascript_link("http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=#{api_key}")
+- javascript('jquery-1.3.2.min', 'http://openlayers.org/dev/OpenLayers.js') 
+- javascript('maps/initMap') 
+- title "Sampleno #{@sample.sampleno.to_s}"
+
+=content_for(:head) do
+  %script{:type => "text/javascript"}
+    $(document).ready(function(){var map = initMap(); showMap(location+".json")});
+
+%p
+  %strong Sampleno:
+  =h @sample.sampleno
+%p
+  %strong Sampleid:
+  =h @sample.sampleid
+
+%p
+  %strong Location:
+  =h @sample.geom_original.as_georuby.to_json
+
+#map.smallmap
+  
+%p
+  = link_to "Edit", edit_sample_path(@sample)
+  |
+  = link_to "Destroy", sample_path(@sample), :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View Samples From Current Survey", survey_samples_path(@sample.survey)
+  |
+  = link_to "View Survey", survey_path(@sample.survey)

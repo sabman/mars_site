@@ -1,0 +1,56 @@
+!!! Strict
+%html{html_attrs}
+  
+  %head
+    %title
+      = h(yield(:title) || "Untitled")
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag 'application', 'pagination', 'formtastic', 'formtastic_changes', :cache => "base"
+    = yield(:head)
+  
+  %body
+    #container
+      #banner
+        = link_to image_tag('globe-sextant-icon.png', :title => "Marine Samples Database - MARS", :alt => "Marine Samples Database - MARS"), root_path
+      #header
+        -if show_header?
+          %h1=h yield(:header) 
+        -else 
+          %h2="Marine Samples Database - MARS"
+
+      #nav    
+        %span.user_nav
+          - if current_user
+            = link_to "Edit Profile", edit_user_path(:current)
+            |
+            = link_to "Logout", logout_path
+          - else
+            = link_to "Register", new_user_path
+            |
+            = link_to "Login", login_path
+        =link_to "Surveys", surveys_path
+        |
+        =link_to "Samples", samples_path
+        |
+        =link_to "Sample Data", :controller => "sampledata", :action => "index"
+      #content
+        #main
+          - flash.each do |name, msg|
+            = content_tag :div, msg, :id => "flash_#{name}"
+          - if show_title?
+            %h2=h yield(:title)
+          = yield
+        #sidebar
+          %p data manager
+          %p data lint
+          %p developer api
+          =h yield(:sidebar)
+      #footer
+        %p 
+          Seabed Mapping & Characterisation - Geoscience Australia
+          | 
+          =link_to "MARS API", '/api.html'
+          | 
+          =link_to "Twitter", '/twitter.html'
+        =h yield(:footer)
+

@@ -1,0 +1,11 @@
+.class1 A:link, .class1 A:visited, .class1 A:active {
+  text-decoration: none; }
+.class1 A:hover {
+  text-decoration: underline;
+  color: red; }
+
+.class2 A:link, .class2 A:visited, .class2 A:active {
+  text-decoration: underline overline; }
+.class2 A:hover {
+  text-decoration: underline;
+  color: green; }
