@@ -4,7 +4,7 @@
   %strong ENO:
   =h @survey.eno
 %p
-  %strong Name:
+  %strong Survey name:
   =h @survey.surveyname
 %p
   %strong Data types:
@@ -31,6 +31,9 @@
   %strong Comments:
   =h @survey.comments
 %p
+  %strong BBOX:
+  =h "#{@survey.nlat}, #{@survey.slat}, #{@survey.elong}, #{@survey.wlong}"
+%p
   %strong Samples: 
   = link_to "View Samples", survey_samples_path(@survey)
 %p
@@ -39,3 +42,10 @@
   = link_to "Destroy", survey_path(@survey), :confirm => 'Are you sure?', :method => :delete
   |
   = link_to "View All", surveys_path
+
+=content_for(:sidebar_otherdata) do
+  - gams = find_gams_in_comments(@survey.comments)
+  %p
+    = link_to("Data from GADA Project", get_gada_data_url(gams), :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access")
+  %p
+    = link_to("Metadata from GADA Project", get_gada_metadata_url(gams), :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access")

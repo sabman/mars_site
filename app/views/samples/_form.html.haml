@@ -2,6 +2,8 @@
   - f.inputs do
     = f.input :sampleno
     = f.input :sampleid
+    = f.input :sample_type
     = f.input :eno
     =# f.input geom_original.as_georuby.text_representation
-    = f.buttons
+    - f.buttons do
+      =f.commit_button :button_html => {:value => "Update"}

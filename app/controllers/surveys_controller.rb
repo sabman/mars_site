@@ -1,10 +1,29 @@
 ProdDb.connection.execute("ALTER SESSION set NLS_DATE_FORMAT ='DD-MON-FXYYYY'")
 class SurveysController < ApplicationController
+  before_filter :require_user, :except => [:show, :index] 
   resource_controller
 
+  def create
+  end
+
+  def update
+    if object.update_attributes(params[:survey])
+      flash[:notice] = "Successfully updated!"
+      redirect_to(object)
+    else
+      flash[:error] = "Problem updating"
+      render :action => :edit
+    end
+  end
+    
+  def surveys_with_samples
+    
+  end
+
   protected
+
   def model
-    Prod::Survey
+    Survey
   end
 
   def collection

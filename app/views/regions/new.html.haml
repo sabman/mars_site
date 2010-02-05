@@ -1,0 +1,15 @@
+/ require dev openlayers
+- include_maps
+=content_for(:head) do
+  %script{:type => "text/javascript"}
+    $(document).ready(function(){var map = initMap(); initDrawTool();});
+
+- title "New Region"
+
+#map.smallmap
+
+%br
+
+= render :partial => 'form'
+  
+%p= link_to "Back to List", regions_path

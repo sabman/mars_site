@@ -1,8 +1,6 @@
-- stylesheet('maps', 'openlayers', 'googlemaps'  )
-- api_key = 'ABQIAAAAa7SFeUyLeV9ADXW6EhbOsBTJQa0g3IQ9GZqIMmInSLzwtGDKaBTox7Qzb4PL-EJhVrw0qM75IoR-hg'  #localhost:3000
-- api_key = 'ABQIAAAAa7SFeUyLeV9ADXW6EhbOsBRKqhuLjd_uWzYYXjIXZDc_rYXXphRoDCW3Tc5XnLLZAPDNpsP5X4D44g'  #pc-30999:3000
-- javascript_link("http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=#{api_key}")
-- javascript('jquery-1.3.2.min', 'http://openlayers.org/dev/OpenLayers.js') 
+- stylesheet('openlayers', 'googlemaps'  )
+- js_gmaps
+- js_openlayers
 - javascript('maps/initMap') 
 - title "Sampleno #{@sample.sampleno.to_s}"
 
@@ -16,10 +14,12 @@
 %p
   %strong Sampleid:
   =h @sample.sampleid
-
+%p
+  %strong Sample Type:
+  =h @sample.sample_type
 %p
   %strong Location:
-  =h @sample.geom_original.as_georuby.to_json
+  =h @sample.geom_original.as_georuby.to_json rescue nil
 
 #map.smallmap
   
@@ -31,3 +31,10 @@
   = link_to "View Samples From Current Survey", survey_samples_path(@sample.survey)
   |
   = link_to "View Survey", survey_path(@sample.survey)
+
+=content_for(:sidebar_developer) do
+  %p The URI path to HTTP-GET the sample details in JSON format
+  %pre
+    =link_to(sample_path(@sample, :json), sample_path(@sample, :json))
+  %pre
+    =@sample.to_json

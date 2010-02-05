@@ -1,0 +1,15 @@
+- title "Ga Users"
+
+%table
+  %tr
+    %th Username
+    %th Password
+  - for ga_user in @ga_users
+    %tr
+      %td= h ga_user.username
+      %td= h ga_user.password
+      %td= link_to 'Show', ga_user
+      %td= link_to 'Edit', edit_ga_user_path(ga_user)
+      %td= link_to 'Destroy', ga_user, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Ga User", new_ga_user_path

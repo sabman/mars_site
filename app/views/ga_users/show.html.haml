@@ -1,0 +1,15 @@
+- title "Ga User"
+
+%p
+  %strong Username:
+  =h @ga_user.username
+%p
+  %strong Password:
+  =h @ga_user.password
+
+%p
+  = link_to "Edit", edit_ga_user_path(@ga_user)
+  |
+  = link_to "Destroy", @ga_user, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", ga_users_path

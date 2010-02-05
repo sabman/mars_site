@@ -6,6 +6,7 @@ require 'lib/config/smac_locations'
 #ProdDb.connection.execute("ALTER SESSION set NLS_ISO_CURRENCY ='AMERICA'")
 #ProdDb.connection.execute("ALTER SESSION set NLS_NUMERIC_CHARACTERS ='.,'")
 #ProdDb.connection.execute("ALTER SESSION set NLS_CALENDAR ='GREGORIAN'")
+#puts "ProdDb connection exe"
 ProdDb.connection.execute("ALTER SESSION set NLS_DATE_FORMAT ='DD-MON-FXYYYY'")
 #ProdDb.connection.execute("ALTER SESSION set NLS_DATE_LANGUAGE ='AMERICAN'")
 #ProdDb.connection.execute("ALTER SESSION set NLS_SORT ='BINARY'")

@@ -1,7 +1,9 @@
-- title "New User Session"
+- title "Login"
 
 - semantic_form_for @user_session do |f|
   - f.inputs do
-    = f.input :username
-    = f.input :password
-    = f.buttons
+    = f.input :username, :input_html => {:size => 60}
+    = f.input :password, :input_html => {:size => 60}
+
+    - f.buttons do
+      =f.commit_button :button_html => {:value => "Login"}

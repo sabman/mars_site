@@ -35,3 +35,48 @@ function initGeometry(data){
   map.zoomToExtent(bounds);
 }
 
+var drawControls;
+var vLayer;     // editable vector layer
+var bboxLayer;  // bbox layer
+var bboxStyle;
+function initDrawTool(){
+
+  // init layers
+  vLayer = new OpenLayers.Layer.Vector( "Editable" );
+  bboxLayer = new OpenLayers.Layer.Vector( "BBox", {style: MARS.LAYERSTYLES.bbox});
+  map.addLayers([vLayer, bboxLayer]);
+
+  drawControls = {
+    editingToolBar: new OpenLayers.Control.EditingToolbar(vLayer)
+  };
+  for(var key in drawControls){
+    map.addControl(drawControls[key]);
+  }
+  
+  // allow the selection of drawn features
+  var selectOptions = {box:true, hover:true, onSelect:addBox, onUnselect:removeBox};
+  var select = new OpenLayers.Control.SelectFeature(vLayer, selectOptions);
+  map.addControl(select);
+  select.activate();
+}
+
+var bounds;
+function addBox (feature) { // feature passed is a layer 
+  bounds = new OpenLayers.Feature.Vector(feature.geometry.bounds.toGeometry());
+  $("#region_corners_input input").val(feature.geometry.bounds.toBBOX()); 
+  $("#region_coordinates_input input").val("[["+feature.geometry.bounds.toBBOX()+"]]"); 
+  bboxLayer.destroyFeatures();
+  bboxLayer.addFeatures([bounds]); 
+  // vLayer.redraw();
+  // should display the bounding box of the features
+  // and fill in the correct text fields
+  var jsonFrmt = new OpenLayers.Format.GeoJSON();
+  var str = jsonFrmt.write(feature, true);
+  console.log(str);
+}
+
+function removeBox (feature) {
+  ;
+}
+
+

@@ -1,0 +1,30 @@
+- title "Region"
+
+%p
+  %strong Name:
+  =h @region.name
+%p
+  %strong Coordinates:
+  =h @region.coordinates
+%p
+  %strong Corners:
+  =h @region.corners
+%p
+  %strong Minlon:
+  =h @region.minlon
+%p
+  %strong Maxlon:
+  =h @region.maxlon
+%p
+  %strong Minlat:
+  =h @region.minlat
+%p
+  %strong Maxlat:
+  =h @region.maxlat
+
+%p
+  = link_to "Edit", edit_region_path(@region)
+  |
+  = link_to "Destroy", @region, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", regions_path

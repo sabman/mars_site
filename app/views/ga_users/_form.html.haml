@@ -1,0 +1,12 @@
+- form_tag :action => :create, :controller => :ga_users do |f|
+  =# f.error_messages
+  %p
+    = label_tag :username
+    %br
+    = text_field_tag :username
+  %p
+    = label_tag :password
+    %br
+    = password_field_tag :password
+  %p
+    = submit_tag "Submit"

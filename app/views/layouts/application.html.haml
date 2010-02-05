@@ -6,6 +6,8 @@
       = h(yield(:title) || "Untitled")
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = stylesheet_link_tag 'application', 'pagination', 'formtastic', 'formtastic_changes', :cache => "base"
+    = javascript_include_tag 'jquery', 'jquery-ui'
+
     = yield(:head)
   
   %body
@@ -16,7 +18,7 @@
         -if show_header?
           %h1=h yield(:header) 
         -else 
-          %h2="Marine Samples Database - MARS"
+          %h2=link_to "Marine Samples Database - MARS", root_path
 
       #nav    
         %span.user_nav
@@ -33,6 +35,8 @@
         =link_to "Samples", samples_path
         |
         =link_to "Sample Data", :controller => "sampledata", :action => "index"
+        |
+        =link_to "Regions", :controller => "regions", :action => "index"
       #content
         #main
           - flash.each do |name, msg|
@@ -41,10 +45,15 @@
             %h2=h yield(:title)
           = yield
         #sidebar
-          %p data manager
-          %p data lint
-          %p developer api
-          =h yield(:sidebar)
+          = yield(:sidebar)
+          %h4 Other Datasets in GA
+          = yield(:sidebar_otherdata)
+          %h4 data manager
+          = yield(:sidebar_datamanager)
+          %h4 data lint
+          = yield(:sidebar_datalint)
+          %h4 developer api
+          = yield(:sidebar_developer)
       #footer
         %p 
           Seabed Mapping & Characterisation - Geoscience Australia
