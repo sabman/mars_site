@@ -1,4 +1,11 @@
 - title "Region"
+- include_maps
+=content_for(:head) do
+  %script{:type => "text/javascript"}
+    $(document).ready(function(){var map = initMap(); showMap(location+".json")});
+
+#map.smallmap
+
 
 %p
   %strong Name:

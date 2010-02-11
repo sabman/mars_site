@@ -2,6 +2,7 @@ class CreateRegions < ActiveRecord::Migration
   def self.up
     create_table :regions do |t|
       t.string :name
+      t.text :geometry
       t.string :coordinates
       t.string :corners
       t.decimal :minlon

@@ -1,0 +1,96 @@
+- title "Sampledata"
+
+%p
+  %strong Datano:
+  =h @sampledata.datano
+%p
+  %strong Sampleno:
+  =h @sampledata.sampleno
+%p
+  %strong Property:
+  =h @sampledata.property
+%p
+  %strong Qualifier:
+  =h @sampledata.qualifier
+%p
+  %strong Seq No:
+  =h @sampledata.seq_no
+%p
+  %strong Quant Value:
+  =h @sampledata.quant_value
+%p
+  %strong Qual Value:
+  =h @sampledata.qual_value
+%p
+  %strong Confidence:
+  =h @sampledata.confidence
+%p
+  %strong Uom:
+  =h @sampledata.uom
+%p
+  %strong Access Code:
+  =h @sampledata.access_code
+%p
+  %strong Parent:
+  =h @sampledata.parent
+%p
+  %strong Entrydate:
+  =h @sampledata.entrydate
+%p
+  %strong Enteredby:
+  =h @sampledata.enteredby
+%p
+  %strong Lastupdate:
+  =h @sampledata.lastupdate
+%p
+  %strong Qadate:
+  =h @sampledata.qadate
+%p
+  %strong Qaby:
+  =h @sampledata.qaby
+%p
+  %strong Qa Status Code:
+  =h @sampledata.qa_status_code
+%p
+  %strong Activity Code:
+  =h @sampledata.activity_code
+%p
+  %strong Analysisdate:
+  =h @sampledata.analysisdate
+%p
+  %strong Ano:
+  =h @sampledata.ano
+%p
+  %strong Obs Type:
+  =h @sampledata.obs_type
+%p
+  %strong Batchno:
+  =h @sampledata.batchno
+%p
+  %strong Preferred:
+  =h @sampledata.preferred
+%p
+  %strong Comments:
+  =h @sampledata.comments
+%p
+  %strong Method:
+  =h @sampledata.method
+%p
+  %strong Projectid:
+  =h @sampledata.projectid
+%p
+  %strong Procedureno:
+  =h @sampledata.procedureno
+%p
+  %strong Projno:
+  =h @sampledata.projno
+%p
+  %strong Config Until:
+  =h @sampledata.confid_until
+
+%p
+  = link_to "Edit", edit_sampledata_path(@sampledata)
+  |
+  = link_to "Destroy", @sampledata, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", sampledata_path

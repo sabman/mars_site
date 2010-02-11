@@ -1,4 +1,14 @@
-- title "Samples"
+- if parent?
+  - title "Samples form Survey #{parent_object.surveyid || parent_object.eno}"
+-else
+  - title "Samples"
+- include_maps
+
+=content_for(:head) do
+  %script{:type => "text/javascript"}
+    $(document).ready(function(){var map = initMap(); indexMap(location+".json")});
+
+#map.smallmap
 
 %table
   %tr
@@ -16,3 +26,9 @@
 
 %p
   = will_paginate @samples
+
+= content_for(:sidebar_datalint) do
+  %h5 Samples missing location information
+  = render :partial => "missing_metadata_sample", :collection => @missing_geom_samples, :as => :missing_metadata_sample
+
+

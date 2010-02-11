@@ -1,0 +1,120 @@
+- form_for @sampledata do |f|
+  = f.error_messages
+  %p
+    = f.label :datano
+    %br
+    = f.text_field :datano
+  %p
+    = f.label :sampleno
+    %br
+    = f.text_field :sampleno
+  %p
+    = f.label :property
+    %br
+    = f.text_field :property
+  %p
+    = f.label :qualifier
+    %br
+    = f.text_field :qualifier
+  %p
+    = f.label :seq_no
+    %br
+    = f.text_field :seq_no
+  %p
+    = f.label :quant_value
+    %br
+    = f.text_field :quant_value
+  %p
+    = f.label :qual_value
+    %br
+    = f.text_field :qual_value
+  %p
+    = f.label :confidence
+    %br
+    = f.text_field :confidence
+  %p
+    = f.label :uom
+    %br
+    = f.text_field :uom
+  %p
+    = f.label :access_code
+    %br
+    = f.text_field :access_code
+  %p
+    = f.label :parent
+    %br
+    = f.text_field :parent
+  %p
+    = f.label :entrydate
+    %br
+    = f.date_select :entrydate
+  %p
+    = f.label :enteredby
+    %br
+    = f.text_field :enteredby
+  %p
+    = f.label :lastupdate
+    %br
+    = f.date_select :lastupdate
+  %p
+    = f.label :qadate
+    %br
+    = f.date_select :qadate
+  %p
+    = f.label :qaby
+    %br
+    = f.text_field :qaby
+  %p
+    = f.label :qa_status_code
+    %br
+    = f.text_field :qa_status_code
+  %p
+    = f.label :activity_code
+    %br
+    = f.text_field :activity_code
+  %p
+    = f.label :analysisdate
+    %br
+    = f.date_select :analysisdate
+  %p
+    = f.label :ano
+    %br
+    = f.text_field :ano
+  %p
+    = f.label :obs_type
+    %br
+    = f.text_field :obs_type
+  %p
+    = f.label :batchno
+    %br
+    = f.text_field :batchno
+  %p
+    = f.label :preferred
+    %br
+    = f.text_field :preferred
+  %p
+    = f.label :comments
+    %br
+    = f.text_area :comments
+  %p
+    = f.label :method
+    %br
+    = f.text_field :method
+  %p
+    = f.label :projectid
+    %br
+    = f.text_field :projectid
+  %p
+    = f.label :procedureno
+    %br
+    = f.text_field :procedureno
+  %p
+    = f.label :projno
+    %br
+    = f.text_field :projno
+  %p
+    = f.label :confid_until
+    %br
+    = f.date_select :config_until
+  %p
+    = f.submit "Submit"

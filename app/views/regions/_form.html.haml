@@ -1,10 +1,11 @@
 - semantic_form_for @region do |f|
   - f.inputs do
     = f.input :name, :hint => "Some examples: Browse Basin, Carnarvon Basin, Antarctic"
-    = f.input :coordinates, :hint => "This is a closed polygon [[ll, lr, ur, ul, ll]]"
     = f.input :corners, :hint => "minlon, minlat, maxlon, maxlat - (lower left, upper right)"
     = f.input :minlon
     = f.input :maxlon
     = f.input :minlat
     = f.input :maxlat
     = f.buttons
+    = f.input :coordinates, :as => :hidden #, :hint => "This is a closed polygon [[ll, lr, ur, ul, ll]]"
+    = f.input :geometry, :as => :hidden #, :hint => "This is a geojson object"

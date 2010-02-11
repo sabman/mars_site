@@ -1,25 +1,15 @@
 - title "Regions"
 
-%table
-  %tr
-    %th Name
-    %th Coordinates
-    %th Corners
-    %th Minlon
-    %th Maxlon
-    %th Minlat
-    %th Maxlat
-  - for region in @regions
-    %tr
-      %td= h region.name
-      %td= h region.coordinates
-      %td= h region.corners
-      %td= h region.minlon
-      %td= h region.maxlon
-      %td= h region.minlat
-      %td= h region.maxlat
-      %td= link_to 'Show', region
-      %td= link_to 'Edit', edit_region_path(region)
-      %td= link_to 'Destroy', region, :confirm => 'Are you sure?', :method => :delete
+- for region in @regions
+  %h3= h region.name
+  %p= h region.coordinates
+  %p= h region.corners
+  %p= h region.minlon
+  %p= h region.maxlon
+  %p= h region.minlat
+  %p= h region.maxlat
+  %p= link_to 'Show', region
+  %p= link_to 'Edit', edit_region_path(region)
+  %p= link_to 'Destroy', region, :confirm => 'Are you sure?', :method => :delete
 
 %p= link_to "New Region", new_region_path

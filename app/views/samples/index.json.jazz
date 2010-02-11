@@ -1,6 +1,6 @@
--@sample => object
+-@samples => objects
   :except
     .geom
     .geom_original
   :code => geom
-    geom.as_georuby
+    geom.as_georuby rescue nil

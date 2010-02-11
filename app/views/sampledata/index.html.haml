@@ -1,0 +1,72 @@
+- title "Sampledata"
+- javascript 'endless_page'
+
+%table
+  %tr
+    %th Datano
+    %th Sampleno
+    %th Property
+    %th Qualifier
+    %th Seq no
+    %th Quant value
+    %th Qual value
+    %th Confidence
+    %th Uom
+    %th Access code
+    %th Parent
+    %th Entrydate
+    %th Enteredby
+    %th Lastupdate
+    %th Qadate
+    %th Qaby
+    %th Qa status code
+    %th Activity code
+    %th Analysisdate
+    %th Ano
+    %th Obs type
+    %th Batchno
+    %th Preferred
+    %th Comments
+    %th Method
+    %th Projectid
+    %th Procedureno
+    %th Projno
+    %th Config until
+  - for sampledata in @sampledata
+    %tr
+      %td= h sampledata.datano
+      %td= h sampledata.sampleno
+      %td= h sampledata.property
+      %td= h sampledata.qualifier
+      %td= h sampledata.seq_no
+      %td= h sampledata.quant_value
+      %td= h sampledata.qual_value
+      %td= h sampledata.confidence
+      %td= h sampledata.uom
+      %td= h sampledata.access_code
+      %td= h sampledata.parent
+      %td= h sampledata.entrydate
+      %td= h sampledata.enteredby
+      %td= h sampledata.lastupdate
+      %td= h sampledata.qadate
+      %td= h sampledata.qaby
+      %td= h sampledata.qa_status_code
+      %td= h sampledata.activity_code
+      %td= h sampledata.analysisdate
+      %td= h sampledata.ano
+      %td= h sampledata.obs_type
+      %td= h sampledata.batchno
+      %td= h sampledata.preferred
+      %td= h sampledata.comments
+      %td= h sampledata.method
+      %td= h sampledata.projectid
+      %td= h sampledata.procedureno
+      %td= h sampledata.projno
+      %td= h sampledata.confid_until
+      %td= link_to 'Show', sampledata
+      %td= link_to 'Edit', edit_sampledata_path(sampledata)
+      %td= link_to 'Destroy', sampledata, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Sampledata", new_sampledata_path
+
+

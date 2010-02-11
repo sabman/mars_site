@@ -8,8 +8,9 @@ function initMap() {
   var gmap = new OpenLayers.Layer.Google("Google Streets",    {type: G_NORMAL_MAP, numZoomLevels: 20});
   var ghyb = new OpenLayers.Layer.Google("Google Hybrid",     {type: G_HYBRID_MAP, numZoomLevels: 20});
   var gsat = new OpenLayers.Layer.Google("Google Satellite",  {type: G_SATELLITE_MAP, numZoomLevels:20});
-
-  map.addLayers([gphy, gmap, ghyb, gsat]);
+  var demis = new OpenLayers.Layer.WorldWind( "Word Map (tiles cached)", "http://www2.demis.nl/wms/ww.ashx?", 45, 11, {T:"WorldMap"}, { tileSize: new OpenLayers.Size(512,512) });
+        
+  map.addLayers([gphy, demis, gmap, ghyb, gsat]);
 
   map.setCenter(new OpenLayers.LonLat(135, -25), 3);
   return map;
@@ -19,14 +20,40 @@ function showMap(url){
   request = $.getJSON(url, null, initGeometry);
 }
 
+function indexMap(url){
+  request = $.getJSON(url, null, initGeometries);
+}
+
+function initGeometries (data) {
+  var vectors = new OpenLayers.Layer.Vector("Samples");
+  map.addLayer(vectors);
+  map.addControl(new OpenLayers.Control.EditingToolbar(vectors));
+  var selectOptions = {box:true, hover:true};
+  var select = new OpenLayers.Control.SelectFeature(vectors, selectOptions);
+  map.addControl(select);
+  select.activate();
+
+  for (var i=0; i < data.objects.length; i++) {
+    var geom = data.objects[i].object.geom;
+    var geojson = new OpenLayers.Format.GeoJSON({"ignoreExtraDims": true});
+    var features = geojson.read(geom);
+    if (geom) {
+      if (features.constructor != Array) { features = [features]; };  
+      vectors.addFeatures(features);
+    };
+  };
+  var bounds = vectors.getDataExtent();
+  map.zoomToExtent(bounds);
+}
+
 function initGeometry(data){
-  var geom = data.sample.geom;
+  var geom = data.object.geom;
   var geojson = new OpenLayers.Format.GeoJSON({"ignoreExtraDims": true});
-  var features =  geojson.read(geom)
+  var features =  geojson.read(geom);
   if(features.constructor != Array){features = [features];}
 
   // new layer for showing the record on the map
-  var vectors = new OpenLayers.Layer.Vector(data.sample.sampleid);
+  var vectors = new OpenLayers.Layer.Vector(data.object.sampleid);
   vectors.addFeatures(features); 
   map.addLayer(vectors);
 
@@ -71,7 +98,8 @@ function addBox (feature) { // feature passed is a layer
   // should display the bounding box of the features
   // and fill in the correct text fields
   var jsonFrmt = new OpenLayers.Format.GeoJSON();
-  var str = jsonFrmt.write(feature, true);
+  var str = jsonFrmt.write(feature);
+  $("#region_geometry_input input").val(str); 
   console.log(str);
 }
 
@@ -79,4 +107,36 @@ function removeBox (feature) {
   ;
 }
 
+function deseriliaze () {
+  var element = NULL //make a json call to get the geometry
+}
 
+
+function addHighlighting (vectors) {
+
+  var report = function(e) {
+    OpenLayers.Console.log(e.type, e.feature.id);
+  };
+            
+  var highlightCtrl = new OpenLayers.Control.SelectFeature(vectors, {
+    hover: true,
+    highlightOnly: true,
+    renderIntent: "temporary",
+    eventListeners: {
+      beforefeaturehighlighted: report,
+      featurehighlighted: report,
+      featureunhighlighted: report
+    }
+  });
+
+  var selectCtrl = new OpenLayers.Control.SelectFeature(vectors,
+    {clickout: true}
+  );
+
+  map.addControl(highlightCtrl);
+  map.addControl(selectCtrl);
+
+  highlightCtrl.activate();
+  selectCtrl.activate();
+  return vectors;
+}

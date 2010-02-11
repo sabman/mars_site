@@ -1,6 +1,6 @@
 config/database.yml
 tmp/**/*
-.*log
+log/**.log
 .*pid
 .*cache
 *~
@@ -8,3 +8,5 @@ tmp/**/*
 .DS_Store
 *.swp
 *.swo
+db/test.sqlite3
+log/development.log

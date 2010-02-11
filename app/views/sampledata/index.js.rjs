@@ -1,0 +1,3 @@
+page.insert_html :bottom, :sampledata, :partial => @sampledata
+# if there are more results then we want to retriger the checkScroll js method
+page.call 'checkScroll' if @sampledata.total_pages > @sampledata.current_page 

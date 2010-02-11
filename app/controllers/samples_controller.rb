@@ -6,23 +6,27 @@ class SamplesController < ApplicationController
 
   belongs_to :survey
 
-  show.wants.json {}
-
-  protected 
-
-  def model
-    Prod::Sample
+  index.before do
+    @missing_geom_samples ||= parent_object.samples_missing_metadata("geom") if parent?
+  end
+  index do 
+    wants.json {}
   end
 
-  def parent_object
-    Prod::Survey.find(params[:survey_id])
+  show do 
+    wants.json {}
   end
+
+
+private
 
   def collection
     @collection ||= end_of_association_chain.paginate(:order => "entrydate DESC", :page => params[:page])
   end
 
   def object
-    @object ||= Prod::Sample.find(params[:id])
+    @object ||= Sample.find(params[:id])
   end
+
+
 end
