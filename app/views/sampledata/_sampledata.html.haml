@@ -1,0 +1,93 @@
+%div{ :style => "margin-bottom:3em" }
+  %h2= sampledata.sample.sampleid rescue sampledata.sampleno
+  %h3= sampledata.property
+  %div
+    %strong Datano:
+    = h sampledata.datano
+  %div
+    %strong Sampleno:
+    = h sampledata.sampleno
+  %div
+    %strong Property:
+    = h sampledata.property
+  %div
+    %strong Qualifier:
+    = h sampledata.qualifier
+  %div
+    %strong Sequence Number:
+    = h sampledata.seq_no
+  %div
+    %strong Quant Value:
+    = h sampledata.quant_value
+  %div
+    %strong Qual Value:
+    = h sampledata.qual_value
+  %div
+    %strong Confidence:
+    = h sampledata.confidence
+  %div
+    %strong Unit of Measurement:
+    = h sampledata.uom
+  %div
+    %strong Access Code:
+    = h sampledata.access_code
+  %div
+    %strong Parent:
+    = h sampledata.parent
+  %div
+    %strong Entry Date: 
+    = h sampledata.entrydate
+  %div
+    %strong Entered By: 
+    = h sampledata.enteredby
+  %div
+    %strong Last Updated:
+    = h sampledata.lastupdate
+  %div
+    %strong QA Date: 
+    = h sampledata.qadate
+  %div
+    %strong QA By:
+    = h sampledata.qaby
+  %div
+    %strong QA Status Code:
+    = h sampledata.qa_status_code
+  %div
+    %strong Activity Code:
+    = h sampledata.activity_code
+  %div
+    %strong Analysis Date:
+    = h sampledata.analysisdate
+  %div
+    %strong ANO:
+    = h sampledata.ano
+  %div
+    %strong Observation Type:
+    = h sampledata.obs_type
+  %div
+    %strong Batch Number:
+    = h sampledata.batchno
+  %div
+    %strong Preferred:
+    = h sampledata.preferred
+  %div
+    %strong Comments: 
+    = h sampledata.comments
+  %div
+    %strong Method:
+    = h sampledata.method
+  %div
+    %strong Project ID:
+    = h sampledata.projectid
+  %div
+    %strong Procedure Number:
+    = h sampledata.procedureno
+  %div
+    %strong Project Number:
+    = h sampledata.projno
+  %div
+    %strong Confidential Until:
+    = h sampledata.confid_until
+  %div= link_to 'Show', sampledata
+  %div= link_to 'Edit', edit_sampledata_path(sampledata)
+  %div= link_to 'Destroy', sampledata, :confirm => 'Are you sure?', :method => :delete

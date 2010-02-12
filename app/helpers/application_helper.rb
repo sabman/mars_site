@@ -17,6 +17,14 @@ module ApplicationHelper
     javascript('mars')
     javascript('maps/initMap') 
   end
+
+  def pageless(total_pages, url=nil)
+    opts = {
+      :totalPages => total_pages,
+      :url        => url,
+      :loaderMsg  => 'Loading more results'
+    }
+    
+    javascript_tag("$('#main').pageless(#{opts.to_json});")
+  end
 end
-
-

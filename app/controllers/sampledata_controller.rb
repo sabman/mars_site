@@ -2,6 +2,10 @@ ProdDb.connection.execute("ALTER SESSION set NLS_DATE_FORMAT ='DD-MON-FXYYYY'")
 class SampledataController < ApplicationController
   def index
     @sampledata = Sampledata.paginate(:page => params[:page], :per_page => 30)
+    if request.xhr?
+      render :partial => @sampledata
+    end
+
   end
   
   def show

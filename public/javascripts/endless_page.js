@@ -15,7 +15,7 @@ function nearBottomOfPage () {
   return scrollDistanceFromBottom() < 150;
 }
 
-function scrollDistanceFromBottom (argument) {
+function scrollDistanceFromBottom () {
   return pageHeight() - (window.pageYOffset + self.innerHeight);
 }
 
