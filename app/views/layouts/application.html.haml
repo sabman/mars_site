@@ -3,7 +3,7 @@
   
   %head
     %title
-      = h(yield(:title) || "Untitled")
+      = (yield(:title_bar) || "Untitled")
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = stylesheet_link_tag 'application', 'pagination', 'formtastic', 'formtastic_changes', :cache => "base"
     = javascript_include_tag 'jquery', 'jquery-ui'
@@ -42,10 +42,11 @@
           - flash.each do |name, msg|
             = content_tag :div, msg, :id => "flash_#{name}"
           - if show_title?
-            %h2=h yield(:title)
+            %h2= yield(:title)
           = yield
         #sidebar
           = yield(:sidebar)
+          = yield(:sidebar_download)
           %h4 Other Datasets in GA
           = yield(:sidebar_otherdata)
           %h4 data manager

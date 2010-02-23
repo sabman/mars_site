@@ -2,5 +2,7 @@
   :except
     .geom
     .geom_original
+  :code => id
+    sampleno
   :code => geom
     geom.as_georuby rescue nil

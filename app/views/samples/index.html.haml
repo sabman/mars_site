@@ -1,5 +1,11 @@
+//%script{:type => 'text/javascript'}
+//  id = [2002950,2002940,2002924]
+//  for(var i =0; i < id.length; i++){$.getJSON(location+'/'+id[i]+'.json', null, function(data){$("#mytable").after("<p>"+data.object.sampleid+"</p>") });}
+
+//#mytable
+
 - if parent?
-  - title "Samples form Survey #{parent_object.surveyid || parent_object.eno}"
+  - title "Samples form Survey #{link_to parent_object.surveyid || parent_object.eno, parent_object}"
 -else
   - title "Samples"
 - include_maps
@@ -19,7 +25,7 @@
       %td= h sample.sampleno
       %td= link_to "#{h sample.sampleid}", sample_path(sample)
       %td= link_to 'Edit', edit_sample_path(sample)
-      %td= link_to 'Destroy', sample_path(sample), :confirm => 'Are you sure?', :method => :delete
+      %td=# link_to 'Destroy', sample_path(sample), :confirm => 'Are you sure?', :method => :delete
 
 %p
   = link_to "New Sample", new_sample_path
@@ -29,6 +35,10 @@
 
 = content_for(:sidebar_datalint) do
   %h5 Samples missing location information
-  = render :partial => "missing_metadata_sample", :collection => @missing_geom_samples, :as => :missing_metadata_sample
+  %p
+    = "Missing: #{@missing_geom_samples.count rescue 0}"
+    = render :partial => "missing_metadata_sample", :collection => @missing_geom_samples, :as => :missing_metadata_sample
 
-
+= content_for(:sidebar_download) do
+  - if parent? && @samples.size > 0
+    %p= link_to image_tag( 'csv_file.png', :title => "Download CSV", :alt => "Download CSV"), "#{collection_path}.csv"

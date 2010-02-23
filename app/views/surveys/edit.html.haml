@@ -6,3 +6,7 @@
   = link_to "Show", survey_path(@survey)
   |
   = link_to "View All", surveys_path
+
+= content_for(:sidebar) do
+  %h5 If you are having trouble finding the metadata you need here are some places you may look:
+  %p= link_to "MARDAT Survey IDs", "http://www.agso.gov.au:88/pmd-bin/search_newsurv.cgi?Nsurvs=40", :target=>'_blank'

@@ -6,22 +6,33 @@ class SamplesController < ApplicationController
 
   belongs_to :survey
 
-  index.before do
-    @missing_geom_samples ||= parent_object.samples_missing_metadata("geom") if parent?
-  end
   index do 
     wants.json {}
+    wants.csv {}
   end
 
   show do 
     wants.json {}
   end
 
+  update do 
+    
+  end
+
+
+  def qc
+  
+  end
 
 private
 
   def collection
-    @collection ||= end_of_association_chain.paginate(:order => "entrydate DESC", :page => params[:page])
+    if params[:format] == "csv" 
+      @collection = Sample.find(:all, :include => :survey, :conditions => {:eno => parent_object.eno})
+    else
+      @missing_geom_samples ||= parent_object.samples_missing_metadata("geom") if parent? 
+      @collection ||= end_of_association_chain.paginate(:order => "entrydate DESC", :page => params[:page])
+    end
   end
 
   def object

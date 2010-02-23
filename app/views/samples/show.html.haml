@@ -18,6 +18,13 @@
   %strong Sample Type:
   =h @sample.sample_type
 %p
+  %strong Sample Parent:
+  =h @sample.parent
+%p
+  %strong Sample Children:
+  - @sample.children.each do |c| 
+    %p= link_to c.sampleid, c.sampleid
+%p
   %strong Location:
   =h @sample.geom_original.as_georuby.to_json rescue nil
 

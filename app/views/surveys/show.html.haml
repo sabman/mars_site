@@ -28,6 +28,9 @@
   %strong Entered by:
   =h @survey.enteredby
 %p
+  %strong GAMS:
+  =h @survey.gams
+%p
   %strong Comments:
   =h @survey.comments
 %p
@@ -44,8 +47,20 @@
   = link_to "View All", surveys_path
 
 =content_for(:sidebar_otherdata) do
-  - gams = find_gams_in_comments(@survey.comments)
-  %p
-    = link_to("Data from GADA Project", get_gada_data_url(gams), :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access")
-  %p
-    = link_to("Metadata from GADA Project", get_gada_metadata_url(gams), :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access")
+  - if @survey.gams
+    %p
+      = link_to("Data from GADA Project", @survey.gada_data_url, :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access")
+    %p
+      = link_to("Metadata from GADA Project", @survey.gada_metadata_url, :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access")
+
+= content_for(:sidebar_download) do
+  - # TODO: DRY up using partials between samples and surveys 
+  - if count = @object.samples.count > 0
+    %p Download Samples for this Survey
+    %p
+      = link_to image_tag('formats/csv64.png', :alt => "Download CSV"), survey_samples_path(@object, :format => :csv)
+      = link_to image_tag('formats/shp64.png', :alt => "Download Shapefile"), "/coming_soon.html"
+      = link_to image_tag('formats/kml64.png', :alt => "Download KML"), "/coming_soon.html"
+  - else
+    %p.notice This survey has no samples
+  

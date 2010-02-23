@@ -10,10 +10,21 @@ module LayoutHelper
   end
 
   def title(page_title, show_title = true)
+    pattern = /<a href=["|'][\w|\W|\s]+["|']>([\w|\s|\W]+)<\/a>$/
+    match = page_title.to_s =~ pattern
+    if match
+      @content_for_title_bar = page_title.to_s.gsub(pattern, $1) 
+    else
+      @content_for_title_bar = page_title.to_s
+    end
     @content_for_title = page_title.to_s
     @show_title = show_title
   end
   
+  def title_bar(page_title, show_title = true)
+    @content_for_title_bar = page_title.to_s
+  end
+
   def header(page_header, show_header = true)
     @content_for_header = page_header.to_s
     @show_header = show_header

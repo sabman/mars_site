@@ -26,18 +26,21 @@ function indexMap(url){
 
 function initGeometries (data) {
   var vectors = new OpenLayers.Layer.Vector("Samples");
-  map.addLayer(vectors);
+  var bboxLayer = new OpenLayers.Layer.Vector( "BBox", {style: MARS.LAYERSTYLES.bbox});
+  map.addLayers([vectors, bboxLayer]);
   map.addControl(new OpenLayers.Control.EditingToolbar(vectors));
   var selectOptions = {box:true, hover:true};
   var select = new OpenLayers.Control.SelectFeature(vectors, selectOptions);
   map.addControl(select);
   select.activate();
 
-  for (var i=0; i < data.objects.length; i++) {
-    var geom = data.objects[i].object.geom;
+  for (var i=0; i < data.length; i++) {
+    var geom = data[i].object.geom;
     var geojson = new OpenLayers.Format.GeoJSON({"ignoreExtraDims": true});
     var features = geojson.read(geom);
     if (geom) {
+      features.id = data[i].id;
+      //addBox(features);
       if (features.constructor != Array) { features = [features]; };  
       vectors.addFeatures(features);
     };

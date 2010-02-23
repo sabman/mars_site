@@ -4,6 +4,8 @@
     = f.input :sampleid
     = f.input :sample_type
     = f.input :eno
+    = f.input :lat_start, :label => "Start Latitude"
+    = f.input :lon_start, :label => "Start Longitude"
     =# f.input geom_original.as_georuby.text_representation
     - f.buttons do
       =f.commit_button :button_html => {:value => "Update"}

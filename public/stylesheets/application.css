@@ -8,8 +8,13 @@ a:link, a:visited {
   text-decoration: none; }
 a:hover {
   color: #333;
-  text-decoration: none; }
-a img {
+  border-bottom: 1px solid #9A8E51;
+  background: #FFFFDD; }
+
+#banner a:hover {
+  background: none;
+  border-bottom: none; }
+#banner img {
   border: none; }
 
 .clear {
@@ -110,9 +115,17 @@ a img {
 
 #sidebar {
   width: 34%;
-  float: right; }
+  float: right;
+  font-size: 0.8em;
+  color: #777; }
+  #sidebar h4 {
+    background: #EEE;
+    padding-top: 2px;
+    padding-left: 2px;
+    padding-bottom: 2px; }
   #sidebar p {
-    font-size: 0.85em; }
+    font-size: 0.95em;
+    padding-left: 4px; }
 
 #footer {
   clear: both;
@@ -152,3 +165,31 @@ pre {
   color: #808080;
   background: #F1F1FF;
   overflow: auto; }
+
+.notice {
+  background: #F1F1FF;
+  color: darkred; }
+
+.even {
+  background: #F5F5F2; }
+  .even:hover {
+    background: #FFFFDF; }
+
+.odd {
+  background: #FFFFFF; }
+  .odd:hover {
+    background: #FFFFDF; }
+
+#record {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px; }
+
+#summary_stats {
+  font-size: 0.8em;
+  padding-left: 2px;
+  padding-bottom: 2px;
+  color: #AAA; }
+
+.missing_metadata_flag {
+  float: right; }
