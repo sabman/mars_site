@@ -1,0 +1,9 @@
+- title "Quality Checks"
+
+%table
+  %tr
+    %th Name
+  - for quality_check in @quality_checks
+    %tr
+      %td= h quality_check.name
+
