@@ -1,22 +1,36 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+set :application, "rhe-seismic"
+set :rails_env, "production"
 
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :user, "sburq"
+set :deploy_to,  "/d/mac/1/sburq/work/production/mars_site"
+set :deploy_via, :copy
+set :copy_exclude, [".git/*"]
+set :use_sudo, false
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :scm, :git
+set :repository, "/d/mac/1/sburq/work/mars_site"
+set :branch, "master"
 
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
+role :web, application                          # Your HTTP server, Apache/etc
+role :app, application                          # This may be the same as your `Web` server
+role :db,  application, :primary => true        # This is where Rails migrations will run
 
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+namespace :deploy do
+  desc "Tell nginx and thin to restart the app"
+  task :restart do
+    run "thin -C #{current_path}/config/thin/cluster_prod.yml restart"
+    run "/d/mac/1/sburq/root/sbin/nginx -s reload"
+  end
+
+  desc "Symlink shared configs and folders on each release"
+  task :symlink_shared do
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
+  end
+
+  task :assets do
+    system "rsync -vr --exclude "
+  end
+end
+
+after 'deploy:update_code', 'deploy:symlink_shared'

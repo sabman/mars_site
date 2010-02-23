@@ -10,5 +10,5 @@ max_persistent_conns: 512
 environment: production
 servers: 5
 daemonize: true
-chdir: /d/mac/1/sburq/work/mars_site
+chdir: /d/mac/1/sburq/work/production/mars_site/current
 socket: /tmp/thin.mars_prod.sock
