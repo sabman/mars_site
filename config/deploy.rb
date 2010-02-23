@@ -5,6 +5,7 @@ set :user, "sburq"
 set :deploy_to,  "/d/mac/1/sburq/work/production/mars_site"
 set :deploy_via, :copy
 set :copy_exclude, [".git/*"]
+set :copy_cache, "/d/mac/1/sburq/tmp/"
 set :use_sudo, false
 
 set :scm, :git
