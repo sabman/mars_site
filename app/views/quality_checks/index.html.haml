@@ -1,9 +1,6 @@
 - title "Quality Checks"
+%h4 confid_until 1950 and access_code A with sediment samples 
+= render :partial => '/surveys/recent', :collection => @surveys, :as => :survey
 
-%table
-  %tr
-    %th Name
-  - for quality_check in @quality_checks
-    %tr
-      %td= h quality_check.name
-
+= content_for(:sidebar_download) do
+  =render :partial => '/partials/default_data_export_links', :locals => {:csv_url => url_for(:controller => :quality_checks, :format => :csv)}

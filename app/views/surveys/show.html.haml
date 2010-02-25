@@ -37,6 +37,9 @@
   %strong BBOX:
   =h "#{@survey.nlat}, #{@survey.slat}, #{@survey.elong}, #{@survey.wlong}"
 %p
+  %strong Total Samples: 
+  = @survey.samples_count
+%p
   %strong Samples: 
   = link_to "View Samples", survey_samples_path(@survey)
 %p

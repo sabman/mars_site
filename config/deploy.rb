@@ -1,15 +1,14 @@
-set :application, "rhe-seismic"
-set :rails_env, "production"
+set :application, "localhost"
+set :use_sudo, false
 
 set :user, "sburq"
 set :deploy_to,  "/d/mac/1/sburq/work/production/mars_site"
-set :deploy_via, :copy
-set :copy_exclude, [".git/*"]
-set :copy_cache, "/d/mac/1/sburq/tmp/"
-set :use_sudo, false
+set :deploy_via, :checkout
+#set :copy_exclude, [".git/*"]
+#set :copy_cache, "/d/mac/1/sburq/tmp/"
 
 set :scm, :git
-set :repository, "/d/mac/1/sburq/work/mars_site"
+set :repository, "file:///d/mac/1/sburq/work/mars_site"
 set :branch, "master"
 
 role :web, application                          # Your HTTP server, Apache/etc

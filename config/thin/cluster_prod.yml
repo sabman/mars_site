@@ -1,8 +1,8 @@
 --- 
-pid: tmp/pids/thin.pid
+pid: tmp/pids/thin.prod.pid
 wait: 30
 timeout: 30
-log: log/thin.log
+log: log/thin.prod.log
 max_conns: 1024
 require: []
 
@@ -10,5 +10,5 @@ max_persistent_conns: 512
 environment: production
 servers: 5
 daemonize: true
-chdir: /d/mac/1/sburq/work/production/mars_site/current
+chdir: /d/mac/1/sburq/work/mars_site
 socket: /tmp/thin.mars_prod.sock
