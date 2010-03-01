@@ -3,9 +3,9 @@
   %span{:class => ("missing_metadata_flag" if is_missing_metadata)}= image_tag('red_flag_16x16.png', :alt => "missing metadata" , :title => "missing metadata" ) if is_missing_metadata
   %p
     %strong= link_to "#{h survey.eno}", survey_path(survey)
-    = link_to "#{h survey.surveyid}", survey_path(survey) 
+    ,
+    = link_to "#{h survey.surveyid}", survey_path(survey) || "missing surveyid"
+    ,
     = link_to "#{h survey.surveyname}", survey_path(survey)
   #summary_stats
-    %span{:class => ("notice" if survey.samples_count.to_i > 0)}=link_to "#{survey.samples_count} samples", survey_samples_path(survey)
-
-
+    %span{:class => ("notice" if survey.samples.count > 0)}=link_to "#{survey.samples.count} samples", survey_samples_path(survey)

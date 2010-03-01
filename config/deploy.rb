@@ -8,6 +8,7 @@ set :deploy_via, :checkout
 #set :copy_cache, "/d/mac/1/sburq/tmp/"
 
 set :scm, :git
+set :scm_command, "/d/mac/1/sburq/root/bin/git"
 set :repository, "file:///d/mac/1/sburq/work/mars_site"
 set :branch, "master"
 
@@ -18,7 +19,7 @@ role :db,  application, :primary => true        # This is where Rails migrations
 namespace :deploy do
   desc "Tell nginx and thin to restart the app"
   task :restart do
-    run "thin -C #{current_path}/config/thin/cluster_prod.yml restart"
+    run "/d/mac/1/sburq/.rvm/gems/ruby-1.8.7-p249/bin/thin -C #{current_path}/config/thin/cluster_prod.yml restart"
     run "/d/mac/1/sburq/root/sbin/nginx -s reload"
   end
 
@@ -31,6 +32,7 @@ namespace :deploy do
   task :assets do
     system "rsync -vr --exclude "
   end
+
 end
 
 after 'deploy:update_code', 'deploy:symlink_shared'
