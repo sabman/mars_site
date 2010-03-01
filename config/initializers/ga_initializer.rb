@@ -1,3 +1,4 @@
+$: << "/d/mac/1/sburq/root/opt"
 require 'lib/init_ga'
 require 'lib/config/smac_locations'
 #ProdDb.connection.execute("ALTER SESSION set NLS_LANGUAGE ='AMERICAN'")
