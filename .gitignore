@@ -11,3 +11,4 @@ log/**.log
 db/test.sqlite3
 log/development.log
 db/development.sqlite3
+tmp/pids/* 
