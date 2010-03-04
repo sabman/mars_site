@@ -31,13 +31,13 @@ namespace :deploy do
 
   desc "Tell nginx and thin to restart the app"
   task :restart do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "/d/mac/1/sburq/.rvm/gems/ruby-1.8.7-p249/bin/thin -C #{current_path}/config/thin/cluster_prod.yml restart"
     run "/d/mac/1/sburq/root/sbin/nginx -s reload"
   end
 
   desc "Symlink shared configs and folders on each release"
   task :symlink_shared do
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
   end
 
