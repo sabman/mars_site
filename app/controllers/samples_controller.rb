@@ -1,4 +1,4 @@
-ProdDb.connection.execute("ALTER SESSION set NLS_DATE_FORMAT ='DD-MON-FXYYYY'")
+#ProdDb.connection.execute("ALTER SESSION set NLS_DATE_FORMAT ='DD-MON-FXYYYY'")
 class SamplesController < ApplicationController
   before_filter :require_user, :except => [:show, :index] 
 
@@ -9,6 +9,7 @@ class SamplesController < ApplicationController
   index do 
     wants.json {}
     wants.csv {}
+    wants.kml {}
   end
 
   show do 
@@ -27,7 +28,16 @@ class SamplesController < ApplicationController
 private
 
   def collection
-    if params[:format] == "csv" 
+    format = params[:format].downcase rescue nil
+    if params["region_id"]
+      if format == "csv" || format == "kml" 
+        @collection = Sample.find_all_by_region(Region.find(params["region_id"]))
+      else
+        geom = Region.find(params["region_id"]).to_geom
+        conditions = Sample.bbox_search_conditions(geom)
+        @collection = end_of_association_chain.paginate(:order => "entrydate DESC", :page => params[:page], :conditions => conditions)
+      end
+    elsif format == "csv" || format == "kml" 
       @collection = Sample.find(:all, :include => :survey, :conditions => {:eno => parent_object.eno})
     else
       @missing_geom_samples ||= parent_object.samples_missing_metadata("geom") if parent? 

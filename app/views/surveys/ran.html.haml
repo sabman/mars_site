@@ -1,0 +1,12 @@
+- title "Royal Australian Navy (RAN) & Hydrographic Service (AHS) Surveys", true
+
+= render :partial => "recent", :collection => @surveys, :as => :survey
+
+= content_for(:sidebar) do
+  %h4 Statistics
+  %p 
+    Total Surveys
+    =@surveys.count
+  %p 
+    Total Samples
+    =@surveys.collect{|s|s.samples.count}.sum

@@ -8,6 +8,11 @@ Feature: regions of interest to the group
     When I go to the regions page
     Then I should see a list of regions
 
+  Scenario: User is logged i n
+    Given I am logged in
+    When I go to the regions page
+    And I should be able to see my regions marked as "yours"
+
 
 
 

@@ -1,5 +1,9 @@
 class CreateSurveys < ActiveRecord::Migration
   def self.up
+    begin
+
+    #table_name = Kernerl.const_get("#{RAILS_ENV.upper}_SCHEMA")+".surveys"
+    #table_name = :surveys
     create_table :surveys do |t|
       t.integer :eno
       t.string :surveyid
@@ -45,6 +49,9 @@ class CreateSurveys < ActiveRecord::Migration
       t.date :confid_until
 
       t.timestamps
+    end
+    rescue Exception => e
+      puts e.message
     end
   end
 

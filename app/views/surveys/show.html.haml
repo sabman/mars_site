@@ -10,6 +10,15 @@
   %strong Data types:
   =h @survey.datatypes
 %p
+  %strong Operator:
+  =h @survey.operator
+%p
+  %strong Owner:
+  =h @survey.owner
+%p
+  %strong Contractor:
+  =h @survey.contractor
+%p
   %strong UNO:
   =h @survey.uno
 %p
@@ -38,7 +47,7 @@
   =h "#{@survey.nlat}, #{@survey.slat}, #{@survey.elong}, #{@survey.wlong}"
 %p
   %strong Total Samples: 
-  = @survey.samples_count
+  = @survey.samples.count
 %p
   %strong Samples: 
   = link_to "View Samples", survey_samples_path(@survey)
@@ -51,19 +60,19 @@
 
 =content_for(:sidebar_otherdata) do
   - if @survey.gams
-    %p
-      = link_to("Data from GADA Project", @survey.gada_data_url, :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access")
-    %p
-      = link_to("Metadata from GADA Project", @survey.gada_metadata_url, :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access")
+    - thinkbox_iframe_params = '&keepThis=true&TB_iframe=true&height=600&width=800'
+    %p= link_to("Data from GADA Project", @survey.gada_data_url+thinkbox_iframe_params , :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access", :class=>'thickbox')
+    %p= link_to("Metadata from GADA Project", @survey.gada_metadata_url+thinkbox_iframe_params , :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access", :class=>'thickbox')
 
-= content_for(:sidebar_download) do
-  - # TODO: DRY up using partials between samples and surveys 
+-content_for(:sidebar_otherdata) do
+  %h4 Externl Searchs
+  %p
+    =link_to("GADA Keyword Metadata Search", "http://www.agso.gov.au:88/pmd-bin/new_searchmeta.cgi")
+
+-content_for(:sidebar) do
   - if count = @object.samples.count > 0
-    %p Download Samples for this Survey
-    %p
-      = link_to image_tag('formats/csv64.png', :alt => "Download CSV"), survey_samples_path(@object, :format => :csv)
-      = link_to image_tag('formats/shp64.png', :alt => "Download Shapefile"), "/coming_soon.html"
-      = link_to image_tag('formats/kml64.png', :alt => "Download KML"), "/coming_soon.html"
+    %h2= link_to "View Samples", survey_samples_path(@survey)
+    %h4 Download Samples 
+    %p= render :partial => "samples/samples_download_links", :locals => {:survey => @object}
   - else
     %p.notice This survey has no samples
-  

@@ -19,11 +19,11 @@
   =h @sample.sample_type
 %p
   %strong Sample Parent:
-  =h @sample.parent
+  =link_to @sample.parent, sample_path(:id => @sample.parent) rescue nil
 %p
   %strong Sample Children:
   - @sample.children.each do |c| 
-    %p= link_to c.sampleid, c.sampleid
+    %p= link_to c.sampleid, c
 %p
   %strong Location:
   =h @sample.geom_original.as_georuby.to_json rescue nil
@@ -45,3 +45,16 @@
     =link_to(sample_path(@sample, :json), sample_path(@sample, :json))
   %pre
     =@sample.to_json
+
+=content_for(:sidebar) do
+  %h4 Sample Data
+  %p
+    Total SampleData
+    =@sample.sampledata.count
+  %p=link_to "SampleData for #{@sample.sampleid}", sample_path(@sample)+"/sampledata" # url_for("action"=>"index", "sample_id"=>@sample, "controller"=>"sampledata")
+
+.carbonate_content
+  =render :partial => 'carbonate_content'
+
+.comments
+  =indented_render 1, :partial => 'comments/comment', :object => @sample.comments 

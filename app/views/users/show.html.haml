@@ -1,0 +1,16 @@
+-title current_user.full_name, true
+%p 
+  %strong Email: 
+  =   current_user.email
+%p 
+  %strong Department: 
+  =   current_user.department
+
+%h3 Your Regions
+- current_user.regions.each do |r| 
+  %p=link_to r.name, region_path(r) 
+
+=content_for(:sidebar) do
+  %h3= link_to "Create New Region", new_region_path
+  
+

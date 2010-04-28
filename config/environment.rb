@@ -28,6 +28,9 @@ Rails::Initializer.run do |config|
   config.gem "authlogic"
   config.gem "giraffesoft-resource_controller", :lib => "resource_controller"
   config.gem "treetop" # for tequila
+  config.gem "ruby-net-ldap", :lib => "net/ldap" 
+  config.gem "sunspot_rails", :lib => "sunspot/rails"
+  config.gem "acts_as_commentable"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

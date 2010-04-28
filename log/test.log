@@ -1,0 +1,498 @@
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-26 22:14:47) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 43ms (View: 39, DB: 10) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-26 22:18:51) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 30ms (View: 26, DB: 33) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-26 22:20:17) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 31ms (View: 27, DB: 10) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-26 22:21:39) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 30ms (View: 26, DB: 15) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"\#{@ga_user.username}", "password"=>"\#{@ga_user.password}"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-26 22:21:39) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"\#{@ga_user.username}", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 14ms (View: 11, DB: 0) | 200 OK [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-26 22:26:31) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 30ms (View: 26, DB: 33) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-26 22:27:01) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 29ms (View: 26, DB: 19) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>""}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-26 22:27:01) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 11ms (View: 10, DB: 0) | 200 OK [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-27 10:57:45) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 30ms (View: 26, DB: 31) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-27 10:59:09) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 30ms (View: 26, DB: 12) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-27 10:59:09) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 244ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-03-27 10:59:09) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-03-27 10:59:09) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-27 11:00:10) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 30ms (View: 27, DB: 12) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-27 11:00:10) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 180ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-03-27 11:00:10) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 17ms (View: 13, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-27 11:01:51) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 30ms (View: 26, DB: 11) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-27 11:01:51) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 76ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-03-27 11:01:51) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 17ms (View: 12, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-27 11:07:59) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 30ms (View: 26, DB: 26) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-27 11:07:59) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 76ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-03-27 11:07:59) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 18ms (View: 12, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-27 11:08:39) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 28ms (View: 24, DB: 19) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-27 11:08:39) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 70ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-03-27 11:08:39) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 17ms (View: 12, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-27 11:21:36) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 36ms (View: 30, DB: 28) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-27 11:21:36) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 16ms (View: 13, DB: 0) | 200 OK [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-27 11:29:26) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 36ms (View: 31, DB: 12) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"secret"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-27 11:29:26) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 20ms (View: 13, DB: 1) | 200 OK [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-27 11:43:59) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 37ms (View: 32, DB: 23) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"secret"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-27 11:43:59) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 19ms (View: 12, DB: 2) | 200 OK [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-31 16:57:02) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 39ms (View: 35, DB: 12) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-31 16:57:02) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 153ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-03-31 16:57:03) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 19ms (View: 13, DB: 2) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-31 17:05:30) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 32ms (View: 27, DB: 13) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-31 17:05:30) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 86ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-03-31 17:05:30) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 17ms (View: 12, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-31 17:06:09) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 32ms (View: 28, DB: 13) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-31 17:06:09) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 79ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-03-31 17:06:09) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 18ms (View: 13, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-31 17:07:36) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 31ms (View: 27, DB: 10) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-31 17:07:37) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 86ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-03-31 17:07:37) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 19ms (View: 12, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-03-31 17:09:27) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 29ms (View: 25, DB: 25) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-03-31 17:09:27) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 93ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-03-31 17:09:27) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 17ms (View: 12, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-04-08 11:33:45) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 30ms (View: 26, DB: 15) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-04-08 11:33:45) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 85ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-04-08 11:33:46) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 17ms (View: 12, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-04-08 12:54:47) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 30ms (View: 26, DB: 11) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-04-08 12:54:48) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 88ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-04-08 12:54:48) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 17ms (View: 12, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-04-08 13:18:47) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 32ms (View: 27, DB: 17) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-04-08 13:20:35) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 31ms (View: 27, DB: 15) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-04-08 13:21:57) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 33ms (View: 29, DB: 26) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-04-08 13:22:35) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 28ms (View: 24, DB: 28) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-04-08 13:24:22) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 31ms (View: 27, DB: 29) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-04-08 13:24:22) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 260ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-04-08 13:24:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 17ms (View: 12, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-04-09 11:29:25) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 27ms (View: 23, DB: 23) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-04-09 11:29:25) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 233ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-04-09 11:29:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 17ms (View: 12, DB: 1) | 200 OK [http://www.example.com/]
+REQUESTING PAGE: GET /login with {} and HTTP headers {}
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-04-09 11:30:42) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 27ms (View: 23, DB: 10) | 200 OK [http://www.example.com/login]
+REQUESTING PAGE: POST /user_sessions with {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"Dhikr018"}} and HTTP headers {"HTTP_REFERER"=>"/login"}
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-04-09 11:30:42) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"username"=>"u63250", "password"=>"[FILTERED]"}, "action"=>"create", "controller"=>"user_sessions"}
+Redirected to http://www.example.com/
+Completed in 242ms (DB: 1) | 302 Found [http://www.example.com/user_sessions]
+REQUESTING PAGE: GET http://www.example.com/ with {} and HTTP headers {"HTTP_REFERER"=>"/user_sessions"}
+
+
+Processing RegionsController#index (for 127.0.0.1 at 2010-04-09 11:30:42) [GET]
+  Parameters: {"action"=>"index", "controller"=>"regions"}
+Rendering template within layouts/application
+Rendering regions/index
+Completed in 18ms (View: 13, DB: 1) | 200 OK [http://www.example.com/]

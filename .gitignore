@@ -12,3 +12,8 @@ db/test.sqlite3
 log/development.log
 db/development.sqlite3
 tmp/pids/* 
+solr/data
+log/*
+tmp/*
+rerun.txt
+config/ldap_root_user.yml

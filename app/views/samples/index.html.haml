@@ -6,6 +6,8 @@
 
 - if parent?
   - title "Samples form Survey #{link_to parent_object.surveyid || parent_object.eno, parent_object}"
+- elsif params[:region_id]
+  - title "Samples form Region #{link_to Region.find(params[:region_id]).name, region_path(params[:region_id])}"
 -else
   - title "Samples"
 - include_maps
@@ -24,21 +26,30 @@
     %tr
       %td= h sample.sampleno
       %td= link_to "#{h sample.sampleid}", sample_path(sample)
-      %td= link_to 'Edit', edit_sample_path(sample)
+      %td=# link_to 'Edit', edit_sample_path(sample)
       %td=# link_to 'Destroy', sample_path(sample), :confirm => 'Are you sure?', :method => :delete
 
 %p
-  = link_to "New Sample", new_sample_path
+  =# link_to "New Sample", new_sample_path
 
 %p
   = will_paginate @samples
 
-= content_for(:sidebar_datalint) do
-  %h5 Samples missing location information
-  %p
-    = "Missing: #{@missing_geom_samples.count rescue 0}"
-    = render :partial => "missing_metadata_sample", :collection => @missing_geom_samples, :as => :missing_metadata_sample
+- if parent_object.is_a?(Survey)
+  = content_for(:sidebar_datalint) do
+    %h5 Samples missing location information
+    %p
+      = "Missing: #{@missing_geom_samples.count rescue 0}"
+      = render :partial => "missing_metadata_sample", :collection => @missing_geom_samples, :as => :missing_metadata_sample
 
-= content_for(:sidebar_download) do
-  - if parent? && @samples.size > 0
-    %p= link_to image_tag( 'csv_file.png', :title => "Download CSV", :alt => "Download CSV"), "#{collection_path}.csv"
+- content_for(:sidebar) do
+  - if parent_object.is_a?(Survey) 
+    - if @samples.size > 0
+      %h4 Download Samples 
+      %p= render :partial => "samples/samples_download_links", :locals => {:survey => parent_object}
+    - else
+      %p.notice This survey has no samples
+  -elsif params[:region_id] && @samples.size > 0
+    %h4 Download Samples 
+    %p= render :partial => "samples/samples_download_links_by_region", :locals => {:base_url => region_samples_path(params[:region_id])}
+

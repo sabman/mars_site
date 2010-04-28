@@ -2,10 +2,33 @@ class Survey < Prod::Survey
   attr_accessor :gams, :operators, :samples_count
 
   has_many :samples, :foreign_key => "eno"
+  named_scope :ran, {:conditions => ["
+      upper(operator) LIKE ? OR 
+      upper(operator) LIKE ? OR 
+      upper(operator) LIKE ? OR 
+      upper(operator) LIKE ? OR 
+      upper(operator) LIKE ? OR
+      upper(owner) LIKE ? OR 
+      upper(owner) LIKE ? OR 
+      upper(owner) LIKE ? OR 
+      upper(owner) LIKE ? OR 
+      upper(owner) LIKE ?", 
+      'RAN', '%AUSTRALIAN%NAVY%', '%AUSTRALIAN%HYDRO%', 'AHO', 'AHS', 'RAN', '%AUSTRALIAN%NAVY%', '%AUSTRALIAN%HYDRO%', 'AHO', 'AHS']}
+
+  named_scope :antarctica, {:conditions => ["lower(operator) LIKE ? OR lower(surveyname) LIKE ?", 'australian antarctic division', '%aurora australis%']}
+
 
   @@critical_metadata_fields = %w{surveyname surveytype surveyid operator contractor processor client owner startdate enddate vessel_type vessel confid_until}
 
   def has_samples?;samples.count > 0;end
+
+  def bounding_box
+    [nlat,slat,elong,wlong].join(",")
+  end
+
+  def bounding_box=(bbox)
+    nlat, slat, elong, wlong = bbox.split(",").collect{|v| v.to_f}
+  end
 
   def self.with_samples
     find(:all).collect{ |s| s.has_samples? }
@@ -65,7 +88,7 @@ class Survey < Prod::Survey
 
   # gams should be retrieved by looking for it in the surveyid or in comments
   def gams
-    surveyid =~ /(GA-?(\d\d\d|\d\d\d\d))/i
+    surveyid =~ /(GA-?(\d\d\d\d|\d\d\d))/i
     return $2.to_s.rjust(4, '0') if $2 
     # look in comments
     comments =~ /GAMS=(\d+);/i
@@ -95,12 +118,12 @@ class Survey < Prod::Survey
 
   # finder method for qc
   def self.confid_until_1950_and_access_a_with_sediment_samples
-    #vs ||= Survey.find(:all, :conditions => ["(confid_until = ? OR confid_until IS ?) AND access_code = ?", "1-Jan-1950", nil, "A"], :include => :samples)
     vs = Survey.all(:joins => :samples, 
                     :conditions => ["(surveys.confid_until = ? OR surveys.confid_until IS ?) AND surveys.access_code = ?", "1-Jan-1950", nil, "A"],
                     :select => "surveys.eno, surveys.surveyid, surveys.surveyname, surveys.confid_until, surveys.access_code, surveys.surveytype, surveys.comments, surveys.operator, surveys.contractor, surveys.processor, surveys.releasedate, surveys.client, surveys.owner, surveys.startdate, surveys.enddate, surveys.vessel, surveys.vessel_type")
 
-#    vs = Survey.find_by_sql( <<SQL
+#   vs ||= Survey.find(:all, :conditions => ["(confid_until = ? OR confid_until IS ?) AND access_code = ?", "1-Jan-1950", nil, "A"], :include => :samples)
+#   vs = Survey.find_by_sql( <<SQL
                             
 #              SELECT  v.eno, v.surveyid, 
 #                  v.surveyname, v.confid_until, v.access_code, v.surveytype, 
@@ -142,4 +165,21 @@ class Survey < Prod::Survey
     comments
     samples_count
   end
+
+  def self.all_data(eno)
+    self.find_by_sql <<-SQL
+      SELECT  
+        v.CONFID_UNTIL,v.ENO,v.SURVEYNAME,v.SURVEYTYPE,v.DATATYPES,v.UNO,v.SURVEYID,v.OPERATOR,v.CONTRACTOR,v.PROCESSOR,v.CLIENT,v.OWNER,v.LEGISLATION,v.COUNTRYID,v.STATE,v.PROJ_LEADER,v.ON_OFF,v.STARTDATE,v.ENDDATE,v.VESSEL_TYPE,v.VESSEL,v.SPACEMIN,v.SPACEMAX,v.LOCMETHOD,v.ACCURACY,v.GEODETIC_DATUM,v.PROJECTION,v.ACCESS_CODE,v.QA_CODE,v.RELEASEDATE,v.COMMENTS,v.ENTRYDATE,v.ENTEREDBY,v.LASTUPDATE,v.UPDATEDBY,v.NLAT,v.SLAT,v.ELONG,v.WLONG,v.ANO,v.DATA_ACTIVITY_CODE,
+        s.PROCEDURENO,s.GEOM,s.COMMENTS,s.SOURCE,s.CONFID_UNTIL,s.GEOM_ORIGINAL,s.ACCURACY,s.ELEV_ACCURACY,s.ACQUISITION_METHODNO,s.ACQUISITION_SCALE,s.METHOD,s.COUNTRYID,s.STATEID,s.ONSHORE_FLAG,s.PROV_ENO,s.SAMPLENO,s.ENO,s.SAMPLEID,s.SAMPLE_TYPE,s.TOP_DEPTH,s.BASE_DEPTH,s.PARENT,s.ACCESS_CODE,s.ENTRYDATE,s.ENTEREDBY,s.LASTUPDATE,s.UPDATEDBY,s.QADATE,s.QABY,s.QA_STATUS_CODE,s.ACTIVITY_CODE,s.ORIGINATOR,s.ACQUIREDATE,s.ANO,
+        d.DATANO,d.SAMPLENO,d.PROPERTY,d.QUALIFIER,d.SEQ_NO,d.QUANT_VALUE,d.QUAL_VALUE,d.CONFIDENCE,d.UOM,d.ACCESS_CODE,d.PARENT,d.ENTRYDATE,d.ENTEREDBY,d.LASTUPDATE,d.UPDATEDBY,d.QADATE,d.QABY,d.QA_STATUS_CODE,d.ACTIVITY_CODE,d.ANALYSISDATE,d.ANO,d.CONFID_UNTIL,d.OBS_TYPE,d.BATCHNO,d.PREFERRED,d.COMMENTS,d.METHOD,d.PROJECTID,d.PROCEDURENO
+      FROM 
+        surveys v, samples s, sampledata d
+      WHERE 
+        1=1
+        and s.eno = v.eno
+        and s.sampleno = d.sampleno 
+        and s.eno = #{eno}
+    SQL
+  end
+
 end

@@ -1,0 +1,5 @@
+-unless comment.blank?
+  %div{:id => "comment_#{comment.id}"}
+    %h1= comment.title
+    %p=  comment.body
+    .comment_children= render :partial => "comments/comment", :collection => comment.children

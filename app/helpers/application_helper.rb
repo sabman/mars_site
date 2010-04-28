@@ -8,6 +8,8 @@ module ApplicationHelper
     API_KEY='ABQIAAAAa7SFeUyLeV9ADXW6EhbOsBTJYszD_aHk3EW0KT_ZuefGcmcjnhQA8BWMbTMbWj74G-3ENHKm2IMR8Q' #10.7.65.109:4001
   elsif RAILS_ENV == "production"
     API_KEY='ABQIAAAAa7SFeUyLeV9ADXW6EhbOsBTNDsdv8Kya0OrU386k6NycOBp3zxRI1yv2Vm4esgkI9tVkgGB2CjjASQ' #10.7.65.109:4000
+  else
+    API_KEY='ABQIAAAAa7SFeUyLeV9ADXW6EhbOsBTNDsdv8Kya0OrU386k6NycOBp3zxRI1yv2Vm4esgkI9tVkgGB2CjjASQ' #10.7.65.109:4000
   end
 
 
@@ -39,5 +41,9 @@ module ApplicationHelper
 
   def class_url(c)
     url_for(c, :only_path => false )
+  end
+
+  def indented_render(num=1, *args)
+    render(*args).gsub(/^/, "\t" * num)
   end
 end

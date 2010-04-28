@@ -3,8 +3,16 @@
 
 = render :partial => 'sampledata', :collection => @sampledata
 
-%p= link_to "New Sampledata", new_sampledata_path
+-content_for(:sidebar_datamanager) do
+  %p= link_to "New Sampledata", new_sampledata_path
 
-= will_paginate(@sampledata) 
-= pageless(@sampledata.total_pages, url_for(:action => :index, :controller => :sampledata))
+-if(@sample)
+  = pageless(@sampledata.total_pages, sample_path(@sample)+"/sampledata")
+-else
+  = pageless(@sampledata.total_pages, sampledata_path)
 
+-content_for (:sidebar) do
+  %h4 Context for this data
+  -if(@sample)
+    %p=link_to "Sample: #{@sample.sampleid}", @sample
+    %p=link_to "Survey: #{@sample.survey.surveyname}", @sample.survey

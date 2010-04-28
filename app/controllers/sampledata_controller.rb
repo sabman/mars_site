@@ -1,7 +1,13 @@
 ProdDb.connection.execute("ALTER SESSION set NLS_DATE_FORMAT ='DD-MON-FXYYYY'")
 class SampledataController < ApplicationController
+  before_filter :require_user, :except => [:index, :show]
   def index
-    @sampledata = Sampledata.paginate(:page => params[:page], :per_page => 15)
+    if params[:sample_id]
+      @sample = Sample.find(params[:sample_id], :include=>[:survey, :sampledata])
+      @sampledata = @sample.sampledata.paginate(:page => params[:page], :per_page => 15)
+    else
+      @sampledata = Sampledata.paginate(:page => params[:page], :per_page => 15)
+    end
     if request.xhr?
       render :partial => @sampledata
     end

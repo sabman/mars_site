@@ -1,9 +1,9 @@
 - semantic_form_for @survey do |f|
   %p
     - f.inputs do
-      = f.input :eno
-      = f.input :surveyid
-      = f.input :surveyname
+      = f.input :eno, :input_html => {:disabled => true}, :hint => "Entity Number (ENO) is automatically generated"
+      = f.input :surveyid, :hint => "Check for an official SurveyID from GADA as they maintain a list of all GA surveys and their numeric code"
+      = f.input :surveyname, :hint => "This is a discriptive name of the survey; e.g. Bonaparte Gulf Seabed Mapping Survey"
       = f.input :startdate, :as => :date
       = f.input :enddate, :as => :date
       = f.input :surveytype
@@ -14,6 +14,9 @@
       = f.input :owner
       = f.input :legislation, :hint => "The legislation which governs the use of the data (e.g. Petroleum Search Subsidy Act (PSSA), Petroleum Submerged Lands Act (PSLA)."
       = f.input :state
+      = f.input :access_code, :hint => "C - confidential; A - GA internal only; O - open to public"
+      = f.input :confid_until, :as => :date, :hint => "Confidentiality date, must be specified for access code C - Confidential data and A - GA only records."
       = f.input :comments, :as => :text
+      = f.input :bounding_box, :hint => "nlat, slat, elong, wlong. e.g. -21.5565, -23.9112, 114.3661, 113.1977"
       - f.buttons do 
         = f.commit_button :button_html => {:value => "Update"}

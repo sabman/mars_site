@@ -4,12 +4,11 @@
   %h3= h region.name
   %p= h region.coordinates
   %p= h region.corners
-  %p= h region.minlon
-  %p= h region.maxlon
-  %p= h region.minlat
-  %p= h region.maxlat
+  %p= h region.user.full_name rescue nil
   %p= link_to 'Show', region
   %p= link_to 'Edit', edit_region_path(region)
   %p= link_to 'Destroy', region, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Region", new_region_path
+=content_for(:sidebar) do
+  .clear_button{:style => "margin-bottom: 15px;margin-top: 10px;"}
+    = link_to "<span>Create New Region</span>", new_region_path, :class => :button

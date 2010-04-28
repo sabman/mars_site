@@ -1,0 +1,4 @@
+full_base_dn: agso.gov.au 
+host: dc1.agso.gov.au
+base: OU=GA Users,DC=agso,DC=gov,DC=au
+port: 389

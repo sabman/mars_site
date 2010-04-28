@@ -2,10 +2,17 @@
 - include_maps
 =content_for(:head) do
   %script{:type => "text/javascript"}
-    $(document).ready(function(){var map = initMap(); showMap(location+".json")});
+    $(document).ready(function(){ var map = initMap(); showMap(location+".json"); indexMap(location+"/samples.json") });
 
 #map.smallmap
 
+%br
+
+.clear_button{:style => "margin-bottom: 26px;"}
+  %a.button{:onclick => "this.blur(); map.zoomToExtent(vectors.getDataExtent);"}
+    %span zoom to samples
+  %a.button{:onclick => "this.blur(); map.zoomToExtent(vector.getDataExtent);"}
+    %span zoom to bounding box
 
 %p
   %strong Name:
@@ -29,9 +36,27 @@
   %strong Maxlat:
   =h @region.maxlat
 
+- unless @region.user.nil?
+  %p
+    %strong Created by:
+    -if @region.user == current_user
+      = link_to "You", user_path(current_user)
+    -else
+      = link_to @region.user.full_name, user_path(@region.user.full_name)
+
 %p
   = link_to "Edit", edit_region_path(@region)
   |
   = link_to "Destroy", @region, :confirm => 'Are you sure?', :method => :delete
   |
   = link_to "View All", regions_path
+
+-content_for(:sidebar) do
+  - count = @samples.count
+  - if count > 0
+    %h2= link_to "View Samples", region_samples_path(@region)
+    %h4 Download Samples 
+    %p= render :partial => "samples/samples_download_links_by_region", :locals => {:base_url => region_samples_path(@region)}
+    %p="Total Samples in this region: #{count}"
+  - else
+    %p.notice This region has no samples

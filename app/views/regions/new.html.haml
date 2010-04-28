@@ -2,11 +2,19 @@
 - include_maps
 =content_for(:head) do
   %script{:type => "text/javascript"}
-    $(document).ready(function(){var map = initMap(); initDrawTool()});
+    $(document).ready(function(){var map = initMap(); initDrawTool();});
 
 - title "New Region"
 
 #map.smallmap
+
+%br
+
+.clear_button{:style => "margin-bottom: 26px;"}
+  %a.button{:onclick => "this.blur(); editableLayer.removeFeatures(editableLayer.features);"}
+    %span Erase drawn features  
+  %a.button{:onclick => "this.blur(); bboxLayer.removeFeatures(bboxLayer.features);"}
+    %span Erase bounding box
 
 %br
 

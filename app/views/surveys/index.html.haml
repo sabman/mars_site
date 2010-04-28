@@ -1,21 +1,23 @@
 - title "Surveys", false
 
-
 - date = '1-Jul-2008'
 %h2= "Marine Surveys since #{date}"
 - @recent_surveys = Survey.recent(date, :include => :samples)
 = render :partial => "recent", :collection => @recent_surveys, :as => :survey
 
-%h3 All recently entered marine surveys
+%h4 All recently entered marine surveys
 %table
   %tr
     %th Id
     %th Name
   - for survey in @surveys
-    %tr
-      %td= link_to "#{h survey.surveyid}", survey_path(survey)
-      %td= link_to "#{h survey.surveyname}", survey_path(survey)
+    %tr{:class => cycle('odd','even')}
+      %td= link_to "#{h survey.surveyid}",    survey_path(survey)
+      %td= link_to "#{h survey.surveyname}",  survey_path(survey)
 
-%p= link_to "New Survey", new_survey_path
 %p= will_paginate @surveys
+
+=content_for(:sidebar) do
+  .clear_button{:style => "margin-bottom: 15px;margin-top: 10px;"}
+    = link_to "<span>New Survey</span>", new_survey_path, :class => :button
 

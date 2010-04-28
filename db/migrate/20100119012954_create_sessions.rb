@@ -1,16 +1,17 @@
 class CreateSessions < ActiveRecord::Migration
   def self.up
-    create_table :sessions do |t|
+    create_table "sburq.sessions" do |t|
       t.string :session_id, :null => false
       t.text :data
       t.timestamps
     end
 
-    add_index :sessions, :session_id
-    add_index :sessions, :updated_at
+    add_index "sburq.sessions", :session_id, :name => "i_sburq_sessions_sessions_id"
+    add_index "sburq.sessions", :updated_at, :name => "i_sburq_sessions_updated_at"
+
   end
 
   def self.down
-    drop_table :sessions
+    drop_table "sburq.sessions"
   end
 end
