@@ -12,6 +12,9 @@ class SamplesController < ApplicationController
     wants.kml {}
   end
 
+  show.before do
+    @comment = Comment.new(:commentable_type => "Sample", :commentable_id => @object.id)
+  end
   show do 
     wants.json {}
   end

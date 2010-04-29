@@ -1,5 +1,5 @@
 Feature: Allow login via authentication against the GA LDAP server
-r In order to allow personalized content to be create
+  In order to allow personalized content to be create
   As a user of MARS database 
   I want be able to login using my GA account
 

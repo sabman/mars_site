@@ -24,4 +24,5 @@ ActionController::Routing::Routes.draw do |map|
       :bbox => :get # So we can get a JSON representation of the region's bbox for query/display
     }
   map.resource :account, :controller => "users"
+  map.resource :comments
 end

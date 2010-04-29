@@ -11,7 +11,6 @@ class UserSessionsController < ApplicationController
       @user_session.save
       flash[:notice] = "Successfully logged in."
       redirect_back_or_default root_url
-      #redirect_to root_url
     else
       flash[:notice] = "Incorrect login or password"
       render :action => 'new'

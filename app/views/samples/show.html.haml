@@ -59,4 +59,4 @@
 .comments
   - Comment.find_comments_for_commentable("Sample", @sample.id).each do |comment| 
     =indented_render 1, :partial => 'comments/comment', :object => comment
-  =render :partial => "comments/_form", :object => @sample
+  =render :partial => "comments/form", :object => @sample

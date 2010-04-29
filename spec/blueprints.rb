@@ -19,3 +19,9 @@ User.blueprint(:me) do
   username { user }
   password { pass }
 end
+
+Sample.blueprint do
+  sampleno {1}
+  sampleid {"35/DR73631992"}
+  sample_type {"DREDGE PIPE"}
+end

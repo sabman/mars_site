@@ -33,6 +33,5 @@ class SurveysController < ApplicationController
 
   def object
     @object ||= end_of_association_chain.find(params[:id], :include => [:samples])
-    #@object || Survey.all_data(params[:id].match(/^\d+/)[0])
   end
 end
