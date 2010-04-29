@@ -232,3 +232,9 @@ a.button:active span {
 
 .carbonate_content {
   background: #EEE; }
+
+.comments {
+  font-size: 0.9em;
+  border-top: dotted 1px gray;
+  padding-right: 20px;
+  font-style: italic; }
