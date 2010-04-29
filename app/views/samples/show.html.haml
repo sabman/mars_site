@@ -57,4 +57,6 @@
   =render :partial => 'carbonate_content'
 
 .comments
-  =indented_render 1, :partial => 'comments/comment', :object => @sample.comments 
+  - Comment.find_comments_for_commentable("Sample", @sample.id).each do |comment| 
+    =indented_render 1, :partial => 'comments/comment', :object => comment
+  =render :partial => "comments/_form", :object => @sample
