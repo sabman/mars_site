@@ -21,3 +21,6 @@
   .clear_button{:style => "margin-bottom: 15px;margin-top: 10px;"}
     = link_to "<span>New Survey</span>", new_survey_path, :class => :button
 
+=content_for(:sidebar) do
+  %h4 Featured Surveys from MARS
+  %p= render :partial => "featured_surveys"
