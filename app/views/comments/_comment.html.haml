@@ -1,5 +1,6 @@
 -unless comment.blank?
-  %div{:id => "comment_#{comment.id}"}
+  .comment{:id => "comment_#{comment.id}"}
     %h1= comment.title
     %p=  comment.body
+    %p.commenter=link_to comment.user.full_name, comment.user rescue nil
     .comment_children= render :partial => "comments/comment", :collection => comment.children
