@@ -1,14 +1,20 @@
--title current_user.full_name, true
+- user = current_user || User.find(params[:id])
+-title user.full_name, true
 %p 
   %strong Email: 
-  =   current_user.email
+  =   user.email
 %p 
   %strong Department: 
-  =   current_user.department
+  =   user.department
 
-%h3 Your Regions
-- current_user.regions.each do |r| 
+%h3 Regions created:
+- user.regions.each do |r| 
   %p=link_to r.name, region_path(r) 
+
+%h3 Comments:
+- Comment.find_comments_by_user(user).each do |c| 
+  %p=link_to(c.body[0..25]+" ...", Comment.find_commentable(c.commentable_type, c.commentable_id) )
+
 
 =content_for(:sidebar) do
   %h3= link_to "Create New Region", new_region_path

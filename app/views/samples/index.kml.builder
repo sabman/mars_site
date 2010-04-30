@@ -22,7 +22,7 @@ xml.kml("xmlns" => KML_NS) do
               <strong>Sampleno:</strong> #{sample.id} <br/>
               <strong>Sample type:</strong> #{sample.sample_type} <br/>
               <strong>Sample details:</strong> #{link_to sample.sampleid, sample_path(sample, :only_path => false)} <br/>
-              <strong>Survey details:</strong> #{link_to sample.survey.surveyname, survey_path(sample.survey, :only_path => false)}
+              <strong>Survey details:</strong> #{link_to sample.survey.surveyname, survey_path(sample.survey, :only_path => false) unless sample.survey.nil?}
               DESC
           end
           xml.tag! "TimeStamp", :id => sample.sampleid do
