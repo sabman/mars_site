@@ -88,6 +88,11 @@
   %div
     %strong Confidential Until:
     = h sampledata.confid_until
+
+  -# if @sample
+    =# link_to "Show", sampledata_path(@sample) 
+  -# else
+    =# link_to "Show", sampledata
   %div= link_to 'Show', sampledata
-  %div= link_to 'Edit', edit_sampledata_path(sampledata)
-  %div= link_to 'Destroy', sampledata, :confirm => 'Are you sure?', :method => :delete
+  %div=# link_to 'Edit', edit_sampledata_path(sampledata)
+  %div=# link_to 'Destroy', sampledata, :confirm => 'Are you sure?', :method => :delete

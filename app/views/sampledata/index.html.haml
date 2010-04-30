@@ -9,7 +9,7 @@
 -if(@sample)
   = pageless(@sampledata.total_pages, sample_path(@sample)+"/sampledata")
 -else
-  = pageless(@sampledata.total_pages, sampledata_path)
+  = pageless(@sampledata.total_pages, url_for(:controller => "sampledata", :action => "index") )
 
 -content_for (:sidebar) do
   %h4 Context for this data
