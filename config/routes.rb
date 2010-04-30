@@ -25,4 +25,5 @@ ActionController::Routing::Routes.draw do |map|
     }
   map.resource :account, :controller => "users"
   map.resource :comments
+  map.error "/error", :controller => :error, :action => :error
 end

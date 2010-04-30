@@ -31,6 +31,7 @@ Rails::Initializer.run do |config|
   config.gem "ruby-net-ldap", :lib => "net/ldap" 
   config.gem "sunspot_rails", :lib => "sunspot/rails"
   config.gem "acts_as_commentable"
+  config.gem "exception_notification"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -50,4 +51,19 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+  #
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => 25,
+    :domain => "gmail.com",
+    :authentication => :login,
+    :user_name => "marine.samples@gmail.com",
+    :password => "abc123753951"
+  }
 end
+
+ExceptionNotification::Notifier.exception_recipients = %w(saburq@gmail.com shoaib.burq@ga.gov.au)
+ExceptionNotification::Notifier.sender_address = %("Application Error" <app.error@marinesamples.org>)
+ExceptionNotification::Notifier.email_prefix = "[MARS Site] "
+

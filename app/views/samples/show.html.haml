@@ -52,6 +52,7 @@
     Total SampleData
     =@sample.sampledata.count
   %p=link_to "SampleData for #{@sample.sampleid}", sample_path(@sample)+"/sampledata" # url_for("action"=>"index", "sample_id"=>@sample, "controller"=>"sampledata")
+  %p=render :partial => "sampledata/download", :locals => {:sample => @sample}
 
 .carbonate_content
   =render :partial => 'carbonate_content'

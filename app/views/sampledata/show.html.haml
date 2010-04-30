@@ -95,3 +95,8 @@
     = link_to "View All", sampledata_path(@sample) 
   - else
     = link_to "View All", sampledata_path
+
+-if(@sample)
+  - content_for(:sidebar) do
+    %h3 Download SampleData
+
