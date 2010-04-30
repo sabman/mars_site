@@ -1,0 +1,13 @@
+Feature: Only allow admin to create, update and delete Samples, Surveys and SampleData
+  In order to protect MARS data
+  As a MARS Admin 
+  I want to restrict access to MARS admin link
+
+  Scenario: no one logged in and show samples page
+    Given I am logged out
+    When I go to a sample page
+    Then I should not see "Edit"
+    And I should not see "Destroy"
+    And I should not see "Create"
+    
+  Scenario: when not logged in, following the edit destroy create links don't work

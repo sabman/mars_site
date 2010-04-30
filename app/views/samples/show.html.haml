@@ -9,6 +9,9 @@
     $(document).ready(function(){var map = initMap(); showMap(location+".json")});
 
 %p
+  %strong ENO:
+  =h @sample.eno
+%p
   %strong Sampleno:
   =h @sample.sampleno
 %p
@@ -34,10 +37,11 @@
   = link_to "Edit", edit_sample_path(@sample)
   |
   = link_to "Destroy", sample_path(@sample), :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View Samples From Current Survey", survey_samples_path(@sample.survey)
-  |
-  = link_to "View Survey", survey_path(@sample.survey)
+  -unless @sample.survey.nil?
+    |
+    = link_to "View Samples From Current Survey", survey_samples_path(@sample.survey)
+    |
+    = link_to "View Survey", survey_path(@sample.survey)
 
 =content_for(:sidebar_developer) do
   %p The URI path to HTTP-GET the sample details in JSON format

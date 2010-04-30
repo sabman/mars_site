@@ -1,7 +1,12 @@
 class Survey < Prod::Survey
   attr_accessor :gams, :operators, :samples_count
-
   has_many :samples, :foreign_key => "eno"
+
+  # scopes
+  default_scope :conditions =>  "surveytype='MARINE' OR on_off='OnOff'"
+  named_scope :recent, lambda{ |*args| {:conditions => "startdate > \'#{args.first || 2.years.ago.strftime('%d-%b-%Y')}\'" } }
+  named_scope :marine, :conditions => "surveytype = 'MARINE'"
+  named_scope :land, :conditions => "surveytype = 'LAND'"
   named_scope :ran, {:conditions => ["
       upper(operator) LIKE ? OR 
       upper(operator) LIKE ? OR 
@@ -14,9 +19,7 @@ class Survey < Prod::Survey
       upper(owner) LIKE ? OR 
       upper(owner) LIKE ?", 
       'RAN', '%AUSTRALIAN%NAVY%', '%AUSTRALIAN%HYDRO%', 'AHO', 'AHS', 'RAN', '%AUSTRALIAN%NAVY%', '%AUSTRALIAN%HYDRO%', 'AHO', 'AHS']}
-
   named_scope :antarctica, {:conditions => ["lower(operator) LIKE ? OR lower(surveyname) LIKE ?", 'australian antarctic division', '%aurora australis%']}
-
 
   @@critical_metadata_fields = %w{surveyname surveytype surveyid operator contractor processor client owner startdate enddate vessel_type vessel confid_until}
 

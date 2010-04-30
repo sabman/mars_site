@@ -351,3 +351,141 @@ REQUESTING PAGE: GET /samples/1 with {} and HTTP headers {}
 Processing SamplesController#show (for 127.0.0.1 at 2010-04-29 17:49:35) [GET]
   Parameters: {"action"=>"show", "id"=>"1", "controller"=>"samples"}
 Completed in 342ms (View: 1, DB: 8) | 200 OK [http://www.example.com/samples/1]
+  [4;35;1mSQL (1.9ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (3.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+REQUESTING PAGE: GET /samples/1 with {} and HTTP headers {}
+
+
+Processing SamplesController#show (for 127.0.0.1 at 2010-04-30 19:46:34) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"samples"}
+Completed in 306ms (View: 1, DB: 8) | 200 OK [http://www.example.com/samples/1]
+  [4;35;1mSQL (3.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+REQUESTING PAGE: GET /samples/1 with {} and HTTP headers {}
+
+
+Processing SamplesController#show (for 127.0.0.1 at 2010-04-30 19:48:00) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"samples"}
+Completed in 96ms (View: 1, DB: 7) | 200 OK [http://www.example.com/samples/1]
+  [4;35;1mSQL (2.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+REQUESTING PAGE: GET /samples/1 with {} and HTTP headers {}
+
+
+Processing SamplesController#show (for 127.0.0.1 at 2010-04-30 19:53:56) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"samples"}
+Completed in 93ms (View: 1, DB: 7) | 200 OK [http://www.example.com/samples/1]
+  [4;35;1mSQL (2.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+REQUESTING PAGE: GET /samples/1 with {} and HTTP headers {}
+
+
+Processing SamplesController#show (for 127.0.0.1 at 2010-04-30 19:54:24) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"samples"}
+Completed in 80ms (View: 1, DB: 6) | 200 OK [http://www.example.com/samples/1]
+  [4;35;1mSQL (2.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+REQUESTING PAGE: GET /samples/1 with {} and HTTP headers {}
+
+
+Processing SamplesController#show (for 127.0.0.1 at 2010-04-30 19:54:53) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"samples"}
+Completed in 77ms (View: 1, DB: 7) | 200 OK [http://www.example.com/samples/1]

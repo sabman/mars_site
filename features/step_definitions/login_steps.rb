@@ -21,3 +21,10 @@ When  "I fill in my username and password" do
   When  "I fill in \"username\" with \"u63250\""
   And   "I fill in \"password\" with \"#{pass}\""
 end
+
+Given "I am logged out" do
+  require "authlogic/test_case"
+  include Authlogic::TestCase
+  activate_authlogic
+  UserSession.find.try(:destroy)
+end

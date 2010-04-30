@@ -12,7 +12,7 @@ module NavigationHelpers
       '/'
     when /login page/
       '/login'
-    when /sample page/
+    when /a sample page/
       '/samples/1'
 
     # Add more mappings here.

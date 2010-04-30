@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :entities
   map.resources :quality_checks
-
   map.root :controller => "regions"
   map.resources :ga_users
   map.login "login",  :controller => "user_sessions", :action => "new"

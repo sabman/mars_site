@@ -1,5 +1,6 @@
 class RegionsController < ApplicationController
   before_filter :require_user, :except => [:show, :index]
+
   def index
     @regions = Region.all
   end
