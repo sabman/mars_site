@@ -47,25 +47,9 @@ Rails::Initializer.run do |config|
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
-  config.time_zone = 'UTC'
+  config.time_zone = 'Canberra'
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
- 
-  config.action_mailer.delivery_method = :smtp
-
-  config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => 25,
-    :domain => "gmail.com",
-    :authentication => :login,
-    :user_name => "marine.samples@gmail.com",
-    :password => "abc123753951"
-  }
 end
-Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
-ExceptionNotification::Notifier.exception_recipients = %w(saburq@gmail.com shoaib.burq@ga.gov.au marine.samples@gmail.com )
-ExceptionNotification::Notifier.sender_address = %("Application Error" <app.error@marinesamples.org>)
-ExceptionNotification::Notifier.email_prefix = "[MARS Site] "
-
