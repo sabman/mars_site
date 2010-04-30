@@ -32,11 +32,11 @@ private
 
   def collection
     format = params[:format].downcase rescue nil
-    if params["region_id"]
+    if params[:region_id] # looking for samples within a region
       if format == "csv" || format == "kml" 
-        @collection = Sample.find_all_by_region(Region.find(params["region_id"]))
+        @collection = Sample.find_all_by_region(Region.find(params[:region_id]))
       else
-        geom = Region.find(params["region_id"]).to_geom
+        geom = Region.find(params[:region_id]).to_geom
         conditions = Sample.bbox_search_conditions(geom)
         @collection = end_of_association_chain.paginate(:order => "entrydate DESC", :page => params[:page], :conditions => conditions)
       end

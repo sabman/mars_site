@@ -7,10 +7,6 @@ class RegionsController < ApplicationController
   def show
     @region = Region.find(params[:id])
     @samples = @region.samples
-    respond_to do |wants|
-      wants.json {}
-      wants.html {}
-    end
   end
   
   def new
