@@ -1,7 +1,7 @@
 --- 
 pid: tmp/pids/thin.prod.pid
 wait: 30
-timeout: 30
+timeout: 300
 log: log/thin.prod.log
 max_conns: 1024
 require: []
