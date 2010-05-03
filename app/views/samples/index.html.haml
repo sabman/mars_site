@@ -26,21 +26,32 @@
     %tr
       %td= h sample.sampleno
       %td= link_to "#{h sample.sampleid}", sample_path(sample)
-      %td=# link_to 'Edit', edit_sample_path(sample)
-      %td=# link_to 'Destroy', sample_path(sample), :confirm => 'Are you sure?', :method => :delete
 
-%p
-  =# link_to "New Sample", new_sample_path
+-# admin panel 
+-if admin_is_logged_in?
+  - content_for(:data_manager) do
+    %p= link_to "New Sample", new_sample_path
+    %p= link_to 'Edit', edit_sample_path(sample)
+    %p= link_to 'Destroy', sample_path(sample), :confirm => 'Are you sure?', :method => :delete
 
-%p
-  = will_paginate @samples
+%p= will_paginate @samples
 
-- if parent_object.is_a?(Survey)
-  = content_for(:sidebar_datalint) do
-    %h5 Samples missing location information
+
+-# have to check the context for these samples. current contexts are:
+-#  Survey (samples being viewed are for a survey)
+-#  Region (sample being view are from a region)
+-if parent_object.is_a?(Survey)  
+  -content_for(:sidebar) do
+    %h4 Context for these samples
     %p
-      = "Missing: #{@missing_geom_samples.count rescue 0}"
-      = render :partial => "missing_metadata_sample", :collection => @missing_geom_samples, :as => :missing_metadata_sample
+      These samples are from Survey:
+      =link_to(parent_object.surveyname || parent_object.surveyid || parent_object.eno, parent_object)
+  - if (@missing_geom_samples.count rescue 0) != 0
+    - content_for(:sidebar_datalint) do
+      %h5 Samples missing location information
+      %p
+        = "Missing: #{@missing_geom_samples.count rescue 0}"
+        = render :partial => "missing_metadata_sample", :collection => @missing_geom_samples, :as => :missing_metadata_sample
 
 - content_for(:sidebar) do
   - if parent_object.is_a?(Survey) 
@@ -52,4 +63,3 @@
   -elsif params[:region_id] && @samples.size > 0
     %h4 Download Samples 
     %p= render :partial => "samples/samples_download_links_by_region", :locals => {:base_url => region_samples_path(params[:region_id])}
-

@@ -39,7 +39,9 @@ class Survey < Prod::Survey
 
   def to_param
     if surveyid
-      "#{id}-#{surveyid.to_s.parameterize.upcase}"
+      "#{id}-#{surveyid.to_s.parameterize.downcase}"
+    elsif surveyname
+      "#{id}-#{surveyname.to_s.parameterize.downcase}"
     else
       id.to_s
     end

@@ -48,11 +48,11 @@
           = yield(:sidebar_download)
           %h4 Other Datasets in GA
           = yield(:sidebar_otherdata)
-          %h4 data manager
+          %h4 Data manager
           = yield(:sidebar_datamanager)
-          %h4 data lint
+          %h4 Data lint
           = yield(:sidebar_datalint)
-          %h4 developer api
+          %h4 Developer API
           = yield(:sidebar_developer)
       #footer
         %p 
@@ -62,4 +62,5 @@
           | 
           =link_to "Twitter", '/twitter.html'
         =h yield(:footer)
+  =render :partial => "/layouts/uservoice"
 

@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
     c.validate_email_field = false
   end
 
+
+  def admin?
+    self.role == "admin"
+  end
+
   # return true or false depending on the success of the authentication
   def authenticate_against_ga_ldap(plain_text_password)
     ldap = LDAP_CONNECTION

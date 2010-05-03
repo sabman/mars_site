@@ -51,14 +51,10 @@
 %p
   %strong Samples: 
   = link_to "View Samples", survey_samples_path(@survey)
-%p
-  = link_to "Edit", edit_survey_path(@survey)
-  |
-  = link_to "Destroy", survey_path(@survey), :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", surveys_path
 
-=content_for(:sidebar_otherdata) do
+%p= link_to "View All Surveys", surveys_path
+
+-content_for(:sidebar_otherdata) do
   - if @survey.gams
     - thinkbox_iframe_params = '&keepThis=true&TB_iframe=true&height=600&width=800'
     %p= link_to("Data from GADA Project", @survey.gada_data_url+thinkbox_iframe_params , :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access", :class=>'thickbox')
@@ -66,13 +62,24 @@
 
 -content_for(:sidebar_otherdata) do
   %h4 Externl Searchs
-  %p
-    =link_to("GADA Keyword Metadata Search", "http://www.agso.gov.au:88/pmd-bin/new_searchmeta.cgi")
+  %p=link_to("GADA Keyword Metadata Search", "http://www.agso.gov.au:88/pmd-bin/new_searchmeta.cgi")
 
 -content_for(:sidebar) do
-  - if count = @object.samples.count > 0
+  - if has_samples = @object.samples.count > 0
     %h2= link_to "View Samples", survey_samples_path(@survey)
     %h4 Download Samples 
     %p= render :partial => "samples/samples_download_links", :locals => {:survey => @object}
   - else
-    %p.notice This survey has no samples
+    %h3.notice This survey has no samples
+
+
+-# developer API
+-content_for(:sidebar_developer) do
+  %p You can make HTTP GET requests to get this Survey metadata in JSON format via the following URI:
+  %pre=link_to(survey_path(@survey, :json), survey_path(@survey, :json))
+
+-# admin controls
+-if admin_is_logged_in?
+  -content_for(:sidebar_datamanager) do
+    %p= link_to "Edit this Survey", edit_survey_path(@survey)
+    %p= link_to "Destroy this Survey", survey_path(@survey), :confirm => 'Are you sure?', :method => :delete

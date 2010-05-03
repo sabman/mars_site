@@ -89,8 +89,9 @@
   =h @sampledata.confid_until
 
 %p
-  =# link_to "Edit", edit_sampledata_path(@sampledata)
-  =# link_to "Destroy", @sampledata, :confirm => 'Are you sure?', :method => :delete
+  -if admin_logged_in?
+    = link_to "Edit", edit_sampledata_path(@sampledata)
+    = link_to "Destroy", @sampledata, :confirm => 'Are you sure?', :method => :delete
   - if @sample
     = link_to "View All", sampledata_path(@sample) 
   - else

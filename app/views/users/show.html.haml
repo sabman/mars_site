@@ -6,17 +6,21 @@
 %p 
   %strong Department: 
   =   user.department
+%p 
+  %strong Role: 
+  =   user.role
 
-%h3 Regions created:
+%h3.even Regions created:
 - user.regions.each do |r| 
   %p=link_to r.name, region_path(r) 
 
-%h3 Comments:
+%h3.even Comments:
 - Comment.find_comments_by_user(user).each do |c| 
   %p=link_to(c.body[0..25]+" ...", Comment.find_commentable(c.commentable_type, c.commentable_id) )
 
 
 =content_for(:sidebar) do
-  %h3= link_to "Create New Region", new_region_path
+  %h4 Tools
+  %h3= link_to "Create New Region", new_region_path if current_user && params[:id] == "current"
   
 

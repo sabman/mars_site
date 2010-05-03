@@ -5,7 +5,7 @@
 - @recent_surveys = Survey.recent(date, :include => :samples)
 = render :partial => "recent", :collection => @recent_surveys, :as => :survey
 
-%h4 All recently entered marine surveys
+%h4 This are all surveys theat were recently updated:
 %table
   %tr
     %th Id
@@ -17,10 +17,15 @@
 
 %p= will_paginate @surveys
 
-=content_for(:sidebar) do
-  .clear_button{:style => "margin-bottom: 15px;margin-top: 10px;"}
-    = link_to "<span>New Survey</span>", new_survey_path, :class => :button
-
-=content_for(:sidebar) do
-  %h4 Featured Surveys from MARS
+-content_for(:sidebar) do
+  %h4.notice Featured Surveys from MARS
   %p= render :partial => "featured_surveys"
+
+-content_for(:sidebar) do
+  %p= render :partial => "external_links"
+
+-# admin controls
+-if admin_is_logged_in?
+  -content_for(:sidebar_datamanager) do
+    .clear_button{:style => "margin-bottom: 15px;margin-top: 10px;"}
+      = link_to "<span>New Survey</span>", new_survey_path, :class => :button

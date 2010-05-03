@@ -1,6 +1,5 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
 
   include ExceptionNotification::Notifiable
@@ -10,7 +9,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
 
-  helper_method :current_user
+  helper_method :current_user, :admin_is_logged_in?
 
   private
 
@@ -50,5 +49,23 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
-  
+
+  def require_admin_user
+    if current_user && current_user.admin?
+      return true
+    elsif current_user && !current_user.admin?
+      flash[:notice] = "Sorry, but you must be an administrator to access this page"
+      redirect_to account_url
+      return false
+    else
+      flash[:notice] = "You must be logged in and an administrator to access this page"
+      redirect_to new_user_session_url
+      return false
+    end
+  end
+
+  def admin_is_logged_in?
+    current_user && current_user.admin?
+  end
+
 end

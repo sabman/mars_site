@@ -1,6 +1,6 @@
 #ProdDb.connection.execute("ALTER SESSION set NLS_DATE_FORMAT ='DD-MON-FXYYYY'")
 class SamplesController < ApplicationController
-  before_filter :require_user, :except => [:show, :index] 
+  before_filter :require_admin_user, :except => [:show, :index] 
 
   resource_controller
 
