@@ -1,7 +1,7 @@
 - title 'Sampledata'
 - javascript 'jquery.pageless'
 
-= render :partial => 'sampledata', :collection => @sampledata
+= render :partial => 'sampledata', :collection => @sampledata, :object => @sample
 
 -content_for(:sidebar_datamanager) do
   %p= link_to "New Sampledata", new_sampledata_path

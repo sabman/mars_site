@@ -88,16 +88,24 @@
   %strong Confid Until:
   =h @sampledata.confid_until
 
-%p
-  -if admin_logged_in?
-    = link_to "Edit", edit_sampledata_path(@sampledata)
-    = link_to "Destroy", @sampledata, :confirm => 'Are you sure?', :method => :delete
+-if admin_is_logged_in?
+  -content_for(:sidebar_datamanager) do  
+    -if @sample
+      %p= link_to "Edit", edit_sample_sampledata_path(@sample, @sampledata)
+    -else
+      %p= link_to "Edit", edit_sampledata_path(@sampledata)
+    %p= link_to "Destroy", @sampledata, :confirm => 'Are you sure?', :method => :delete
+
+-content_for(:sidebar) do
   - if @sample
-    = link_to "View All", sampledata_path(@sample) 
+    %h4 Context for this data
+    %p= link_to "View all analysis data from the sample", sample_sampledata_path(@sample, @sampledata) 
+    %p= link_to "View sample this data comes from: #{@sample.sampleid}", sample_path(@sample)
+    %p= link_to "View survey this data comes from: #{@sample.survey.surveyname||@sample.survey.surveyid||@sample.survey.eno}", survey_path(@sample.survey)
   - else
-    = link_to "View All", sampledata_path
+    %p= link_to "View all sampledata", sampledata_path
 
 -if(@sample)
   - content_for(:sidebar) do
-    %h3 Download SampleData
-
+    %h4.notice Download SampleData
+    %p.notice coming soon!

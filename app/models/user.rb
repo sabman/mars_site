@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   end
 
 
+  def owns?(object)
+    object.user == self
+  end
+
   def admin?
     self.role == "admin"
   end

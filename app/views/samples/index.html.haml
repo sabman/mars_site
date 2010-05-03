@@ -29,10 +29,8 @@
 
 -# admin panel 
 -if admin_is_logged_in?
-  - content_for(:data_manager) do
+  - content_for(:sidebar_datamanager) do
     %p= link_to "New Sample", new_sample_path
-    %p= link_to 'Edit', edit_sample_path(sample)
-    %p= link_to 'Destroy', sample_path(sample), :confirm => 'Are you sure?', :method => :delete
 
 %p= will_paginate @samples
 

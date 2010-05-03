@@ -33,24 +33,23 @@
 
 #map.smallmap
   
-%p
-  = link_to "Edit", edit_sample_path(@sample)
-  |
-  = link_to "Destroy", sample_path(@sample), :confirm => 'Are you sure?', :method => :delete
-  -unless @sample.survey.nil?
-    |
-    = link_to "View Samples From Current Survey", survey_samples_path(@sample.survey)
-    |
-    = link_to "View Survey", survey_path(@sample.survey)
+-# context
+-unless @sample.survey.nil?
+  -content_for(:sidebar) do
+    %h4 Context for this data
+    %h5
+      View all samples from
+      = link_to "#{@sample.survey.surveyname || @sample.survey.surveyid || @sample.survey.id}", survey_samples_path(@sample.survey)
+    %h5
+      View Survey: 
+      = link_to "#{@sample.survey.surveyname || @sample.survey.surveyid || @sample.survey.id}", survey_path(@sample.survey)
 
-=content_for(:sidebar_developer) do
+-content_for(:sidebar_developer) do
   %p The URI path to HTTP-GET the sample details in JSON format
   %pre
     =link_to(sample_path(@sample, :json), sample_path(@sample, :json))
-  %pre
-    =@sample.to_json
 
-=content_for(:sidebar) do
+-content_for(:sidebar) do
   %h4 Sample Data
   %p
     Total SampleData
@@ -65,3 +64,9 @@
   - Comment.find_comments_for_commentable("Sample", @sample.id).each do |comment| 
     =indented_render 1, :partial => 'comments/comment', :object => comment
   =render :partial => "comments/form", :object => @sample
+
+-# admin
+- content_for(:sidebar_datamanager) do
+  -if admin_is_logged_in?
+    %p= link_to "Edit", edit_sample_path(@sample)
+    %p= link_to "Destroy", sample_path(@sample), :confirm => 'Are you sure?', :method => :delete

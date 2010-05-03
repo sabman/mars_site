@@ -1,5 +1,6 @@
 class RegionsController < ApplicationController
-  before_filter :require_user, :except => [:show, :index]
+  before_filter :require_owner, :only => [:delete, :edit]
+  before_filter :require_user, :only => [:new, :create]
 
   def index
     @regions = Region.all
@@ -48,6 +49,16 @@ class RegionsController < ApplicationController
 
   def bbox
     @region = Region.find(params[:id])
+  end
 
+  def require_owner
+    @region = Region.find(params[:id])
+    if owner_is_logged_in?(@region)
+      return true
+    else
+      flash[:notice] = "Naughty naughty! You do not have permissions to do this"
+      redirect_to region_path(@region)
+      return false
+    end
   end
 end

@@ -1,13 +1,20 @@
 - title "Regions"
 
 - for region in @regions
-  %h3= h region.name
-  %p= h region.coordinates
-  %p= h region.corners
-  %p= h region.user.full_name rescue nil
+  %h3=link_to region.name, region
+  %p 
+    Coordinates:
+    = h region.coordinates
+  %p
+    Corners:
+    = h region.corners
+  %p
+    Created by:
+    =link_to region.user.full_name, user_path(region.user) rescue nil
   %p= link_to 'Show', region
-  %p= link_to 'Edit', edit_region_path(region)
-  %p= link_to 'Destroy', region, :confirm => 'Are you sure?', :method => :delete
+  - if owner_is_logged_in?(region)
+    %p= link_to 'Edit', edit_region_path(region)
+    %p= link_to 'Destroy', region, :confirm => 'Are you sure?', :method => :delete 
 
 =content_for(:sidebar) do
   .clear_button{:style => "margin-bottom: 15px;margin-top: 10px;"}

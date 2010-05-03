@@ -9,9 +9,24 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
 
-  helper_method :current_user, :admin_is_logged_in?
+  helper_method :current_user, :admin_is_logged_in?, :owner_is_logged_in?
 
   private
+
+
+#  def require_owner(object)
+#    if owner_is_logged_in?(object)
+#      return true
+#    else
+#      flash[:notice] = "You do not have permissions"
+#      redirect_back_or_default(root_url)
+#      return false
+#    end
+#  end
+
+  def owner_is_logged_in?(object)
+    current_user && current_user.owns?(object)
+  end
 
   def current_user_session
     return @current_user_session if defined?(@current_user_session)

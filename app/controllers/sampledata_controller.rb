@@ -1,6 +1,6 @@
 ProdDb.connection.execute("ALTER SESSION set NLS_DATE_FORMAT ='DD-MON-FXYYYY'")
 class SampledataController < ApplicationController
-  before_filter :require_user, :except => [:index, :show]
+  before_filter :require_admin_user, :except => [:show, :index] 
   def index
     if params[:sample_id]
       @sample = Sample.find(params[:sample_id], :include=>[:survey, :sampledata])
@@ -14,6 +14,9 @@ class SampledataController < ApplicationController
   end
   
   def show
+    if params[:sample_id]
+      @sample = Sample.find(params[:sample_id], :include => [:survey, :sampledata])
+    end
     @sampledata = Sampledata.find(params[:id])
   end
   
