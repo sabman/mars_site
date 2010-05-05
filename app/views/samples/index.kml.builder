@@ -29,9 +29,10 @@ xml.kml("xmlns" => KML_NS) do
             xml.when sample.acquiredate
           end
           xml.styleUrl "#samples" 
-          xml << sample.geom.as_georuby.as_kml
           if sample.geom.as_georuby.kind_of? LineString
             xml << sample.geom.as_georuby.envelope.center.as_kml
+          else
+            xml << sample.geom.as_georuby.as_kml
           end
         end
       end # geom

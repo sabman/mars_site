@@ -3,4 +3,4 @@
     .geom
     .geom_original
   :code => geom
-    geom.as_georuby
+    geom.try(:as_georuby)

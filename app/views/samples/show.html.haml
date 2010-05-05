@@ -31,6 +31,12 @@
   %strong Location:
   =h @sample.geom_original.as_georuby.to_json rescue nil
 
+.carbonate_content.section
+  =render :partial => 'carbonate_content'
+
+.grain_size.section
+  =render :partial => 'grain_size'
+
 #map.smallmap
   
 -# context
@@ -57,8 +63,6 @@
   %p=link_to "SampleData for #{@sample.sampleid}", sample_path(@sample)+"/sampledata" # url_for("action"=>"index", "sample_id"=>@sample, "controller"=>"sampledata")
   %p=render :partial => "sampledata/download", :locals => {:sample => @sample}
 
-.carbonate_content
-  =render :partial => 'carbonate_content'
 
 .comments
   - Comment.find_comments_for_commentable("Sample", @sample.id).each do |comment| 

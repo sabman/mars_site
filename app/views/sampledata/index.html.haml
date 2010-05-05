@@ -3,8 +3,9 @@
 
 = render :partial => 'sampledata', :collection => @sampledata, :object => @sample
 
--content_for(:sidebar_datamanager) do
-  %p= link_to "New Sampledata", new_sampledata_path
+-if admin_is_logged_in?
+  -content_for(:sidebar_datamanager) do
+    %p= link_to "New Sampledata", new_sampledata_path
 
 -if(@sample)
   = pageless(@sampledata.total_pages, sample_path(@sample)+"/sampledata")

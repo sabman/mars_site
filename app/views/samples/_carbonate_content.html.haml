@@ -1,5 +1,7 @@
 - if @sample.carbonate_content
+  %h3 Carbonate Content
   -@sample.carbonate_content.each do |k,v| 
     %p
-      %strong=k
-      =v
+      %strong=k.to_s.capitalize
+      =v.to_f.round_to(3)
+      \%

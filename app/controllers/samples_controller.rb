@@ -49,7 +49,7 @@ private
   end
 
   def object
-    @object ||= Sample.find(params[:id])
+    @object ||= Sample.find(params[:id], :include => :sampledata)
   end
 
 
