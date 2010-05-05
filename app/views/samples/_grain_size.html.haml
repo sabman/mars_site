@@ -1,0 +1,10 @@
+- if @sample.grain_size
+  %h3 Grain Size
+  -@sample.grain_size.each do |k,v| 
+    %p
+      %strong=k.to_s.capitalize
+      =v.to_f.round_to(3)
+      - if k == :mean
+        \%
+      -else
+        micrometer(um)
