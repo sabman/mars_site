@@ -4,7 +4,7 @@ class Newfeature
 
   def self.all
   {
-    "2010-05-06 19:00 +10UTC" => {
+    "2010-05-06 20:00 +10UTC" => {
       :title => "Raw Grain Size Data",
       :url => "/surveys/438255-TAN0713/grain_size" , 
       :description => <<-EOL
