@@ -29,4 +29,38 @@ class Sample < Prod::Sample
   def self.bbox_search_conditions(g)
     ["SDO_ANYINTERACT(#{table_name}.geom, #{g.as_sdo_geometry}) = 'TRUE'"]
   end
+
+  def all_grain_size_data
+    sampledata.find_all_by_property('grain size')
+  end
+
+  def mean_grain_size
+    data = self.sampledata.find_all_by_property('grain size', :order => "datano ASC")
+    running_mean = []
+    running_sum = []
+    lt_63 = []
+    bw_63_2000 = []
+    gt_2000 = []
+    data.each do |d|
+      d.qualifier =~ /(\d+|\d+\.\d+)um - (\d+|\d+\.\d+)um/i
+      if ($1 && $2) && ($2 > $1)
+        puts "#{$1}\t-\t#{$2}\t#{d.quant_value} #{d.uom}" 
+        mean = (($2.to_f-$1.to_f)/2)+$1.to_f
+        running_mean << mean * d.quant_value.to_f
+        running_sum << d.quant_value.to_f
+        if $2.to_f < 63
+          lt_63 << d.quant_value
+        elsif $1.to_f >= 63 && $2.to_f <= 2000
+          bw_63_2000 << d.quant_value
+        elsif $1.to_f >= 2000
+          gt_2000 << d.quant_value
+        end
+      end
+    end
+    puts "total:  \t #{running_sum.sum}"
+    puts "<63:    \t #{lt_63.sum}"
+    puts "63-2000:\t #{bw_63_2000.sum}"
+    puts ">2000:  \t #{gt_2000.sum}"
+    running_mean.sum/running_sum.sum
+  end
 end

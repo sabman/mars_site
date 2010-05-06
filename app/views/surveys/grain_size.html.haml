@@ -1,0 +1,32 @@
+-#javascript("surveys/grain_size_table.js")
+%script{:type => "text/javascript"}
+  $(document).ready(function(){
+  $('#example').dataTable();
+  }); 
+
+- gsd = object.all_grain_size_data(:limit => true)
+
+-unless gsd.empty?
+  - title "Raw Grain Size Data" 
+  %h3
+    Data from 
+    = object.title
+
+  %p
+    =link_to "Back to #{object.title}", object
+
+  - header = gsd[0].attributes.keys.sort
+
+  %table{:id => "example", :class => "display", :cellspacing => "0"}
+    %thead
+      %tr
+        - header.each do |hdr|
+          %th= hdr
+    %tbody
+      -gsd.each do |gs|
+        %tr
+          -gs.attributes.sort.each do |k,v|
+            %td=v
+-else
+  %h2.notice This survey has no grain size data
+  %p=link_to "Back to #{object.title}", object

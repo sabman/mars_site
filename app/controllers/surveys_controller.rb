@@ -1,6 +1,6 @@
 ProdDb.connection.execute("ALTER SESSION set NLS_DATE_FORMAT ='DD-MON-FXYYYY'")
 class SurveysController < ApplicationController
-  before_filter :require_admin_user, :except => [:show, :index, :ran, :antarctica] 
+  before_filter :require_admin_user, :except => [:show, :index, :ran, :antarctica, :grain_size] 
   resource_controller
 
   show.wants.json {}
@@ -23,6 +23,10 @@ class SurveysController < ApplicationController
     @surveys = Survey.antarctica
   end
     
+  def grain_size
+    render :haml => "grain_size", :layout => "table"
+  end
+
   protected
 
   def model

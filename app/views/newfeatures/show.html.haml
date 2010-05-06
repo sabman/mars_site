@@ -1,0 +1,12 @@
+- title "Newfeatures"
+
+%p
+  %strong Name:
+  =h @newfeatures.name
+
+%p
+  = link_to "Edit", edit_newfeatures_path(@newfeatures)
+  |
+  = link_to "Destroy", @newfeatures, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", newfeatures_path

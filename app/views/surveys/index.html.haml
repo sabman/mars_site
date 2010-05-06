@@ -1,6 +1,6 @@
 - title "Surveys", false
 
-- date = '1-Jul-2008'
+- date = '1-Aug-2007'
 %h2= "Marine Surveys since #{date}"
 - @recent_surveys = Survey.recent(date, :include => :samples)
 = render :partial => "recent", :collection => @recent_surveys, :as => :survey

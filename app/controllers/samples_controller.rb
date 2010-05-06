@@ -44,7 +44,7 @@ private
       @collection = Sample.find(:all, :include => :survey, :conditions => {:eno => parent_object.eno})
     else
       @missing_geom_samples ||= parent_object.samples_missing_metadata("geom") if parent? 
-      @collection ||= end_of_association_chain.paginate(:order => "entrydate DESC", :page => params[:page])
+      @collection ||= end_of_association_chain.paginate(:order => "sampleid ASC", :page => params[:page])
     end
   end
 

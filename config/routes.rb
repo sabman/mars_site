@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :newfeatures
+
   map.resources :entities
   map.resources :quality_checks
   map.root :controller => "regions"
@@ -8,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_sessions, :users
   map.resources :sampledata
   map.resources :samples, :has_many => :sampledata
-  map.resources :surveys, :has_many => :samples, :member => {:qc => :get}, 
+  map.resources :surveys, :has_many => :samples, :member => {:qc => :get, :grain_size => :get}, 
     :collection => {
       :recent_marine  => :get,    # recent marine surveys
       :ran            => :get,    # surveys from RAN

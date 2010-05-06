@@ -169,8 +169,11 @@ pre {
   overflow: auto; }
 
 .notice {
-  background: #F1F1FF;
-  color: darkred; }
+  /* :background #FFFFEE */
+  color: darkred;
+  font-style: italic;
+  font-size: 0.8em;
+  /* :font-weight bold */ }
 
 .even {
   background: #F5F5F2; }
@@ -246,8 +249,10 @@ a.button:active span {
   -moz-background-inline-policy: continuous;
   -moz-background-origin: padding;
   background: #EEEEEE none repeat scroll 0 0;
-  border-top: 1px solid #CCCCCC;
-  padding: 10px; }
+  border-top: 1px dashed #CCCCCC;
+  border-bottom: 1px dashed #CCCCCC;
+  padding: 10px;
+  margin-bottom: 4px; }
 
 pre {
   -moz-background-clip: border;
@@ -257,3 +262,12 @@ pre {
   border: 1px solid #CCCCCC;
   padding: 10px;
   overflow: auto; }
+
+#topbar {
+  color: gray;
+  font-size: 0.7em;
+  float: right;
+  font-weight: bold; }
+
+.notification a {
+  color: #CC5500 /* burnt-orange */; }

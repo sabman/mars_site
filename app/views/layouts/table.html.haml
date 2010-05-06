@@ -1,0 +1,18 @@
+
+!!! Strict
+%html{html_attrs}
+  
+  %head
+    %title
+      = (yield(:title_bar) || "Untitled")
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag "demo_page", "demo_table"
+    = javascript_include_tag 'jquery', 'jquery.dataTables.min'
+
+    = yield(:head)
+
+  %body{:id=>"dt_example"}
+    #container
+      #demo
+        %h2= yield(:title)
+        = yield

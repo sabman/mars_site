@@ -1,5 +1,5 @@
 class Survey < Prod::Survey
-  attr_accessor :gams, :operators, :samples_count
+  attr_accessor :gams, :operators, :samples_count, :title
   has_many :samples, :foreign_key => "eno"
 
   # scopes
@@ -25,6 +25,33 @@ class Survey < Prod::Survey
 
   def has_samples?;samples.count > 0;end
 
+  def title
+    self.surveyname || self.surveyid || self.id
+  end
+
+  def mean_grain_size
+    samples.each do |sample|
+      sample.mean_grain_size
+    end
+  end
+
+  def all_grain_size_data(opts = {})
+    o = {:limit => false}.merge(opts)
+    gs = []
+    if o[:limit] 
+      samples.each.with_index do |sample, i|
+        sample.all_grain_size_data.each {|d| gs << d unless d.nil?}
+        return gs if gs.size > 200
+      end
+    else
+      samples.each do |sample|
+        sample.all_grain_size_data.each {|d|  gs << d unless d.nil?}
+      end
+    end
+    gs
+  end
+
+
   def bounding_box
     [nlat,slat,elong,wlong].join(",")
   end
@@ -39,9 +66,7 @@ class Survey < Prod::Survey
 
   def to_param
     if surveyid
-      "#{id}-#{surveyid.to_s.parameterize.downcase}"
-    elsif surveyname
-      "#{id}-#{surveyname.to_s.parameterize.downcase}"
+      "#{id}-#{surveyid.to_s.parameterize.upcase}"
     else
       id.to_s
     end
