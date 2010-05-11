@@ -1,3 +1,8 @@
+
+%h2
+  Marine Surveys since 
+  = @date
+  //%span.editable_date=@date
 = render :partial => "recent", :collection => @collection, :as => :survey
 .pagination_links
   = render :partial => "pagination_links" 

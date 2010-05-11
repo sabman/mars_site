@@ -4,8 +4,10 @@ class SurveysController < ApplicationController
   resource_controller
 
   show.wants.json {}
-  index.wants.json{}
-  index.wants.js { render :partial => 'all_recent'}
+  index.wants.json{ }
+  index.wants.js { 
+    render :partial => 'all_recent'
+  }
 
   def update
     if object.update_attributes(params[:survey])

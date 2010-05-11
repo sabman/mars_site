@@ -1,13 +1,14 @@
 -javascript('jquery.livequery.min', 'jquery.jeditable.mini')
 %script{:type => "text/javascript"}
   $(document).ready(function(){
-  $('.editable_date').editable("/surveys.json",{
-  name: 'date',
-  submit : "OK",
+  $('.editable_date').editable("/surveys",{
+  name      : 'date',
+  submit    : "OK",
   cancel    : "Cancel",
   tooltip   : "Click to edit...",
+  callback  : function(){$('div.surveys').html($(this).html());},
   indicator : '<img src="images/ajax-loader.gif">',
-  ="submitdata : {page : #{params[:page]||1}, _method: \'get\'}"
+  ="submitdata : {page : #{params[:page]||1}, _method: \'get\', updated_date : true }"
   });
   $('div.pagination a').livequery('click', function() {
   $('div.surveys').load(this.href);
@@ -18,14 +19,8 @@
 
 - title "Surveys", false
 
-%h2
-  Marine Surveys since 
-  %span.editable_date=@date
-
 .surveys
-  = render :partial => "recent", :collection => @collection, :as => :survey
-  .pagination_links
-    = render :partial => "pagination_links" 
+  =render :partial => 'all_recent'
 
 -content_for(:sidebar) do
   %h4.notice Featured Surveys from MARS
