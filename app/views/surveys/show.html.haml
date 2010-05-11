@@ -67,7 +67,7 @@
 -content_for(:sidebar) do
   - if has_samples = @object.samples.count > 0
     %h2= link_to "View Samples", survey_samples_path(@survey)
-    %h3=link_to "View Grain Size Data", grain_size_survey_path
+    %h5=link_to "View Raw Grain Size Data", grain_size_survey_path
     %h4 Download Samples 
     %p= render :partial => "samples/samples_download_links", :locals => {:survey => @object}
   - else

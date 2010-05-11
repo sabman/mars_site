@@ -8,6 +8,24 @@ class Sample < Prod::Sample
   
   attr_accessor :lat_start, :lon_start, :lat_end, :lon_end
 
+  def has_laser?
+    sampledata.find_by_method("Laser") != nil
+  end
+  def has_sieve?
+    sampledata.find_by_method("Sieve") != nil
+  end
+
+  def laser_summary
+    return nil unless self.has_laser?
+    q1 = sampledata.find_by_method_and_qualifier_and_seq_no("Laser", "d (0.1)", 1.0)
+    q2 = sampledata.find_by_method_and_qualifier_and_seq_no("Laser", "d (0.2)", 1.0)
+    q3 = sampledata.find_by_method_and_qualifier_and_seq_no("Laser", "d (0.5)", 1.0)
+    q4 = sampledata.find_by_method_and_qualifier_and_seq_no("Laser", "d (0.8)", 1.0)
+    q5 = sampledata.find_by_method_and_qualifier_and_seq_no("Laser", "d (0.9)", 1.0)
+    [q1,q2,q3,q4,q5]
+  end
+
+
   def station_number
     expr = /^\w\d\w\d.*$/
   end

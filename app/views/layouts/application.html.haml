@@ -6,7 +6,7 @@
       = (yield(:title_bar) || "Untitled")
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = stylesheet_link_tag 'application', 'pagination', 'formtastic', 'formtastic_changes', 'thickbox', :cache => "base"
-    = javascript_include_tag 'jquery', 'jquery-ui', 'thickbox-compressed' 
+    = javascript_include_tag 'jquery', 'jquery-ui', 'thickbox-compressed', 'application'
 
     = yield(:head)
   

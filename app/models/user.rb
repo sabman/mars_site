@@ -62,6 +62,10 @@ class User < ActiveRecord::Base
     ldap_user_entry.department.first
   end
 
+  def office_phone
+    ldap_user_entry.telephonenumber.first
+  end
+
   def to_param
     if full_name
       "#{id}-#{full_name.to_s.parameterize.downcase}"

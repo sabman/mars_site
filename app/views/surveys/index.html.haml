@@ -1,21 +1,31 @@
+-javascript('jquery.livequery.min', 'jquery.jeditable.mini')
+%script{:type => "text/javascript"}
+  $(document).ready(function(){
+  $('.editable_date').editable("/surveys.json",{
+  name: 'date',
+  submit : "OK",
+  cancel    : "Cancel",
+  tooltip   : "Click to edit...",
+  indicator : '<img src="images/ajax-loader.gif">',
+  ="submitdata : {page : #{params[:page]||1}, _method: \'get\'}"
+  });
+  $('div.pagination a').livequery('click', function() {
+  $('div.surveys').load(this.href);
+  $('div.surveys').effect("slide", {}, "normal");
+  return false;
+  });
+  });
+
 - title "Surveys", false
 
-- date = '1-Aug-2007'
-%h2= "Marine Surveys since #{date}"
-- @recent_surveys = Survey.recent(date, :include => :samples)
-= render :partial => "recent", :collection => @recent_surveys, :as => :survey
+%h2
+  Marine Surveys since 
+  %span.editable_date=@date
 
-%h4 This are all surveys theat were recently updated:
-%table
-  %tr
-    %th Id
-    %th Name
-  - for survey in @surveys
-    %tr{:class => cycle('odd','even')}
-      %td= link_to "#{h survey.surveyid}",    survey_path(survey)
-      %td= link_to "#{h survey.surveyname}",  survey_path(survey)
-
-%p= will_paginate @surveys
+.surveys
+  = render :partial => "recent", :collection => @collection, :as => :survey
+  .pagination_links
+    = render :partial => "pagination_links" 
 
 -content_for(:sidebar) do
   %h4.notice Featured Surveys from MARS

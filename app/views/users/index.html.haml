@@ -3,5 +3,6 @@
   .section
     %p
       %strong=link_to user.full_name, user
-    %p= user.department
+    %p=user.department
+    %p=user.office_phone
     %p=link_to user.email, "mailto:#{user.email}"

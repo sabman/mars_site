@@ -1,6 +1,7 @@
 class Survey < Prod::Survey
   attr_accessor :gams, :operators, :samples_count, :title
   has_many :samples, :foreign_key => "eno"
+  set_date_columns :entrydate, :qadate, :acquiredate, :confid_until, :lastupdate
 
   # scopes
   default_scope :conditions =>  "surveytype='MARINE' OR on_off='OnOff'"
@@ -121,7 +122,7 @@ class Survey < Prod::Survey
     surveyid =~ /(GA-?(\d\d\d\d|\d\d\d))/i
     return $2.to_s.rjust(4, '0') if $2 
     # look in comments
-    comments =~ /GAMS=(\d+);/i
+    comments =~ /GAMS\s*=\s*(\d+);/i
     return $1.to_s.rjust(4, '0') if $1 
   end
 
