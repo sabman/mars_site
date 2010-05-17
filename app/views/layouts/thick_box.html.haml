@@ -1,0 +1,31 @@
+!!! Strict
+%html{html_attrs}
+  
+  %head
+    %title
+      = (yield(:title_bar) || "Untitled")
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag 'application', 'pagination', 'formtastic', 'formtastic_changes', 'thickbox', :cache => "base"
+    = javascript_include_tag 'jquery', 'jquery-ui', 'thickbox-compressed', 'application'
+
+    = yield(:head)
+  
+  %body
+    #container
+      #topbar
+
+      #header
+
+      #nav    
+      #centered_content
+        #centered_content
+          - flash.each do |name, msg|
+            = content_tag :div, msg, :id => "flash_#{name}"
+          - if show_title?
+            %h2= yield(:title)
+          = yield
+      #footer
+        %p 
+          Seabed Mapping and Characterisation - Geoscience Australia
+        =h yield(:footer)
+

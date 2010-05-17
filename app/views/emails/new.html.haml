@@ -1,0 +1,32 @@
+- title "Contact us"
+
+%h3 We would love your feedback
+
+- form_tag url_for(:controller => :emails, :action => :create) do 
+  %p
+    = label_tag "Sender's Email"
+    %br
+    = text_field_tag :sender, '', :size => 40
+  %p
+    = label_tag "cc"
+    %br
+    = text_field_tag :cc, '', :size => 40
+  %p
+    = label_tag "bcc"
+    %br
+    = text_field_tag :bcc, '', :size => 40
+  %p
+    = label_tag "Subject"
+    %br
+    = text_field_tag :subject, '', :size => 40
+  %p
+    = label_tag "Body"
+    %br
+    = text_area_tag :body, nil, :rows => 10, :cols => 60
+  %p
+    = label_tag "Tags"
+    %br
+    = text_field_tag :tags, '', :size => 40
+    = hidden_field_tag :referer, request.referer
+  %p
+    = submit_tag "Submit"

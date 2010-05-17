@@ -99,7 +99,7 @@
 -content_for(:sidebar) do
   - if @sample
     %h4 Context for this data
-    %p= link_to "View all analysis data from the sample", sample_sampledata_path(@sample, @sampledata) 
+    %p= link_to "View all analysis data from the sample", sample_path(@sample)+"/sampledata"
     %p= link_to "View sample this data comes from: #{@sample.sampleid}", sample_path(@sample)
     %p= link_to "View survey this data comes from: #{@sample.survey.surveyname||@sample.survey.surveyid||@sample.survey.eno}", survey_path(@sample.survey)
   - else

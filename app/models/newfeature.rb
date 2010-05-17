@@ -4,7 +4,18 @@ class Newfeature
 
   def self.all
   {
-    "2010-05-06 20:00 +10UTC" => {
+     "2010-05-12 20:35 +10UTC" => {
+      :title => "Give us feedback",
+      :url => nil , 
+      :description => <<-EOL
+        You can now get in touch with the MARS team that builds this website. 
+        Just click on the contact us link and with your feedback and we will 
+        get in touch. You know you want to tell us something! 
+        Here is the contact <a class= "thickbox" href="/emails/new?keepThis=true&TB_iframe=true&height=600&width=800">form</a>.
+      EOL
+    },
+
+   "2010-05-06 20:00 +10UTC" => {
       :title => "Raw Grain Size Data",
       :url => "/surveys/438255-TAN0713/grain_size" , 
       :description => <<-EOL

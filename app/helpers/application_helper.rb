@@ -47,4 +47,8 @@ module ApplicationHelper
   def indented_render(num=1, *args)
     render(*args).gsub(/^/, "\t" * num)
   end
+
+ def thinkbox_iframe_params 
+  'keepThis=true&TB_iframe=true&height=600&width=800'
+ end
 end

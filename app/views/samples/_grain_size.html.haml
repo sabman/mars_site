@@ -1,10 +1,35 @@
-- if @sample.grain_size
-  %h3 Grain Size
-  -@sample.grain_size.each do |k,v| 
+- sieve_grain_size = @sample.grain_size
+- unless sieve_grain_size.blank?
+  #grain_size.section
+    %h3 Aggrigated Sieve Grain Size
     %p
-      %strong=k.to_s.capitalize
-      =v.to_f.round_to(3)
-      - if k == :mean
-        \%
-      -else
-        micrometer(um)
+      %strong mud
+      =sieve_grain_size[:mud]
+      \%
+    %p
+      %strong sand
+      =sieve_grain_size[:sand]
+      \%
+    %p
+      %strong gravel
+      =sieve_grain_size[:gravel]
+      \%
+    %p
+      %strong bulk
+      =sieve_grain_size[:bulk]
+      \%
+
+- sieve_grain_size = @sample.sieve_grain_size
+- unless sieve_grain_size.blank?
+  #grain_size.section
+    %h3 Grain size from sieve
+    - sieve_grain_size.each do |s|
+      %p
+        = "#{s.quant_value} #{s.uom}"
+        |
+        = s.qualifier
+        |
+        = s.comments
+        |
+        =link_to :details, sample_sampledata_path(@sample, s)
+

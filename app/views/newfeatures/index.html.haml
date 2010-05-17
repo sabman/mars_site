@@ -7,9 +7,11 @@
         =feature[1][:title]
     %p 
       =feature[1][:description]
-    %p
-      Check out this
-      =link_to "example", feature[1][:url]
+
+    -if feature[1][:url]
+      %p
+        Check out this
+        =link_to "example", feature[1][:url]
     %p.subtle{:style=> "text-align:right;"}
       Added on
       =feature[0]

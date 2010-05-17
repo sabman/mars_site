@@ -1,22 +1,37 @@
 - semantic_form_for @survey do |f|
   %p
     - f.inputs do
-      = f.input :eno, :input_html => {:disabled => true}, :hint => "Entity Number (ENO) is automatically generated"
+      = f.input :eno, :label => "ENO", :input_html => {:disabled => true}, :hint => "Entity Number (ENO) is automatically generated"
+      = f.input :surveyname, :label => "Survey name", :hint => "This is a discriptive name of the survey; e.g. Bonaparte Gulf Seabed Mapping Survey"
       = f.input :surveyid, :hint => "Check for an official SurveyID from GADA as they maintain a list of all GA surveys and their numeric code"
-      = f.input :surveyname, :hint => "This is a discriptive name of the survey; e.g. Bonaparte Gulf Seabed Mapping Survey"
-      = f.input :startdate, :as => :date
-      = f.input :enddate, :as => :date
-      = f.input :surveytype
-      = f.input :operator
-      = f.input :contractor
-      = f.input :processor
-      = f.input :client
-      = f.input :owner
+      = f.input :gams, :label => "GAMS", :hint => "This is the GA assigned numeric identifier; e.g GA-123"
+      = f.input :startdate, :label => "Start date", :as => :date
+      = f.input :enddate, :label => "End date", :as => :date
+      = f.input :releasedate, :label => "Release date", :as => :date
+      = f.input :surveytype, :label => "Survey type", :as => :select, :collection => Lookup.survey_types, :input_html => {:class => 'autocomplete'}
+      = f.input :operator, :as => :select, :collection => Lookup.operators,   :input_html => {:class => 'autocomplete', :style => "width:300px;"}
+      = f.input :contractor, :as => :select, :collection => Lookup.operators, :input_html => {:class => 'autocomplete', :style => "width:300px;"}
+      = f.input :processor, :as => :select, :collection => Lookup.operators,  :input_html => {:class => 'autocomplete', :style => "width:300px;"}
+      = f.input :client, :as => :select, :collection => Lookup.operators,     :input_html => {:class => 'autocomplete', :style => "width:300px;"}
+      = f.input :owner, :as => :select, :collection => Lookup.operators,      :input_html => {:class => 'autocomplete', :style => "width:300px;"}
       = f.input :legislation, :hint => "The legislation which governs the use of the data (e.g. Petroleum Search Subsidy Act (PSSA), Petroleum Submerged Lands Act (PSLA)."
-      = f.input :state
+      = f.input :state, :collection => Lookup.states
+      = f.input :country, :collection => Lookup.countries
+      = f.input :proj_leader, :label => "Project leader", :hint => "Firstname Lastname of the project leader e.g. Joe Biden"
+      = f.input :participants, :as => :text, :input_html => {:rows => 3}, :hint => "Comma separated list of crew members e.g. Joe Biden, Angela Merkel, James Beans"
+      = f.input :on_off, :collection => ['On', 'Off', 'OnOff'], :hint => 'Survey is On shore, off shore or both'
+      = f.input :start_port, :collection => Lookup.ports
+      = f.input :end_port, :collection => Lookup.ports
+      = f.input :locmethod, :label => "Location method", :collection => Lookup.location_methods,    :input_html => {:class => 'autocomplete', :style => "width:300px;"}
+      = f.input :accuracy, :label => "Location accuracy", :collection => Lookup.accuricies,         :input_html => {:class => 'autocomplete', :style => "width:300px;"}
+      = f.input :geodetic_datum, :hint => "The coordinate system used to reference latitude and longitude. e.g. WGS84"
+      = f.input :vessel, :hint => "Ship's name e.g. Sonne" #, :collection => Lookup.survey_platforms
+      = f.input :vessel_type, :hint => "e.g. RV, MV, SV"
       = f.input :access_code, :hint => "C - confidential; A - GA internal only; O - open to public"
+      = f.input :spacemin, :label => "Minimum space" 
+      = f.input :spacemax, :label => "Maximum space" 
       = f.input :confid_until, :as => :date, :hint => "Confidentiality date, must be specified for access code C - Confidential data and A - GA only records."
-      = f.input :comments, :as => :text
+      = f.input :comments, :as => :text, :input_html => {:rows => 10}
       = f.input :bounding_box, :hint => "nlat, slat, elong, wlong. e.g. -21.5565, -23.9112, 114.3661, 113.1977"
       - f.buttons do 
         = f.commit_button :button_html => {:value => "Update"}

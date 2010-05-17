@@ -3,10 +3,14 @@ class Sample < Prod::Sample
   belongs_to :survey, :foreign_key => "eno"
   has_many :sampledata, :foreign_key => "sampleno"
 
+  #auto_complete_for :survey, :operator do 
+  #  Lookup.operators 
+  #end
+
   #after_create :update_samples_count_for_survey
   #after_destroy :update_samples_count_for_survey
   
-  attr_accessor :lat_start, :lon_start, :lat_end, :lon_end
+  attr_accessor :lat_start, :lon_start, :lat_end, :lon_end, :country
 
   def has_laser?
     sampledata.find_by_method("Laser") != nil
@@ -52,20 +56,51 @@ class Sample < Prod::Sample
     sampledata.find_all_by_property('grain size')
   end
 
-  def mean_grain_size
-    data = self.sampledata.find_all_by_property('grain size', :order => "datano ASC")
+  def sieve_grain_size
+    data = self.sampledata.find_all_by_property_and_method('grain size', 'Sieve', :order => "datano ASC")
+    return nil if data.empty?
+    data
+  end
+
+  def bulk_geometric_mean
+    return nil if sampledata.blank?
+    data = sampledata.find_all_by_qualifier('geometric mean (bulk)')
+    return nil if data.blank?
+    data
+  end
+
+  def bulk_geometric_sorting
+    return nil if sampledata.blank?
+    data = sampledata.find_all_by_qualifier('geometric sorting (bulk)')
+    return nil if data.blank?
+    data
+  end
+
+  def bulk_geometric_skewness
+    return nil if sampledata.blank?
+    data = sampledata.find_all_by_qualifier('geometric skewness (bulk)')
+    return nil if data.blank?
+    data
+  end
+
+  def geometric_mean_grain_size
+    data = self.sampledata.find_all_by_property_and_method('grain size', 'Laser', :order => "datano ASC")
+    return if data.empty?
     running_mean = []
     running_sum = []
     lt_63 = []
     bw_63_2000 = []
     gt_2000 = []
     data.each do |d|
-      d.qualifier =~ /(\d+|\d+\.\d+)um - (\d+|\d+\.\d+)um/i
-      if ($1 && $2) && ($2 > $1)
-        puts "#{$1}\t-\t#{$2}\t#{d.quant_value} #{d.uom}" 
-        mean = (($2.to_f-$1.to_f)/2)+$1.to_f
-        running_mean << mean * d.quant_value.to_f
+      d.qualifier =~ /(\d+|\d+\.\d+)um\s*-\s*(\d+|\d+\.\d+)um/i
+      if ($1 && $2) && ($2.to_f - $1.to_f >= 0)
+        mid_bin = (($2.to_f-$1.to_f)/2)+$1.to_f
+        #puts "min bin: " + mid_bin.to_s
+        ln_mid_bin = Math.log(mid_bin)
+        #puts "log min bin: " + ln_mid_bin.to_s
+        running_mean << ln_mid_bin * d.quant_value.to_f
         running_sum << d.quant_value.to_f
+        #puts "#{$1}\t-\t#{$2}\t#{d.quant_value} #{d.uom}\t#{mid_bin}\t#{ln_mid_bin}\t#{running_mean.last}" 
         if $2.to_f < 63
           lt_63 << d.quant_value
         elsif $1.to_f >= 63 && $2.to_f <= 2000
@@ -75,10 +110,11 @@ class Sample < Prod::Sample
         end
       end
     end
-    puts "total:  \t #{running_sum.sum}"
-    puts "<63:    \t #{lt_63.sum}"
-    puts "63-2000:\t #{bw_63_2000.sum}"
-    puts ">2000:  \t #{gt_2000.sum}"
-    running_mean.sum/running_sum.sum
+    #puts "total:  \t #{running_sum.sum}"
+    #puts "<63:    \t #{lt_63.sum}"
+    #puts "63-2000:\t #{bw_63_2000.sum}"
+    #puts ">2000:  \t #{gt_2000.sum}"
+    #puts running_mean.sum
+    Math.exp(running_mean.sum/100)
   end
 end

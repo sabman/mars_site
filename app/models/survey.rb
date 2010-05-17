@@ -1,5 +1,5 @@
 class Survey < Prod::Survey
-  attr_accessor :gams, :operators, :samples_count, :title
+  attr_accessor :gams, :operators, :samples_count, :title, :country, :participants, :start_port, :end_port
   has_many :samples, :foreign_key => "eno"
   set_date_columns :entrydate, :qadate, :acquiredate, :confid_until, :lastupdate
 
@@ -25,6 +25,50 @@ class Survey < Prod::Survey
   @@critical_metadata_fields = %w{surveyname surveytype surveyid operator contractor processor client owner startdate enddate vessel_type vessel confid_until}
 
   def has_samples?;samples.count > 0;end
+
+  def country
+    Lookup.find_country_by_countryid(self.countryid).try(:countryname)
+  end
+  def country=(countryid) # stores countryid 
+    self.countryid = countryid
+  end
+
+  def participants
+    self.comments =~ /^PARTICIPANTS\s*=\s*(.*)\s*;$/
+    $1
+  end
+  def participants=(list)
+    if self.comments.nil? # this is a fresh comment so just add
+      self.comments = "PARTICIPANTS = #{list}\n"
+    else # need to check if we had participants list before
+      self.comments =~ /^PARTICIPANTS\s*=\s*(.*)\s*;$/
+      if $1.nil? # can't find participants
+        self.comment = self.comments + "\n" + "PARTICIPANTS = #{list}\n" 
+      else # found participants - replace them with the new list
+        self.comment.gsub(/^PARTICIPANTS\s*=\s*(.*)\s*;$/, "PARTICIPANTS = #{list}\n")
+      end
+    end
+  end
+
+  def start_port
+    self.comments =~ /^START PORT\s*=\s*(.*)\*;$/
+    $1
+  end
+  def start_port=(port)
+    self.comments =~ /^START PORT\s*=\s*(.*)\*;$/
+    self.comments = self.comments + "\nSTART PORT = #{port};\n" if $1.nil?
+    self.comments = self.comments.gsub(/^START PORT\s*=\s*(.*)\*;$/, "START PORT = #{port};") if $1
+  end
+
+  def end_port
+    self.comments =~ /^END PORT\s*=\s*(.*)\*;$/
+    $1
+  end
+  def end_port=(port)
+    self.comments =~ /^END PORT\s*=\s*(.*)\*;$/
+    self.comments = self.comments + "\nEND PORT = #{port};\n" if $1.nil?
+    self.comments = self.comments.gsub(/^END PORT\s*=\s*(.*)\*;$/, "END PORT = #{port};") if $1
+  end
 
   def title
     self.surveyname || self.surveyid || self.id
