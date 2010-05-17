@@ -1,20 +1,21 @@
 -javascript('jquery.livequery.min', 'jquery.jeditable.mini')
-%script{:type => "text/javascript"}
+:javascript
   $(document).ready(function(){
-  $('.editable_date').editable("/surveys",{
-  name      : 'date',
-  submit    : "OK",
-  cancel    : "Cancel",
-  tooltip   : "Click to edit...",
-  callback  : function(){$('div.surveys').html($(this).html());},
-  indicator : '<img src="images/ajax-loader.gif">',
-  ="submitdata : {page : #{params[:page]||1}, _method: \'get\', updated_date : true }"
-  });
-  $('div.pagination a').livequery('click', function() {
-  $('div.surveys').load(this.href);
-  $('div.surveys').effect("slide", {}, "normal");
-  return false;
-  });
+    $('.editable_date').editable("/surveys",{
+      name      : 'date',
+      submit    : "OK",
+      cancel    : "Cancel",
+      tooltip   : "Click to edit...",
+      callback  : function(){$('div.surveys').html($(this).html());},
+      indicator : '<img src="images/ajax-loader.gif">',
+      submitdata : {page : #{params[:page]||1}, _method: 'get', updated_date : true }
+    });
+
+    // $('div.pagination a').livequery('click', function() {
+    //  $('div.surveys').load(this.href);
+    //  $('div.surveys').effect("slide", {}, "normal");
+    //  return false;
+    //}); 
   });
 
 - title "Surveys", false

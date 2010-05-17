@@ -3,10 +3,10 @@ class SurveysController < ApplicationController
   before_filter :require_admin_user, :except => [:show, :index, :ran, :antarctica, :grain_size] 
   resource_controller
 
-  show.wants.json {}
+  show.wants.json { }
   index.wants.json{ }
   index.wants.js { 
-    render :partial => 'all_recent'
+    render :partial => 'all_recent', :layout => nil
   }
 
   def update

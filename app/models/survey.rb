@@ -43,9 +43,9 @@ class Survey < Prod::Survey
     else # need to check if we had participants list before
       self.comments =~ /^PARTICIPANTS\s*=\s*(.*)\s*;$/
       if $1.nil? # can't find participants
-        self.comment = self.comments + "\n" + "PARTICIPANTS = #{list}\n" 
+        self.comments = self.comments + "\n" + "PARTICIPANTS = #{list}\n" 
       else # found participants - replace them with the new list
-        self.comment.gsub(/^PARTICIPANTS\s*=\s*(.*)\s*;$/, "PARTICIPANTS = #{list}\n")
+        self.comments.gsub(/^PARTICIPANTS\s*=\s*(.*)\s*;$/, "PARTICIPANTS = #{list}\n")
       end
     end
   end
