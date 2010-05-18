@@ -1,7 +1,8 @@
 class Survey < Prod::Survey
-  attr_accessor :gams, :operators, :samples_count, :title, :country, :participants, :start_port, :end_port
+  attr_accessor :gams, :operators, :samples_count, :title, :country, :participants, :start_port, :end_port, :state
   has_many :samples, :foreign_key => "eno"
   set_date_columns :entrydate, :qadate, :acquiredate, :confid_until, :lastupdate
+
 
   # scopes
   default_scope :conditions =>  "surveytype='MARINE' OR on_off='OnOff'"
@@ -25,6 +26,13 @@ class Survey < Prod::Survey
   @@critical_metadata_fields = %w{surveyname surveytype surveyid operator contractor processor client owner startdate enddate vessel_type vessel confid_until}
 
   def has_samples?;samples.count > 0;end
+
+  def status
+    return :unknown   if self.enddate.nil? 
+    return :completed if Time.now > self.enddate
+    return :upcoming if Time.now < self.enddate
+    return :inprogress if Time.now <= self.enddate && Time.now >= self.startdate
+  end
 
   def country
     Lookup.find_country_by_countryid(self.countryid).try(:countryname)
@@ -55,9 +63,7 @@ class Survey < Prod::Survey
     $1
   end
   def start_port=(port)
-    self.comments =~ /^START PORT\s*=\s*(.*)\*;$/
-    self.comments = self.comments + "\nSTART PORT = #{port};\n" if $1.nil?
-    self.comments = self.comments.gsub(/^START PORT\s*=\s*(.*)\*;$/, "START PORT = #{port};") if $1
+    append_or_update_comments("START PORT", port) 
   end
 
   def end_port
@@ -65,9 +71,7 @@ class Survey < Prod::Survey
     $1
   end
   def end_port=(port)
-    self.comments =~ /^END PORT\s*=\s*(.*)\*;$/
-    self.comments = self.comments + "\nEND PORT = #{port};\n" if $1.nil?
-    self.comments = self.comments.gsub(/^END PORT\s*=\s*(.*)\*;$/, "END PORT = #{port};") if $1
+    append_or_update_comments("END PORT", port) 
   end
 
   def title
@@ -96,8 +100,16 @@ class Survey < Prod::Survey
     gs
   end
 
+  def llur(opts={})
+    b = self.bounding_box(:array=>true) 
+    puts b
+    return nil unless b
+    return [ b[2], b[1], b[3], b[0] ] 
+  end
 
-  def bounding_box
+  def bounding_box(opts={})
+    return nil unless (nlat && slat && elong && wlong)
+    return [nlat.to_f,slat.to_f,elong.to_f,wlong.to_f] if opts[:array]
     [nlat,slat,elong,wlong].join(",")
   end
 
@@ -171,7 +183,7 @@ class Survey < Prod::Survey
   end
 
   def gams=(gams)
-    
+    append_or_update_comments("GAMS", gams) 
   end
 
   def gada_data_url
@@ -256,5 +268,18 @@ class Survey < Prod::Survey
         and s.eno = #{eno}
     SQL
   end
-
+  
+  private
+  def append_or_update_comments(key, value)
+    if self.comments.nil? # this is a fresh entry to comments so just add
+      self.comments = "#{key} = #{value};\n"
+    else # need to check if key already exists
+      self.comments =~ /^\s*(#{key})\s*=.*;$/
+      if $1.nil? # can't find key so append 
+        self.comments = self.comments + "\n" + "#{key} = #{value};\n" 
+      else # found key - replace them with the value
+        self.comments = self.comments.sub(/^\s*#{key}\s*=\s*(.*)\s*;$/, "#{key} = #{value};")
+      end
+    end
+  end
 end

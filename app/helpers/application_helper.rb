@@ -13,6 +13,22 @@ module ApplicationHelper
     API_KEY='ABQIAAAAa7SFeUyLeV9ADXW6EhbOsBTNDsdv8Kya0OrU386k6NycOBp3zxRI1yv2Vm4esgkI9tVkgGB2CjjASQ' #10.7.65.109:4000
   end
 
+  GMAP_STATIC_URL="http://maps.google.com/maps/api/staticmap?"
+  
+  # http://maps.google.com/maps/api/staticmap?
+  # size=400x400&
+  # path=fillcolor:0xAA000066|color:0xFFFFFF00|enc:ktttE__b{XSQ[GWFUb@Ab@FTNTZHZKNYF[
+  # &key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw&
+  # sensor=false&
+  # maptype=hybrid&
+  # zoom=19
+  #
+  # http://maps.google.com/maps/api/staticmap?
+  # center=37.401937,-122.080679&
+  # zoom=13&
+  # path=color:0x0000FF80|weight:5|37.41307,-122.08626|37.39016,-122.08712|37.38907,-122.06961|37.41252,-122.06789|37.41307,-122.08626&
+  # size=500x300&
+  # sensor=TRUE_OR_FALSE
 
   def js_gmaps
     javascript_link("http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=#{API_KEY}")
@@ -48,7 +64,35 @@ module ApplicationHelper
     render(*args).gsub(/^/, "\t" * num)
   end
 
- def thinkbox_iframe_params 
-  'keepThis=true&TB_iframe=true&height=600&width=800'
+
+  def thickbox_iframe_params
+    'keepThis=true&TB_iframe=true&height=600&width=800'
+  end
+
+ def static_gmap(opts={}) # format of bbox is (xmin,ymin,xmax,ymax)
+   return nil unless opts[:llur]
+   return static_map_by_bbox(opts[:llur]) if opts[:llur]
  end
+
+  private 
+  def static_map_by_bbox(llur)
+    p = GeoRuby::SimpleFeatures::Polygon.from_coordinates(llur.as_coordinates)
+    p = p.envelope.center
+    r = llur.as_coordinates[0].collect{|c| "#{c[1]},#{c[0]}"}.join('|')
+
+    # path=color:0xFFEECC80|weight:2|37.41307,-122.08626|37.39016,-122.08712|37.38907,-122.06961|37.41252,-122.06789|37.41307,-122.08626&
+    region = "path=color:0xFFEECC80|weight:2|#{r}&"
+    # center=37.401937,-122.080679&
+    center = "center=#{p.y},#{p.x}&"
+    # zoom=13&
+    zoom = "zoom=5&"
+    # size=500x300&
+    size="size=500x300&"
+    # maptype=hybrid&
+    maptype="maptype=hybrid&"
+    # sensor=TRUE_OR_FALSE
+    sensor="sensor=false"
+    GMAP_STATIC_URL+region+center+zoom+size+maptype+sensor+"&"+'keepThis=true&TB_iframe=true&height=304&width=500'
+  end
+
 end

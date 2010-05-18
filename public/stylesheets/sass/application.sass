@@ -3,7 +3,7 @@
 body
   :background-color = !primary_color
   :font
-    :family Verdana, Helvetica, Arial
+    :family Verdana, Helvetica
     :size 14px
 
 a
@@ -209,10 +209,29 @@ pre
   :padding-left 2px
 
 #summary_stats
+  :text-align center
+  :vertical-align middle
+  :display table-cell
+  :height auto
+  :width 60px
+  :float right
+  :background #FFEEDD
+  /*:display block*/
   :font-size 0.8em
-  :padding-left 2px
-  :padding-bottom 2px
+  :padding 2px
   :color #AAA
+  /* 5 px rounded corners on all sides */
+  -moz-border-radius: 5px
+  -webkit-border-radius: 5px
+  /* 5 px rounded corners on only the top sides (top left and top right) */
+  //-moz-border-radius: 5px 5px 0 0
+  //-webkit-border-radius: 5px 5px 0 0
+  .block
+    div
+      :position absolute 
+      :top 0
+      :bottom 0
+      :margin auto
 
 .missing_metadata_flag
   :float right
@@ -252,8 +271,6 @@ a.button:active span
   :overflow hidden
   :width 100%
 
-.block
-
 .carbonate_content
   :background #EEE
 
@@ -271,6 +288,8 @@ a.button:active span
   -moz-background-clip: border
   -moz-background-inline-policy: continuous
   -moz-background-origin: padding
+  -moz-border-radius: 5px
+  -webkit-border-radius: 5px
   background: #EEEEEE none repeat scroll 0 0
   padding: 10px
   margin-bottom: 4px
@@ -296,3 +315,11 @@ pre
   a
     :color #CC5500 /* burnt-orange */
 
+.upcoming
+  :color #CC5500
+  :display block
+
+.survey_links
+  :display block
+  :padding 2px
+  :min-height 60px
