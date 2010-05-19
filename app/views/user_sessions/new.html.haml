@@ -2,8 +2,8 @@
 
 - semantic_form_for @user_session do |f|
   - f.inputs do
-    = f.input :username, :input_html => {:size => 60}, :hint => "user you GA user ID e.g. u63251"
-    = f.input :password, :input_html => {:size => 60}
+    = f.input :username, :label => "GA Email", :input_html => {:size => 60}, :hint => "use you GA email or user ID e.g. john.smith@ga.gov.au or u63251"
+    = f.input :password, :input_html => {:size => 60}, :hint => "this is the password you use to login to your desktop every morning"
 
     - f.buttons do
       =f.commit_button :button_html => {:value => "Login"}

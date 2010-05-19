@@ -4,6 +4,18 @@ class Newfeature
 
   def self.all
   {
+     "2010-05-19 12:25 +10UTC" => {
+      :title => "We love to login using our emails!",
+      :url => nil,
+      :description => <<-EOL
+        If you are like the rest of us there are mornings when you 
+        struggle to remember your GA user id - you know the one with 
+        u + 5digits. Well we have fixed that for you - we now allow 
+        login using your email address and password. Just go to 
+        the <a href="/login">login page</a> and give it a try. 
+      EOL
+    },
+
      "2010-05-12 20:35 +10UTC" => {
       :title => "Give us feedback",
       :url => nil , 

@@ -36,10 +36,14 @@ class User < ActiveRecord::Base
   def ldap_user_entry
     filter = Net::LDAP::Filter.eq("sAMAccountName", self.username)
     unless @ldap_user_entry 
-      puts self.username
       @ldap_user_entry ||= LDAP_CONNECTION.search(:filter => filter, :size => 1)[0] rescue false
     end
     @ldap_user_entry
+  end
+
+  def self.find_ldap_username_by_email(email)
+    filter = Net::LDAP::Filter.eq("mail", email)
+    LDAP_CONNECTION.search(:filter => filter, :size=>1)[0].samaccountname[0] rescue nil
   end
 
   def email

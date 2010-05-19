@@ -81,7 +81,7 @@ module ApplicationHelper
     r = llur.as_coordinates[0].collect{|c| "#{c[1]},#{c[0]}"}.join('|')
 
     # path=color:0xFFEECC80|weight:2|37.41307,-122.08626|37.39016,-122.08712|37.38907,-122.06961|37.41252,-122.06789|37.41307,-122.08626&
-    region = "path=color:0xFFEECC80|weight:2|#{r}&"
+    region = "path=color:0xFFEEAA80|weight:4|#{r}&"
     # center=37.401937,-122.080679&
     center = "center=#{p.y},#{p.x}&"
     # zoom=13&

@@ -1,52 +1,68 @@
 
-%p
+%h2
   %strong ENO:
   =h @survey.eno
-%p
+%h3
   %strong Survey name:
   =h @survey.surveyname
+
+#spatial_information
+  #staticmap
+    %p
+      %strong=link_to "Show map", static_gmap(:llur => @survey.llur), :class => 'thickbox' unless @survey.llur.nil?
+  %p
+    %strong BBOX:
+    =h @survey.bounding_box
 %p
   %strong Data types:
   =h @survey.datatypes
-%p
-  %strong Operator:
-  =h @survey.operator
-%p
-  %strong Owner:
-  =h @survey.owner
-%p
-  %strong Contractor:
-  =h @survey.contractor
+
+#ip_information
+  %p
+    %strong Confidential until:
+    =h @survey.confid_until
+  %p
+    %strong Release date:
+    =h @survey.releasedate.strftime("%d-%b-%Y") rescue nil
+  %p
+    %strong Operator:
+    =h @survey.operator
+  %p
+    %strong Owner:
+    =h @survey.owner
+  %p
+    %strong Contractor:
+    =h @survey.contractor
+  %p
+    %strong Vessel Type:
+    =h @survey.vessel_type
+  %p
+    %strong Vessel:
+    =h @survey.vessel
+
 %p
   %strong UNO:
   =h @survey.uno
-%p
-  %strong Startdate:
-  =h @survey.startdate
-%p
-  %strong Enddate:
-  =h @survey.enddate
-%p
-  %strong Vessel Type:
-  =h @survey.vessel_type
-%p
-  %strong Vessel:
-  =h @survey.vessel
-%p
-  %strong Entered by:
-  =h @survey.enteredby
+
+#temporal_range
+  %p
+    %strong Startdate:
+    =h @survey.startdate.strftime("%d-%b-%Y") rescue nil
+  %p
+    %strong Enddate:
+    =h @survey.enddate.strftime("%d-%b-%Y") rescue nil
+
 %p
   %strong GAMS:
   =h @survey.gams
 %p
   %strong Comments:
   =h @survey.comments
-%p
-  %strong BBOX:
-  =h @survey.bounding_box
 
-#staticmap=link_to "show map", static_gmap(:llur => @survey.llur), :class => 'thickbox' unless @survey.llur.nil?
-
+#database_dates
+  %p
+    %strong Entered by:
+    =h @survey.enteredby
 %p
   %strong Total Samples: 
   = @survey.samples.count
@@ -55,6 +71,13 @@
   = link_to "View Samples", survey_samples_path(@survey)
 
 %p= link_to "View All Surveys", surveys_path
+
+.subtle{:style => "text-align:right;"}
+  last updated on
+  =@survey.lastupdate 
+  by
+  =@survey.updatedby
+
 
 -content_for(:sidebar_otherdata) do
   - if @survey.gams
