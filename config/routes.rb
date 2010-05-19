@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.upcoming_survey "/surveys/upcoming", :controller => :surveys, :action => :upcoming
+  map.account "/account", :controller => :users, :action => :show, :id => "current"
+
   map.resources :emails
 
   map.resources :newfeatures
