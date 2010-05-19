@@ -30,12 +30,17 @@ class UserSessionsController < ApplicationController
 
   def check_for_email
     @username = params[:user_session][:username]
-    if params[:user_session][:username] =~ /(.*)@ga.gov.au/ #email
+    if params[:user_session][:username] =~ /.*@ga.gov.au/ #email
       @username = User.find_ldap_username_by_email(params[:user_session][:username])
       if @username.nil?
         flash[:notice] = "Sorry but we couldn't not find a user by this email address."
         redirect_to login_path
+        return false
+      else
+        return true
       end
+    else #username
+      return true
     end
   end
 
