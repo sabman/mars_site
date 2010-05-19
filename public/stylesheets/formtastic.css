@@ -1,4 +1,14 @@
+
 /* -------------------------------------------------------------------------------------------------
+
+====================================================
+
+NOTES RE  IEFIXES.CSS FILE: 
+
+This I.E. css adaption file makes accommodation for IE 6's inability to respond to child selectors and instead uses descendant selectors
+ - it also includes a second change to override the Formtastic default css file (formtastic.css) and by doing so renders radio button blocks horizontally as compared to the default css file's vertical rendering. In this case, the code (the radio overrides section) accommodates both IE6's and IE7's inability to correctly render the css declaration @display: inline-block;@
+
+======================================================
 
 It's *strongly* suggested that you don't modify this file.  Instead, load a new stylesheet after
 this one in your layouts (eg formtastic_changes.css) and override the styles to suit your needs.
@@ -19,7 +29,13 @@ form.formtastic ol, form.formtastic ul { list-style:none; }
 form.formtastic abbr, form.formtastic acronym { border:0; font-variant:normal; }
 form.formtastic input, form.formtastic textarea, form.formtastic select { font-family:inherit; font-size:inherit; font-weight:inherit; }
 form.formtastic input, form.formtastic textarea, form.formtastic select { font-size:100%; }
-form.formtastic legend { color:#000; }
+form.formtastic legend { white-space:normal; color:#000; }
+
+
+/* SEMANTIC ERRORS
+--------------------------------------------------------------------------------------------------*/
+form.formtastic ul.errors { color:#cc0000; margin:0.5em 0 1.5em 25%; list-style:square; }
+form.formtastic ul.errors li { padding:0; border:none; display:list-item; }
 
 
 /* FIELDSETS & LISTS
@@ -54,7 +70,7 @@ form.formtastic fieldset ol li.error { }
 
 /* LABELS
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset ol li label { display:block; width:25%; float:left; padding-top:.2em; }
+form.formtastic fieldset ol li label { display:block; width:25%; float:left; padding-top:.2em;color:#000;}
 form.formtastic fieldset ol li li label { line-height:100%; padding-top:0; }
 form.formtastic fieldset ol li li label input { line-height:100%; vertical-align:middle; margin-top:-0.1em;}
 
@@ -62,7 +78,7 @@ form.formtastic fieldset ol li li label input { line-height:100%; vertical-align
 /* NESTED FIELDSETS AND LEGENDS (radio, check boxes and date/time inputs use nested fieldsets)
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset ol li fieldset { position:relative; }
-form.formtastic fieldset ol li fieldset legend { position:absolute; width:25%; padding-top:0.1em; }
+form.formtastic fieldset ol li fieldset legend { position:absolute; width:95%; padding-top:0.1em; left: 0px; }
 form.formtastic fieldset ol li fieldset legend span { position:absolute; }
 form.formtastic fieldset ol li fieldset legend.label label { position:absolute; }
 form.formtastic fieldset ol li fieldset ol { float:left; width:74%; margin:0; padding:0 0 0 25%; }
@@ -83,9 +99,9 @@ form.formtastic fieldset ol li ul.errors li { padding:0; border:none; display:li
 
 /* STRING & NUMERIC OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset ol li.string input { width:74%; }
-form.formtastic fieldset ol li.password input { width:74%; }
-form.formtastic fieldset ol li.numeric input { width:74%; }
+form.formtastic fieldset ol li.string input { max-width:74%; }
+form.formtastic fieldset ol li.password input { max-width: 13em; }
+form.formtastic fieldset ol li.numeric input { max-width:74%; }
 
 
 /* TEXTAREA OVERRIDES
@@ -94,9 +110,11 @@ form.formtastic fieldset ol li.text textarea { width:74%; }
 
 
 /* HIDDEN OVERRIDES
+The dual declarations are required because of our clearfix display hack on the LIs, which is more
+specific than the more general rule below. TODO: Revist the clearing hack and this rule.
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset ol li.hidden { display:none; }
-
+form.formtastic fieldset ol li.hidden,
+html[xmlns] form.formtastic fieldset ol li.hidden { display:none; }
 
 /* BOOLEAN OVERRIDES
 --------------------------------------------------------------------------------------------------*/
@@ -104,12 +122,12 @@ form.formtastic fieldset ol li.boolean label { padding-left:25%; width:auto; }
 form.formtastic fieldset ol li.boolean label input { margin:0 0.5em 0 0.2em; }
 
 
-/* RADIO OVERRIDES
+/* RADIO OVERRIDES - lists radio buttons blocks horizontally rather than vertically
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset ol li.radio { }
-form.formtastic fieldset ol li.radio fieldset ol { margin-bottom:-0.6em; }
-form.formtastic fieldset ol li.radio fieldset ol li { margin:0.1em 0 0.5em 0; }
-form.formtastic fieldset ol li.radio fieldset ol li label { float:none; width:100%; }
+form.formtastic fieldset ol li.radio fieldset ol { margin-bottom:-0.6em;}
+form.formtastic fieldset ol li.radio fieldset ol li { margin:0.1em 0.5em 0.5em 0; display:inline; }
+form.formtastic fieldset ol li.radio fieldset ol li label { float:none; width:100%; display:inline; }
 form.formtastic fieldset ol li.radio fieldset ol li label input { margin-right:0.2em; }
 
 
