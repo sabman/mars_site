@@ -22,6 +22,7 @@ class Survey < Prod::Survey
       upper(owner) LIKE ?", 
       'RAN', '%AUSTRALIAN%NAVY%', '%AUSTRALIAN%HYDRO%', 'AHO', 'AHS', 'RAN', '%AUSTRALIAN%NAVY%', '%AUSTRALIAN%HYDRO%', 'AHO', 'AHS']}
   named_scope :antarctica, {:conditions => ["lower(operator) LIKE ? OR lower(surveyname) LIKE ?", 'australian antarctic division', '%aurora australis%']}
+  named_scope :upcoming, lambda{ {:conditions => "startdate > \'#{Time.now.strftime('%d-%b-%Y')}\' "} }
 
   @@critical_metadata_fields = %w{surveyname surveytype surveyid operator contractor processor client owner startdate enddate vessel_type vessel confid_until}
 

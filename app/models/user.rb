@@ -32,10 +32,13 @@ class User < ActiveRecord::Base
   def ldap_user_exists?
   end
 
-  # populate the ldap_entry instance variable
+  # populate the ldap_user_entry instance variable
   def ldap_user_entry
     filter = Net::LDAP::Filter.eq("sAMAccountName", self.username)
+    count = 0
     unless @ldap_user_entry 
+      return nil if count >= 2 
+      count = count+1
       @ldap_user_entry ||= LDAP_CONNECTION.search(:filter => filter, :size => 1)[0] rescue false
     end
     @ldap_user_entry
@@ -43,7 +46,7 @@ class User < ActiveRecord::Base
 
   def self.find_ldap_username_by_email(email)
     filter = Net::LDAP::Filter.eq("mail", email)
-    LDAP_CONNECTION.search(:filter => filter, :size=>1)[0].samaccountname[0] rescue nil
+    LDAP_CONNECTION.search(:filter => filter, :size=>1)[0].samaccountname[0] rescue false
   end
 
   def email

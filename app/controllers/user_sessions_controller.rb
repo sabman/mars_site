@@ -1,11 +1,14 @@
 class UserSessionsController < ApplicationController
-  before_filter :check_for_email, :only => :create
+  before_filter :set_username, :require_no_user, :only => :create
+  before_filter :require_no_user, :only => [:new, :create]
+  before_filter :require_user, :only => :destroy
 
   def new
     @user_session = UserSession.new
   end
   
   def create
+    return nil if @username.nil?
     user = User.find_or_initialize_by_username(@username)
     @user_session = UserSession.new(user)
     if user.authenticate_against_ga_ldap(params[:user_session][:password]) 
@@ -28,15 +31,17 @@ class UserSessionsController < ApplicationController
   
   private
 
-  def check_for_email
+  def set_username
     @username = params[:user_session][:username]
-    if params[:user_session][:username] =~ /.*@ga.gov.au/ #email
+    if params[:user_session][:username] =~ /.*@ga.gov.au/i #email
       @username = User.find_ldap_username_by_email(params[:user_session][:username])
       if @username.nil?
         flash[:notice] = "Sorry but we couldn't not find a user by this email address."
         redirect_to login_path
         return false
       else
+        puts "Found you! your username is #{@username}"
+        flash[:notice] = "Found you! your username is #{@username}"
         return true
       end
     else #username

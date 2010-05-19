@@ -1,6 +1,7 @@
 class SurveysController < ApplicationController
   before_filter :set_oracle_formats
-  before_filter :require_admin_user, :except => [:show, :index, :ran, :antarctica, :grain_size] 
+  before_filter :require_user, :only => :upcoming
+  before_filter :require_admin_user, :except => [:show, :index, :ran, :antarctica, :grain_size, :upcoming] 
   resource_controller
 
   show.wants.json { }
@@ -15,6 +16,11 @@ class SurveysController < ApplicationController
       flash[:error] = "Problem updating"
       render :action => :edit
     end
+  end
+
+  def upcoming
+    @survey = Survey.upcoming.first
+    render :action => "show"
   end
 
   def ran

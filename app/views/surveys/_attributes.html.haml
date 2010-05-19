@@ -5,19 +5,25 @@
 %h3
   %strong Survey name:
   =h @survey.surveyname
+%h3
+  %strong Survey ID:
+  =h @survey.surveyid || "TBA"
 
 #spatial_information
-  #staticmap
-    %p
-      %strong=link_to "Show map", static_gmap(:llur => @survey.llur), :class => 'thickbox' unless @survey.llur.nil?
   %p
     %strong BBOX:
+    %span.staticmap_link
+      %strong=link_to "Show on a map", static_gmap(:llur => @survey.llur), :class => 'thickbox' unless @survey.llur.nil?
     =h @survey.bounding_box
 %p
   %strong Data types:
   =h @survey.datatypes
 
 #ip_information
+  %h4 IP related information
+  %p
+    %strong Project leader:
+    =h @survey.proj_leader
   %p
     %strong Confidential until:
     =h @survey.confid_until
@@ -39,25 +45,33 @@
   %p
     %strong Vessel:
     =h @survey.vessel
-
-%p
-  %strong UNO:
-  =h @survey.uno
+  %p
+    %strong UNO:
+    =h @survey.uno
 
 #temporal_range
+  %h4 Temporal range
   %p
-    %strong Startdate:
+    %strong Start of survey:
     =h @survey.startdate.strftime("%d-%b-%Y") rescue nil
   %p
-    %strong Enddate:
+    %strong End of survey:
     =h @survey.enddate.strftime("%d-%b-%Y") rescue nil
 
-%p
-  %strong GAMS:
-  =h @survey.gams
-%p
-  %strong Comments:
-  =h @survey.comments
+#ga_codes
+  %h4 GA internal codes
+  %p
+    %strong QA Code:
+    =h @survey.qa_code
+  %p
+    %strong Access Code:
+    =h @survey.access_code
+  %p
+    %strong GAMS:
+    =h @survey.gams
+  %p
+    %strong Comments:
+    =h @survey.comments
 
 #database_dates
   %p
@@ -69,7 +83,6 @@
 %p
   %strong Samples: 
   = link_to "View Samples", survey_samples_path(@survey)
-
 %p= link_to "View All Surveys", surveys_path
 
 .subtle{:style => "text-align:right;"}
@@ -82,15 +95,16 @@
 -content_for(:sidebar_otherdata) do
   - if @survey.gams
     - thickbox_iframe_params = '&keepThis=true&TB_iframe=true&height=600&width=800'
+    %h4.notice Related data
     %p= link_to("Data from GADA Project", @survey.gada_data_url+thickbox_iframe_params , :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access", :class=>'thickbox')
     %p= link_to("Metadata from GADA Project", @survey.gada_metadata_url+thickbox_iframe_params , :alt => "Geophysical Analysis and Data Access", :title=>"Geophysical Analysis and Data Access", :class=>'thickbox')
 
 -content_for(:sidebar_otherdata) do
-  %h4 Externl Searchs
-  %p=link_to("GADA Keyword Metadata Search", "http://www.agso.gov.au:88/pmd-bin/new_searchmeta.cgi")
+  %h4 External Searches
+  %p=link_to("GADA Keyword Metadata Search", "http://www.agso.gov.au:88/pmd-bin/new_searchmeta.cgi", :target => "_blank")
 
 -content_for(:sidebar) do
-  - if has_samples = @object.samples.count > 0
+  - if has_samples = @survey.samples.count > 0
     %h2= link_to "View Samples", survey_samples_path(@survey)
     %h5=link_to "View Raw Grain Size Data", grain_size_survey_path
     %h4 Download Samples 

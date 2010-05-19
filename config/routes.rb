@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.upcoming_survey "/surveys/upcoming", :controller => :surveys, :action => :upcoming
   map.resources :emails
 
   map.resources :newfeatures
@@ -12,7 +13,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_sessions, :users
   map.resources :sampledata
   map.resources :samples, :has_many => :sampledata
-  map.resources :surveys, :has_many => :samples, :member => {:qc => :get, :grain_size => :get}, 
+  map.resources :surveys, :has_many => :samples, 
+    :member => {
+      :qc => :get, 
+      :grain_size => :get
+    }, 
     :collection => {
       :recent_marine  => :get,    # recent marine surveys
       :ran            => :get,    # surveys from RAN

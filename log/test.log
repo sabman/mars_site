@@ -496,3 +496,7 @@ Processing RegionsController#index (for 127.0.0.1 at 2010-04-09 11:30:42) [GET]
 Rendering template within layouts/application
 Rendering regions/index
 Completed in 18ms (View: 13, DB: 1) | 200 OK [http://www.example.com/]
+  [4;36;1mSQL (2.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
