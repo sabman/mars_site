@@ -25,6 +25,16 @@ describe User do
     ).should == true
   end
 
+  it "should be able to get the attributes from LDAP for all the users" do
+    20.times do
+      user.full_name.should == "Shoaib Burq"
+      user.username.should == "u63250"
+      user.department.should_not == nil
+      user.office_phone.should_not == nil
+      user.email.should == "Shoaib.Burq@ga.gov.au"
+    end
+  end
+
   private
   def user
     User.new(:username => "u63250")

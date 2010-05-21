@@ -1,4 +1,4 @@
-$: << "/d/mac/1/sburq/root/opt"
+$: << File.join(RAILS_ROOT, "lib")
 require 'pp'
 require 'lib/init_ga'
 require 'lib/config/smac_locations'

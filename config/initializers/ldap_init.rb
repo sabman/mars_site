@@ -8,5 +8,7 @@ LDAP_CONNECTION.port = LDAP_CONFIG["port"]
 LDAP_CONNECTION.base = LDAP_CONFIG["base"]
 LDAP_CONNECTION.auth "#{user}@#{LDAP_CONFIG["full_base_dn"]}", pass
 unless LDAP_CONNECTION.bind 
-  raise "LDAP Connection failed #{LDAP_CONNECTION.get_message}"
+  msg = LDAP_CONNECTION.get_operation_result.message
+  code = LDAP_CONNECTION.get_operation_result.code
+  raise "LDAP Connection failed: Message #{msg}, Code: #{code}"
 end

@@ -46,11 +46,11 @@ class User < ActiveRecord::Base
 
   def self.find_ldap_username_by_email(email)
     filter = Net::LDAP::Filter.eq("mail", email)
-    LDAP_CONNECTION.search(:filter => filter, :size=>1)[0].samaccountname[0] rescue false
+    LDAP_CONNECTION.search(:filter => filter, :size=>1)[0].samaccountname[0] rescue nil
   end
 
   def email
-    ldap_user_entry.mail.first
+    ldap_user_entry.mail.first rescue nil
   end
 
   def full_name
@@ -58,19 +58,19 @@ class User < ActiveRecord::Base
   end
 
   def first_name
-    ldap_user_entry.givenname.first
+    ldap_user_entry.givenname.first rescue nil
   end
 
   def last_name
-    ldap_user_entry.sn.first
+    ldap_user_entry.sn.first rescue nil
   end
 
   def department
-    ldap_user_entry.department.first
+    ldap_user_entry.department.first rescue nil
   end
 
   def office_phone
-    ldap_user_entry.telephonenumber.first
+    ldap_user_entry.telephonenumber.first rescue nil
   end
 
   def to_param

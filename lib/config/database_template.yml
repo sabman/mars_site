@@ -1,0 +1,17 @@
+production: 
+  adapter: oracle_enhanced
+  database: 'mica:1521/oraprod'
+  username: sburq
+  password: *****
+
+development:
+  adapter: oracle_enhanced
+  database: 'craton:1521/oradev'
+  username: sburq
+  password: *****
+
+test:
+  adapter: oracle_enhanced
+  database: 'craton:1521/oratest'
+  username: sburq
+  password: *****

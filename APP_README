@@ -12,7 +12,7 @@ It is runs on a linux platform with the following requirements:
 == Components of the app
 
 === 1. Production database: 
-a) Config file location: ~/root/opt/lib/config/database.yml
+a) Config file location: RAILS_ROOT/lib/config/database.yml
     production: 
       adapter: oracle_enhanced
       database: 'mica:1521/oraprod'
