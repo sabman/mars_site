@@ -1,7 +1,15 @@
-- if @sample.carbonate_content
-  %h3 Carbonate Content
-  -@sample.carbonate_content.each do |k,v| 
-    %p
-      %strong=k.to_s.capitalize
-      =v.to_f.round_to(3)
-      \%
+- carbonate_content = @sample.carbonate_content
+- if carbonate_content 
+  - k = carbonate_content.keys
+  - vals = carbonate_content.values
+  #grainsize.section
+    %h3 Carbonate Content
+    %table
+      %tr
+        -k.each do |h|
+          %th=h.to_s.capitalize
+      %tr
+        -vals.each do |v|
+          %td
+            =v.to_f.round_to(3)
+            \%

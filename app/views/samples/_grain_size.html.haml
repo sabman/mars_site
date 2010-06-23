@@ -2,22 +2,25 @@
 - unless sieve_grain_size.blank?
   #grain_size.section
     %h3 Aggrigated Sieve Grain Size
-    %p
-      %strong mud
-      =sieve_grain_size[:mud].to_f.round_to(3)
-      \%
-    %p
-      %strong sand
-      =sieve_grain_size[:sand].to_f.round_to(3)
-      \%
-    %p
-      %strong gravel
-      =sieve_grain_size[:gravel].to_f.round_to(3)
-      \%
-    %p
-      %strong bulk
-      =sieve_grain_size[:bulk].to_f.round_to(3)
-      \%
+    %table
+      %tr
+        %th Mud
+        %th Sand
+        %th Gravel
+        %th Bulk
+      %tr
+        %td
+          =sieve_grain_size[:mud].to_f.round_to(3)
+          \%
+        %td
+          =sieve_grain_size[:sand].to_f.round_to(3)
+          \%
+        %td
+          =sieve_grain_size[:gravel].to_f.round_to(3)
+          \%
+        %td
+          =sieve_grain_size[:bulk].to_f.round_to(3)
+          \%
 
 - sieve_grain_size = @sample.sieve_grain_size
 - unless sieve_grain_size.blank?
