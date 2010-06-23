@@ -1,3 +1,6 @@
 -@region => object
-  :code => geom
-    geometry
+  :except
+    .geometry
+  :methods
+    .feature
+    .id

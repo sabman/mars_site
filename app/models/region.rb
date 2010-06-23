@@ -32,4 +32,9 @@ class Region < ActiveRecord::Base
     llur = llur.as_coordinates
     GeoRuby::SimpleFeatures::Polygon.from_coordinates(llur, 4326, false)
   end
+
+  def feature
+    JSON.parse(self.geometry)
+  end
+
 end

@@ -318,3 +318,10 @@ pre {
   .reference_box .toggle_reference {
     padding: 2px 1px;
     background-color: #ffffcc; }
+
+.new {
+  background: #ffffcc;
+  font-style: italic; }
+
+.new:hover:after {
+  content: " - beta feature"; }

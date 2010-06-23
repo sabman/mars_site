@@ -8,7 +8,8 @@ class SamplesController < ApplicationController
 
   index do 
     wants.json{} 
-    wants.csv {}
+    wants.csv {
+    }
     wants.kml {}
   end
 

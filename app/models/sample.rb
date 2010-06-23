@@ -95,7 +95,7 @@ class Sample < Prod::Sample
 
   def geometric_mean_grain_size
     data = self.sampledata.find_all_by_property_and_method('grain size', 'Laser', :order => "datano ASC")
-    return if data.empty?
+    return nil if data.empty?
     running_mean = []
     running_sum = []
     lt_63 = []
@@ -141,6 +141,35 @@ class Sample < Prod::Sample
 #      puts conditions
       Sample.find(:all, :conditions => conditions)
     end
+    comma :repository do
+      sampleno
+      sampleid
+      sample_type
+      top_depth
+      base_depth
+      start_lon
+      start_lat
+      start_depth
+      #start_water_depth
+      start_depth
+      end_lon
+      end_lat
+      end_depth 
+      #end_water_depth
+      access_code
+      acquiredate
+      comments
+      eno
+      survey :surveyname
+      survey :surveyid
+      survey :startdate
+      survey :enddate
+      sampledata_count
+    end
+
+    def sampledata_count
+      self.sampledata.count
+    end
 
     comma :sampledata do
       survey :surveyname
@@ -162,21 +191,22 @@ class Sample < Prod::Sample
       acquiredate
       comments
       eno
-      grain_size_mud
-      grain_size_sand
-      grain_size_gravel
-      grain_size_bulk
-      grain_size_mean
-      carbonate_content_mud
-      carbonate_content_sand
-      carbonate_content_gravel
-      carbonate_content_bulk
-      biogenic_silica_average
-      biogenic_silica_stddev
-      start_water_depth
-      end_water_depth
-      rock_type_qual_values
-      munsell_colours_qual_values
-      sedimentry_structures_qual_values
+      grain_size_mud rescue ""
+      grain_size_sand rescue ""
+      grain_size_gravel rescue ""
+      grain_size_bulk rescue ""
+      grain_size_mean rescue ""
+      carbonate_content_mud  rescue ""
+      carbonate_content_sand rescue ""
+      carbonate_content_gravel rescue ""
+      carbonate_content_bulk rescue ""
+      #biogenic_silica_average rescue ""
+      #biogenic_silica_stddev rescue ""
+      #start_water_depth rescue ""
+      #end_water_depth rescue ""
+      #rock_type_qual_values rescue ""
+      #munsell_colours_qual_values rescue ""
+      #sedimentry_structures_qual_values rescue ""
+      geometric_mean_grain_size rescue ""
     end
 end

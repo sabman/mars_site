@@ -48,10 +48,8 @@ function initGeometries (data) {
 
   for (var i=0; i < data.length; i++) {
     var geom = data[i].object;
-    console.log(geom)
     var geojson = new OpenLayers.Format.GeoJSON({"ignoreExtraDims": true});
     var features = geojson.parseFeature(geom.feature);
-    console.log(features)
     if (features) {
       if (features.constructor != Array) { features = [features]; };  
       vectors.addFeatures(features);

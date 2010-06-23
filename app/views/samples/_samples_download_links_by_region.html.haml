@@ -1,3 +1,5 @@
 = link_to image_tag('formats/csv64.png', :alt => "Download CSV", :title => "Download CSV"), base_url+".csv"
 = link_to image_tag('formats/shp64.png', :alt => "Download Shapefile", :title => "Download Shapefile"), "/coming_soon.html"
 = link_to image_tag('formats/kml64.png', :alt => "Download KML", :title => "Download KML"), base_url+".kml"
+%br
+%p.new= link_to "Download CSV (with data)", base_url+".csv?sampledata=yes"

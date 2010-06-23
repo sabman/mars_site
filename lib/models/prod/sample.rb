@@ -18,33 +18,6 @@ module Prod
     named_scope :ga_only, :conditions => "access_code = 'A'"
     named_scope :rocks, :conditions => "property = 'rock type'"
 
-
-
-    comma :repository do
-      sampleno
-      sampleid
-      sample_type
-      top_depth
-      base_depth
-      start_lon
-      start_lat
-      start_depth
-      #start_water_depth
-      start_depth
-      end_lon
-      end_lat
-      end_depth 
-      #end_water_depth
-      access_code
-      acquiredate
-      comments
-      eno
-      survey :surveyname
-      survey :surveyid
-      survey :startdate
-      survey :enddate
-    end
-
     def to_s
       sampleid || ""
     end

@@ -1,1 +1,4 @@
-=@collection.to_comma(:repository)
+-if params["sampledata"]
+  =@collection.to_comma(:sampledata)
+-else
+  =@collection.to_comma(:repository)
