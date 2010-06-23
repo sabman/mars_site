@@ -7,7 +7,7 @@ class SamplesController < ApplicationController
   belongs_to :survey
 
   index do 
-    wants.json {}
+    wants.json{} 
     wants.csv {}
     wants.kml {}
   end

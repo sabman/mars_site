@@ -7,9 +7,9 @@ a:link, a:visited {
   color: darkslateblue;
   text-decoration: none; }
 a:hover {
-  color: #333;
-  border-bottom: 1px solid #9A8E51;
-  background: #FFFFDD; }
+  color: #333333;
+  border-bottom: 1px solid #9a8e51;
+  background: #ffffdd; }
 
 #banner a:hover {
   background: none;
@@ -27,11 +27,11 @@ a img {
 
 #container {
   width: 75%;
-  color: #000;
+  color: black;
   padding: 20px 40px;
   border: solid 1px black;
   margin: 20px 80px;
-  background: #fff url(../images/bg.png) repeat-x scroll left top; }
+  background: white url(../images/bg.png) repeat-x scroll left top; }
 
 #flash_notice,
 #flash_error {
@@ -39,19 +39,19 @@ a img {
   margin: 10px 0; }
 
 #flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6; }
+  background-color: #ccffcc;
+  border: solid 1px #66cc66; }
 
 #flash_error {
-  background-color: #FCC;
-  border: solid 1px #C66; }
+  background-color: #ffcccc;
+  border: solid 1px #cc6666; }
 
 .fieldWithErrors {
   display: inline; }
 
 #errorExplanation {
   width: 400px;
-  border: 2px solid #CF0000;
+  border: 2px solid #cf0000;
   padding: 0;
   padding-bottom: 12px;
   margin-bottom: 20px;
@@ -62,10 +62,10 @@ a img {
     margin: 0;
     font-weight: bold;
     font-size: 12px;
-    background-color: #c00;
-    color: #fff; }
+    background-color: #cc0000;
+    color: white; }
   #errorExplanation p {
-    color: #333;
+    color: #333333;
     margin-bottom: 0;
     padding: 8px; }
   #errorExplanation ul {
@@ -76,7 +76,7 @@ a img {
 
 #content {
   float: left;
-  background: #fff url(../images/threecolbg.gif) repeat-y 65% 0;
+  background: white url(../images/threecolbg.gif) repeat-y 65% 0;
   width: 100%;
   padding-top: 5px;
   padding-bottom: 5px; }
@@ -86,8 +86,8 @@ a img {
 
 #nav {
   padding: 5px 10px;
-  border-top: 5px solid #bbb;
-  border-bottom: solid 1px #bbb; }
+  border-top: 5px solid #bbbbbb;
+  border-bottom: solid 1px #bbbbbb; }
   #nav ul {
     margin: 0;
     padding: 0;
@@ -105,11 +105,11 @@ a img {
     text-decoration: none;
     font-weight: bold; }
   #nav a:hover {
-    color: #333;
+    color: #333333;
     text-decoration: none;
     font-weight: bold;
-    background-color: #F4F2E4;
-    border-bottom: 2px solid #9A8E51; }
+    background-color: #f4f2e4;
+    border-bottom: 2px solid #9a8e51; }
 
 #main {
   float: left;
@@ -120,9 +120,9 @@ a img {
   width: 34%;
   float: right;
   font-size: 0.8em;
-  color: #777; }
+  color: #777777; }
   #sidebar h4 {
-    background: #EEE;
+    background: #eeeeee;
     padding-top: 2px;
     padding-left: 2px;
     padding-bottom: 2px; }
@@ -132,9 +132,9 @@ a img {
 
 #footer {
   clear: both;
-  background: #FBFAF4;
-  border-color: #ccc;
-  color: #999;
+  background: #fbfaf4;
+  border-color: #cccccc;
+  color: #999999;
   border-style: solid;
   border-width: 1px 0;
   padding: 5px 5px;
@@ -142,13 +142,13 @@ a img {
   font-size: 0.85em;
   margin-bottom: 1em; }
   #footer a:link, #footer a:visited {
-    color: #999;
+    color: #999999;
     text-decoration: none; }
   #footer a:hover {
-    color: #333;
+    color: #333333;
     text-decoration: none;
-    background-color: #F4F2E4;
-    border-bottom: 1px solid #9A8E51; }
+    background-color: #f4f2e4;
+    border-bottom: 1px solid #9a8e51; }
 
 #banner {
   left: 5px;
@@ -158,18 +158,18 @@ a img {
 
 .smallmap {
   height: 360px;
-  border: 1px solid #ccc; }
+  border: 1px solid #cccccc; }
 
 pre {
-  border: 1px dashed #bbb;
+  border: 1px dashed #bbbbbb;
   font-size: 0.98em;
   padding: 5px;
-  color: #808080;
-  background: #F1F1FF;
+  color: gray;
+  background: #f1f1ff;
   overflow: auto; }
 
 .notice {
-  /* :background #FFFFEE */
+  /*:background #FFFFEE */
   color: darkred;
   /* :font-style italic */
   /* :font-size 0.8em */
@@ -181,14 +181,14 @@ pre {
   font-size: 0.7em; }
 
 .even {
-  background: #F5F5F2; }
+  background: #f5f5f2; }
   .even:hover {
-    background: #FFFFDF; }
+    background: #ffffdf; }
 
 .odd {
-  background: #FFFFFF; }
+  background: white; }
   .odd:hover {
-    background: #FFFFDF; }
+    background: #ffffdf; }
 
 #record {
   padding-top: 2px;
@@ -202,11 +202,11 @@ pre {
   height: auto;
   width: 60px;
   float: right;
-  background: #FFEEDD;
-  /* :display block */
+  background: #ffeedd;
+  /*:display block */
   font-size: 0.8em;
   padding: 2px;
-  color: #AAA;
+  color: #aaaaaa;
   /* 5 px rounded corners on all sides */
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -221,39 +221,39 @@ pre {
   float: right; }
 
 a.button {
-  background: transparent url('../images/bg_button_a.gif') no-repeat scroll top right;
-  color: #444;
+  background: transparent url("../images/bg_button_a.gif") no-repeat scroll top right;
+  color: #444444;
   display: block;
   float: left;
   font: normal 12px arial, sans-serif;
   height: 24px;
   margin-right: 6px;
-  padding-right: 18px /* sliding doors padding */;
+  padding-right: 18px;
   text-decoration: none; }
   a.button:hover {
     border-bottom: none; }
 
 a.button span {
-  background: transparent url('../images/bg_button_span.gif') no-repeat;
+  background: transparent url("../images/bg_button_span.gif") no-repeat;
   display: block;
   line-height: 14px;
   padding: 5px 0 5px 18px; }
 
 a.button:active {
   background-position: bottom right;
-  color: #000;
-  outline: none /* hide dotted outline in Firefox */; }
+  color: black;
+  outline: none; }
 
 a.button:active span {
   background-position: bottom left;
-  padding: 6px 0 4px 18px /* push text down 1px */; }
+  padding: 6px 0 4px 18px; }
 
 .clear_button {
   overflow: hidden;
   width: 100%; }
 
 .carbonate_content {
-  background: #EEE; }
+  background: #eeeeee; }
 
 .comments {
   font-size: 0.9em;
@@ -270,7 +270,7 @@ a.button:active span {
   -moz-background-origin: padding;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  background: #EEEEEE none repeat scroll 0 0;
+  background: #eeeeee none repeat scroll 0 0;
   padding: 10px;
   margin-bottom: 4px; }
 
@@ -278,8 +278,8 @@ pre {
   -moz-background-clip: border;
   -moz-background-inline-policy: continuous;
   -moz-background-origin: padding;
-  background: #EEEEEE none repeat scroll 0 0;
-  border: 1px solid #CCCCCC;
+  background: #eeeeee none repeat scroll 0 0;
+  border: 1px solid #cccccc;
   padding: 10px;
   overflow: auto; }
 
@@ -290,10 +290,10 @@ pre {
   font-weight: bold; }
 
 .notification a {
-  color: #CC5500 /* burnt-orange */; }
+  color: #cc5500; }
 
 .upcoming {
-  color: #CC5500;
+  color: #cc5500;
   display: block; }
 
 .survey_links {
@@ -302,10 +302,19 @@ pre {
   min-height: 60px; }
 
 .section h4 {
-  background-color: #FFEEDD;
-  border-top: 1px solid #CCCCCC;
+  background-color: #ffeedd;
+  border-top: 1px solid #cccccc;
   color: #444444;
   background-repeat: no-repeat;
   line-height: 30px;
   margin-bottom: 5px;
   margin-top: 10px; }
+
+.reference_box {
+  font-size: 0.8em; }
+  .reference_box .reference {
+    font-style: italic;
+    color: gray; }
+  .reference_box .toggle_reference {
+    padding: 2px 1px;
+    background-color: #ffffcc; }

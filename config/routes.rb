@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.surveys_with_samples "/surveys/with_samples" , :controller => :surveys, :action => :with_samples
   map.upcoming_survey "/surveys/upcoming", :controller => :surveys, :action => :upcoming
   map.account "/account", :controller => :users, :action => :show, :id => "current"
 

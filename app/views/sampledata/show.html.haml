@@ -6,6 +6,7 @@
 %p
   %strong Sampleno:
   =h @sampledata.sampleno
+  =#link_to @sampledata.sampleno, sample_path(@sampledata.sampleno)
 %p
   %strong Property:
   =h @sampledata.property

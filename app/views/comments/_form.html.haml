@@ -1,10 +1,9 @@
 %h4 Have any comments?
-- semantic_form_for @comment do |f|
-  %p
+%p
+  - semantic_form_for @comment do |f|
     - f.inputs do
       = f.input :body, :label => "New comment"
       = f.input :commentable_type, :as => :hidden
       = f.input :commentable_id, :as => :hidden
       - f.buttons do 
         = f.commit_button :button_html => {:value => "Add a comment"}
-

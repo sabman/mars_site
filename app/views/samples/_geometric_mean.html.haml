@@ -1,0 +1,21 @@
+:javascript
+  $(document).ready(function(){
+    $(".toggle_reference").toggle(
+      function(){
+        $(".reference").show();
+        $(this).html("Hide Reference"); 
+      }, 
+      function(){
+        $(".reference").hide();
+        $(this).html("Show Reference");
+      }
+    )
+  });
+
+#geometric_mean.section
+  %strong Geometric Mean Particle Size
+  = @sample.geometric_mean_grain_size.round_to(3) rescue nil
+  micrometers
+  .reference_box
+    %span.toggle_reference Show Reference
+    %span.reference{:style => 'display: none;'} Blott SJ, Pye K (2001) Gradistat: a grain size distribution and statistics package for the analysis of unconsolidated sediments. Earth Surf Proc Landforms 26:1237-1248

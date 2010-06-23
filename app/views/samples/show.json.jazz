@@ -2,5 +2,6 @@
   :except
     .geom
     .geom_original
-  :code => geom
-    geom.try(:as_georuby)
+  :methods
+    .feature
+    .id

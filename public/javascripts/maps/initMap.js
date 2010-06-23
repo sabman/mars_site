@@ -5,6 +5,8 @@ var bboxStyle;
 var vectors;
 var vector;
 var bounds;
+var select;
+
 
 function initMap() {
   map = new OpenLayers.Map('map');
@@ -39,18 +41,18 @@ function initGeometries (data) {
   bboxLayer = new OpenLayers.Layer.Vector( "BBox", {style: MARS.LAYERSTYLES.bbox});
   map.addLayers([vectors, bboxLayer]);
   map.addControl(new OpenLayers.Control.EditingToolbar(vectors));
-  var selectOptions = {box:true, hover:true};
+  var selectOptions = {box:true, hover:false, onSelect: onFeatureSelect, onUnselect: onFeatureUnselect};
   var select = new OpenLayers.Control.SelectFeature(vectors, selectOptions);
   map.addControl(select);
   select.activate();
 
   for (var i=0; i < data.length; i++) {
-    var geom = data[i].object.geom;
+    var geom = data[i].object;
+    console.log(geom)
     var geojson = new OpenLayers.Format.GeoJSON({"ignoreExtraDims": true});
-    var features = geojson.read(geom);
-    if (geom) {
-      features.id = data[i].id;
-      //addBox(features);
+    var features = geojson.parseFeature(geom.feature);
+    console.log(features)
+    if (features) {
       if (features.constructor != Array) { features = [features]; };  
       vectors.addFeatures(features);
     };
@@ -62,10 +64,10 @@ function initGeometries (data) {
 }
 
 function initGeometry(data){
-  if(data.object.geom == null) return null ;
-  var geom = data.object.geom;
+  if(data.object.feature == null) return null ;
+  var geom = data.object.feature;
   var geojson = new OpenLayers.Format.GeoJSON({"ignoreExtraDims": true});
-  var features =  geojson.read(geom);
+  var features =  geojson.parseFeature(geom);
   if(features.constructor != Array){features = [features];}
 
   // new layer for showing the record on the map
@@ -73,6 +75,13 @@ function initGeometry(data){
   vector.addFeatures(features); 
   map.addLayer(vector);
 
+  // allow selection
+  map.addControl(new OpenLayers.Control.EditingToolbar(vector));
+  var selectOptions = {box:true, hover:false, onSelect: onFeatureSelect, onUnselect: onFeatureUnselect};
+  var select = new OpenLayers.Control.SelectFeature(vector, selectOptions);
+  map.addControl(select);
+  select.activate();
+  
   // zoom the the extents of the new vector layer
   var bounds = vector.getDataExtent();
   map.zoomToExtent(bounds);
@@ -149,4 +158,27 @@ function addHighlighting (vectors) {
   highlightCtrl.activate();
   selectCtrl.activate();
   return vectors;
+}
+function onFeatureSelect (feature) {
+  selectedFeature = feature;
+  popup = new OpenLayers.Popup.FramedCloud("Popup", 
+      feature.geometry.getBounds().getCenterLonLat(),
+      null,
+      "<div style='font-size:1em'>Sample ID: <a href='/samples/"+feature.attributes.sampleno+"'>" + feature.attributes.sampleid +"</a>"+
+			"<br />Sample type: " + feature.sample_type+
+			"<br />Survey: <a href='/surveys/" + feature.attributes.eno+"'>"+feature.attributes.eno+"</a></div><br/>" + 
+      "<div style='font-size:0.8em;text-align:right'>click outside to close</div>",
+      null, false, onPopupClose);
+      feature.popup = popup;
+      map.addPopup(popup);
+}
+function onFeatureUnselect(feature) {
+  map.removePopup(feature.popup);
+  feature.popup.destroy();
+  feature.popup = null;
+}    
+		
+function onPopupClose(evt) {
+  console.log(evt);
+  select.unselect(selectedFeature);
 }

@@ -3,9 +3,12 @@ class Survey < Prod::Survey
   has_many :samples, :foreign_key => "eno"
   set_date_columns :entrydate, :qadate, :acquiredate, :confid_until, :lastupdate
 
-
   # scopes
   default_scope :conditions =>  "surveytype='MARINE' OR on_off='OnOff'"
+  named_scope :ga_only, :conditions => "surveys.access_code = 'A'"
+  named_scope :open,    :conditions => "surveys.access_code = 'O'"
+#  named_scope :with_samples, :joins => :samples, :group => "samples.eno"
+  
   named_scope :recent, lambda{ |*args| {:conditions => "startdate > \'#{args.first || 2.years.ago.strftime('%d-%b-%Y')}\'" } }
   named_scope :marine, :conditions => "surveytype = 'MARINE'"
   named_scope :land, :conditions => "surveytype = 'LAND'"
@@ -118,9 +121,9 @@ class Survey < Prod::Survey
     nlat, slat, elong, wlong = bbox.split(",").collect{|v| v.to_f}
   end
 
-  def self.with_samples
-    find(:all).collect{ |s| s.has_samples? }
-  end
+#  def self.with_samples
+#    find(:all).collect{ |s| s.has_samples? }
+#  end
 
   def to_param
     if surveyid
@@ -138,42 +141,6 @@ class Survey < Prod::Survey
     operators ||= self.find_by_sql("select company from companies") 
   end
   
-
-#  def update_samples_count
-#    sc = self.samples.count
-#    # if the samples_count exits sub
-#    if self.comments.nil?
-#      self.comments = "samples_count = #{sc.to_s};"
-#    elsif self.comments =~  /^samples_count = (\d+);$/i
-#      self.comments.sub!(/^samples_count = (\d+);$/i, "samples_count = #{sc.to_s};")
-#    else 
-#      self.comments = "samples_count = #{sc.to_s};\n" + self.comments
-#    end
-#    self.save
-#  end
-
-  # samples_count cache
-#  def samples_count
-#    if self.comments =~ /^samples_count = (\d+);$/i 
-#      sc = $1.to_i
-#    elsif self.comments.nil?
-#      sc = self.samples.count
-#      self.comments = "samples_count = #{sc.to_s};\n"
-#    else
-#      sc = self.samples.count
-#      begin  # try to save it to comments
-#        self.comments = "samples_count = #{sc.to_s};\n" + self.comments
-#        self.save
-#      rescue => e
-#        puts "Error: while trying to save samples_count to comments"
-#        puts e.message
-#        sc
-#      end
-#      sc
-#    end
-#  end
-
-
   # gams should be retrieved by looking for it in the surveyid or in comments
   def gams
     surveyid =~ /(GA-?(\d\d\d\d|\d\d\d))/i
@@ -209,26 +176,6 @@ class Survey < Prod::Survey
     vs = Survey.all(:joins => :samples, 
                     :conditions => ["(surveys.confid_until = ? OR surveys.confid_until IS ?) AND surveys.access_code = ?", "1-Jan-1950", nil, "A"],
                     :select => "surveys.eno, surveys.surveyid, surveys.surveyname, surveys.confid_until, surveys.access_code, surveys.surveytype, surveys.comments, surveys.operator, surveys.contractor, surveys.processor, surveys.releasedate, surveys.client, surveys.owner, surveys.startdate, surveys.enddate, surveys.vessel, surveys.vessel_type")
-
-#   vs ||= Survey.find(:all, :conditions => ["(confid_until = ? OR confid_until IS ?) AND access_code = ?", "1-Jan-1950", nil, "A"], :include => :samples)
-#   vs = Survey.find_by_sql( <<SQL
-                            
-#              SELECT  v.eno, v.surveyid, 
-#                  v.surveyname, v.confid_until, v.access_code, v.surveytype, 
-#                  v.comments, v.operator, v.contractor, v.processor, v.releasedate,
-#                  v.client, v.owner, v.startdate, v.enddate, v.vessel, v.vessel_type
-
-#              FROM 
-#                surveys v
-#
-#              WHERE ( 
-#                (v.confid_until = '1-Jan-1950' OR v.confid_until IS NULL) 
-#                AND v.access_code = 'A' 
-#                AND v.surveytype = 'MARINE' 
-#              )
-#SQL
-#    ) 
-#    vs.map{|v| puts v.samples_count }
     vs
   end
 

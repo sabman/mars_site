@@ -6,7 +6,7 @@ class SurveysController < ApplicationController
 
   show.wants.json { }
   index.wants.json{ }
-  index.wants.js { render :partial => 'all_recent', :layout => nil }
+  index.wants.js { }
 
   def update
     if object.update_attributes(params[:survey])
@@ -16,6 +16,10 @@ class SurveysController < ApplicationController
       flash[:error] = "Problem updating"
       render :action => :edit
     end
+  end
+
+  def with_samples
+    @surveys = Survey.find_by_sql("SELECT distinct (v.eno), v.surveyid, v.surveyname FROM surveys v, samples s where s.eno = v.eno order by v.eno")
   end
 
   def upcoming

@@ -2,6 +2,7 @@ class Sample < Prod::Sample
   acts_as_commentable
   belongs_to :survey, :foreign_key => "eno"
   has_many :sampledata, :foreign_key => "sampleno"
+  named_scope :ga_only, :conditions => "access_code = 'A'"
 
   #auto_complete_for :survey, :operator do 
   #  Lookup.operators 
@@ -9,8 +10,17 @@ class Sample < Prod::Sample
 
   #after_create :update_samples_count_for_survey
   #after_destroy :update_samples_count_for_survey
-  
-  attr_accessor :lat_start, :lon_start, :lat_end, :lon_end, :country
+
+  attr_accessor :lat_start, :lon_start, :lat_end, :lon_end, :country, :feature
+
+  def feature
+    a = self.attributes; a.delete("geom"); a.delete("geom_original")
+    { 
+      :id => self.id,
+      :geometry => self.geom.try(:as_georuby), 
+      :properties => a 
+    }
+  end
 
   def has_laser?
     sampledata.find_by_method("Laser") != nil
@@ -117,4 +127,56 @@ class Sample < Prod::Sample
     #puts running_mean.sum
     Math.exp(running_mean.sum/100)
   end
+
+    def self.find_all_by_bbox(bounds, opts={})
+      bbox = GeoRuby::SimpleFeatures::Polygon.from_coordinates(bounds.as_coordinates, 4326)
+      self.find_all_by_geom(bbox, opts)
+    end
+
+    def self.find_all_by_geom(g, opts={})
+      # TODO Handle options as done by find methods in rails
+      raise "Currently only handles conditions passed as string" if opts[:conditions].is_a?(Array)
+      conditions = ["SDO_ANYINTERACT(#{table_name}.geom, #{g.as_sdo_geometry}) = 'TRUE'"]
+      conditions = [conditions, "(#{opts[:conditions]})"].join(' AND ') unless( opts[:conditions].nil? || opts[:conditions].try(:empty?) )
+#      puts conditions
+      Sample.find(:all, :conditions => conditions)
+    end
+
+    comma :sampledata do
+      survey :surveyname
+      survey :surveyid
+      survey :startdate
+      survey :enddate
+      sampleno
+      sampleid
+      sample_type
+      top_depth
+      base_depth
+      start_lon
+      start_lat
+      start_depth
+      end_lon
+      end_lat
+      end_depth 
+      access_code
+      acquiredate
+      comments
+      eno
+      grain_size_mud
+      grain_size_sand
+      grain_size_gravel
+      grain_size_bulk
+      grain_size_mean
+      carbonate_content_mud
+      carbonate_content_sand
+      carbonate_content_gravel
+      carbonate_content_bulk
+      biogenic_silica_average
+      biogenic_silica_stddev
+      start_water_depth
+      end_water_depth
+      rock_type_qual_values
+      munsell_colours_qual_values
+      sedimentry_structures_qual_values
+    end
 end

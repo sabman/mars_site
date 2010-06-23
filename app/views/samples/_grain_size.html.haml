@@ -4,32 +4,33 @@
     %h3 Aggrigated Sieve Grain Size
     %p
       %strong mud
-      =sieve_grain_size[:mud]
+      =sieve_grain_size[:mud].to_f.round_to(3)
       \%
     %p
       %strong sand
-      =sieve_grain_size[:sand]
+      =sieve_grain_size[:sand].to_f.round_to(3)
       \%
     %p
       %strong gravel
-      =sieve_grain_size[:gravel]
+      =sieve_grain_size[:gravel].to_f.round_to(3)
       \%
     %p
       %strong bulk
-      =sieve_grain_size[:bulk]
+      =sieve_grain_size[:bulk].to_f.round_to(3)
       \%
 
 - sieve_grain_size = @sample.sieve_grain_size
 - unless sieve_grain_size.blank?
   #grain_size.section
     %h3 Grain size from sieve
-    - sieve_grain_size.each do |s|
-      %p
-        = "#{s.quant_value} #{s.uom}"
-        |
-        = s.qualifier
-        |
-        = s.comments
-        |
-        =link_to :details, sample_sampledata_path(@sample, s)
-
+    %table
+      %tr
+        %th quant_value
+        %th qualifier
+        %th comments
+      - sieve_grain_size.each do |s|
+        %tr
+          %td= "#{s.quant_value.to_f.round_to(3)} #{s.uom}"
+          %td= s.qualifier
+          %td= s.comments
+          %td=link_to :details, sample_sampledata_path(@sample, s)
